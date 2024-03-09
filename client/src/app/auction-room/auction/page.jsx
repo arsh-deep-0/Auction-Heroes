@@ -1,4 +1,5 @@
 "use client";
+import BuyersSection from "@/components/auction-room/auction/buyers-section/buyers-section";
 import PlayerSection from "@/components/auction-room/auction/player-section/player-section";
 import { useEffect, useState } from "react";
 
@@ -16,7 +17,9 @@ export default function Auction() {
         <div className="h-full  w-1/2  rounded-md">
           <PlayerSection/>
         </div>
-        <div className="h-full  w-1/2 pink-shadow  rounded-md"></div>
+        <div className="h-full  w-1/2   rounded-md">
+          <BuyersSection/>
+        </div>
       </div>
       <div className="h-[40%] bg-blue-pink border-white border-solid border-2 rounded-md w-full flex justify-center gap-2"></div>
     </div>

@@ -74,3 +74,39 @@ html,body{
   font-size: clamp(0.1rem , 3vw,1.65rem);
   line-height: 1rem;
 }
+
+
+
+
+.csk {
+  background: linear-gradient(143.7deg, #fcca06 50%, #f25c19 100%);
+}
+
+.mi {
+  background: linear-gradient(180deg, #0078bc 50%, #17479e 100%);
+}
+
+.rr {
+  background: linear-gradient(143.7deg, #ea1a85 50%, #001d48 100%);
+}
+
+.dc {
+  background: linear-gradient(180deg, #0078bc 50%, #17479e 100%);
+}
+
+.kkr {
+  background: linear-gradient(143.7deg, #3b215d 50%, #552792 100%);
+
+}
+
+.pbks {
+  background: linear-gradient(143.7deg, #d71920 50%, #84171b 100%);
+}
+
+.srh {
+  background: linear-gradient(180deg, #f26522 50%, #ed1a37 100%);
+}
+
+.rcb {
+  background: linear-gradient(143.7deg, #6a6a6a 50%, #1c1c1c 100%);
+}
