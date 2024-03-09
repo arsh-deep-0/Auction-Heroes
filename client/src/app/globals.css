@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Gabriela&family=Noto+Serif+HK:wght@200..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -30,4 +33,39 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+html,body{
+  height: 100%;
+}
+
+.bg-blue-pink{
+  background: linear-gradient(15deg,#0094ffc6 40%,#9e00ffbb 110%);
+}
+
+.gabriela{
+  font-family: "Gabriela", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.aoboshi{
+  font-family: "Aoboshi One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.noto-serif {
+  font-family: "Noto Serif HK", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.pink-shadow{
+  box-shadow: 0px 0.15rem 0.3rem #9e00ff32;
+}
+
+.bg-blue{
+  background: #0094ff;
 }
