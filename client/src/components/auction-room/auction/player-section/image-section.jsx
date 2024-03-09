@@ -1,6 +1,6 @@
 export default function ImageSection() {
   return (
-    <div className="relative pink-shadow w-full flex justify-center rounded-xl border-b-2 border-black border-solid h-full overflow-hidden">
+    <div className="relative pink-shadow w-full flex justify-center  rounded-xl border-b-2 border-black border-solid h-full overflow-hidden">
       <img
         className="h-full z-10 "
         src="/images/player-images/Virat Kohli .svg"

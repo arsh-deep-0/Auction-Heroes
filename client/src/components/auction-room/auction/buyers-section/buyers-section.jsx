@@ -8,7 +8,7 @@ export default function BuyersSection() {
         <div className="h-[10%]">
           <Heading title="Buyers" />
         </div>
-        <div  className="h-[85%] w-full">
+        <div  className="h-[87.5%] w-full">
             <BuyersContainer/>
         </div>
       </div>

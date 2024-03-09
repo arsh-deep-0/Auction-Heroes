@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Gabriela&family=Noto+Serif+HK:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Gabriela&family=Noto+Serif+HK:wght@200..900&family=Cantora+One&family=Frank+Ruhl+Libre:wght@300..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,12 +21,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -35,21 +32,22 @@ body {
   }
 }
 
-html,body{
+html,
+body {
   height: 100%;
 }
 
-.bg-blue-pink{
-  background: linear-gradient(15deg,#0094ffc6 40%,#9e00ffbb 110%);
+.bg-blue-pink {
+  background: linear-gradient(15deg, #0094ffc6 40%, #9e00ffbb 110%);
 }
 
-.gabriela{
+.gabriela {
   font-family: "Gabriela", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.aoboshi{
+.aoboshi {
   font-family: "Aoboshi One", serif;
   font-weight: 400;
   font-style: normal;
@@ -62,16 +60,34 @@ html,body{
   font-style: normal;
 }
 
-.pink-shadow{
+.cantora-one {
+  font-family: "Cantora One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.frank-r {
+  font-family: "Frank Ruhl Libre", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.pink-shadow {
   box-shadow: 0px 0.15rem 0.3rem #9e00ff32;
 }
 
-.bg-blue{
+.bg-blue {
   background: #0094ff;
 }
 
-.stat-text{
-  font-size: clamp(0.1rem , 3vw,1.65rem);
+.stat-text {
+  font-size: clamp(0.1rem, 3vw, 1.65rem);
+  line-height: 1rem;
+}
+
+.bar-text {
+  font-size: clamp(0.1rem, 2.5vw, 1.65rem);
   line-height: 1rem;
 }
 
@@ -119,20 +135,7 @@ html,body{
 
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(118, 118, 118);
+  background-color: rgb(0, 0, 0);
   border-radius: 2px;
-  
-}
 
-.CircularProgressbar-path {
-  stroke: red;
-}
-.CircularProgressbar-trail {
-  stroke: gray;
-}
-.CircularProgressbar-text {
-  fill: yellow;
-}
-.CircularProgressbar-background {
-  fill: green;
 }

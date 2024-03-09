@@ -9,7 +9,7 @@ export default function Buyer({ teamName, currentWallet, totalWallet, playersBou
         <div className="w-[25%]">
           <BuyerLogo teamName={buyerData.teamName} order={buyerData.order}/>
         </div>
-        <div className="w-[70%]">
+        <div className="w-[70%] pink-shadow">
           <BuyerInfo { ...buyerData} />
         </div>
       </div>

@@ -1,4 +1,5 @@
 "use client";
+import BiddingSection from "@/components/auction-room/auction/bidding-section/bidding-section";
 import BuyersSection from "@/components/auction-room/auction/buyers-section/buyers-section";
 import PlayerSection from "@/components/auction-room/auction/player-section/player-section";
 import { useEffect, useState } from "react";
@@ -21,7 +22,9 @@ export default function Auction() {
           <BuyersSection />
         </div>
       </div>
-      <div className="h-[40%] bg-blue-pink border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2"></div>
+      <div className="h-[40%] bg-blue-pink border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2">
+        <BiddingSection/>
+      </div>
     </div>
   );
 }

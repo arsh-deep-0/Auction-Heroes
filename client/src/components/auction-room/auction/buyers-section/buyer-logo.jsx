@@ -3,7 +3,7 @@ export default function BuyerLogo({teamName, order}) {
     <>
       <div className="w-full">
         <p className="text-white text-center">#{order}</p>
-      <div className={`rounded-full border-white border-[1px] border-solid w-full p-1 ${teamName}`}>
+      <div className={`rounded-full border-white border-[1px] border-solid w-full p-1 ${teamName}  pink-shadow`}>
           <img className="" src={`/images/team-logos/${teamName}logo.webp`} alt="" />
         </div>
       </div>

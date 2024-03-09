@@ -37,11 +37,20 @@ export default function BuyerInfo({
         <div className="h-[70%] flex justify-between w-full px-0 py-1">
           {/* <CircularProgressBar {...spendingData}/>
             <CircularProgressBar {...playersBoughtData}/> */}
-          <div className="w-[48%] aspect-square">
-            <CircularProgressBarDiv {...spendingData}/>
+          <div className="w-[48%] aspect-square flex justify-center items-center">
+            <div className="absolute flex justify-center items-center flex-col">
+              <p className="bar-text">{`${spendingData.valueBefore} ${spendingData.value}`}</p>
+              <p className=" bar-text">{` ${spendingData.valueAfter}`}</p>
+            </div>
+
+            <CircularProgressBarDiv {...spendingData} />
           </div>
 
-          <div className="w-[48%] aspect-square">
+          <div className="w-[48%] aspect-square flex justify-center items-center">
+          <div className="absolute flex justify-center items-center flex-col">
+              <p className="bar-text">{` ${playersBoughtData.value}`}</p>
+              <p className=" bar-text">{` ${playersBoughtData.valueAfter}`}</p>
+            </div>
             <CircularProgressBarDiv {...playersBoughtData} />
           </div>
         </div>

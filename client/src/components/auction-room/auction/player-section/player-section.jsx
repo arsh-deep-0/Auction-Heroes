@@ -7,7 +7,7 @@ export default function PlayerSection() {
     <>
       <div className="flex flex-col items-center w-full h-full justify-between">
         <div className="h-[10%] w-full"> <Heading title="Player Stats" /></div>
-        <div className="h-[70%] w-full "> <ImageSection /></div>
+        <div className="h-[75%] w-full "> <ImageSection /></div>
         <div className="h-[10%] w-full"><Stats/></div>
        
        

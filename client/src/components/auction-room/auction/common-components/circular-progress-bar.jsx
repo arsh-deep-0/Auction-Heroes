@@ -16,10 +16,11 @@ export default function CircularProgressBarDiv({
   
   return (
     <>
-      <CircularProgressbar
+      <CircularProgressbar 
         value={percentage}
         background={true}
-        text={`${valueBefore} ${value} ${valueAfter}`}
+        // text={`${valueBefore} ${value} ${valueAfter}`}
+        text=""
         strokeWidth={5}
         styles={buildStyles({
           strokeLinecap: "round",
