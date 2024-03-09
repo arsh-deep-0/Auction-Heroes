@@ -20,8 +20,8 @@ export default function ImageSection() {
         </div>
       </div>
 
-      <div className="pt-[50%] w-full h-full absolute  flex justify-center">
-        <div className="h-[100%] min-h-[100px] aspect-square bg-blue rounded-full blur-[8px]"></div>
+      <div className="pt-[50%] w-full h-full absolute  flex justify-center   items-baseline">
+        <div className="h-[100%] min-h-[80px] aspect-square bg-blue rounded-full blur-[8px]"></div>
       </div>
     </div>
   );

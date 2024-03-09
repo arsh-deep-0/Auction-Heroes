@@ -69,3 +69,8 @@ html,body{
 .bg-blue{
   background: #0094ff;
 }
+
+.stat-text{
+  font-size: clamp(0.1rem , 3vw,1.65rem);
+  line-height: 1rem;
+}
