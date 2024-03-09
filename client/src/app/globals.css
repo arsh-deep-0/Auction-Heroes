@@ -110,3 +110,29 @@ html,body{
 .rcb {
   background: linear-gradient(143.7deg, #6a6a6a 50%, #1c1c1c 100%);
 }
+
+::-webkit-scrollbar {
+  background-color: white;
+  width: 4px;
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(118, 118, 118);
+  border-radius: 2px;
+  
+}
+
+.CircularProgressbar-path {
+  stroke: red;
+}
+.CircularProgressbar-trail {
+  stroke: gray;
+}
+.CircularProgressbar-text {
+  fill: yellow;
+}
+.CircularProgressbar-background {
+  fill: green;
+}

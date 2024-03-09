@@ -34,11 +34,19 @@ export default function BuyersContainer(){
           playerName: "Manik Raj",
           order:4
         },
+        {
+            teamName: "pbks",
+            currentWallet: 23.6,
+            totalWallet: 50,
+            playersBought: 7,
+            playerName: "Bhaskar Mishra",
+            order:5
+          },
         
       ];
 
     return <>
-    <div className="pink-shadow h-full w-full rounded-md overflow-y-scroll bg-blue p-2 flex flex-col gap-2 border-solid border-white border-b-4">
+    <div className="pink-shadow h-full w-full rounded-md overflow-y-scroll bg-blue p-2 flex flex-col gap-2 border-solid border-white border-b-4 border-t-4">
     {buyersData.map((buyer) => {
         const buyerData = {
           teamName: buyer.teamName,
