@@ -1,5 +1,4 @@
 import BuyerLogo from "../buyers-section/buyer-logo";
-import BuyerLogo from "../buyers-section/buyer-logo";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 import Heading from "../common-components/heading";
 
@@ -46,8 +45,23 @@ export default function BiddingSection() {
             />
           </div>
 
-          <div className="bg-white rounded-xl pink-shadow mx-2"></div>
-          <div className="bg-white  rounded-xl pink-shadow mx-2"></div>
+          <div className="bg-white rounded-xl pink-shadow mx-2 flex flex-col items-center justify-between text-black gabriela  text-center p-1 py-4">
+            <p className=" bar-text ">₹ <span className="bid-amount-text">5.2</span> Cr</p>
+            <p className="bar-text">Max Bid : 20 Cr</p>
+          </div>
+          <div className="bg-white  rounded-xl pink-shadow mx-2 flex flex-col items-center justify-center ">
+            <div className=" px-6">
+              <BuyerLogo
+                teamName={"srh"}
+                order={4}
+                orderVisibility={"hidden"}
+              />
+            </div>
+
+            <p className="gabriela text-black stat-text text-center">
+              Bhaskar Mishra
+            </p>
+          </div>
         </div>
         <div className="w-full "></div>
       </div>
