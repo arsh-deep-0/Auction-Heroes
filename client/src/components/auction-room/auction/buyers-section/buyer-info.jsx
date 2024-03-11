@@ -35,21 +35,19 @@ export default function BuyerInfo({
           <p>{playerName}</p>
         </div>
         <div className="h-[70%] flex justify-between w-full px-0 py-1">
-          {/* <CircularProgressBar {...spendingData}/>
-            <CircularProgressBar {...playersBoughtData}/> */}
           <div className="w-[48%] aspect-square flex justify-center items-center">
             <div className="absolute flex justify-center items-center flex-col">
-              <p className="bar-text">{`${spendingData.valueBefore} ${spendingData.value}`}</p>
-              <p className=" bar-text">{` ${spendingData.valueAfter}`}</p>
+              <p className="bar-text fredoka">{`${spendingData.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></p>
+              <p className=" bar-text fredoka">{` ${spendingData.valueAfter}`}</p>
             </div>
 
             <CircularProgressBarDiv {...spendingData} />
           </div>
 
           <div className="w-[48%] aspect-square flex justify-center items-center">
-          <div className="absolute flex justify-center items-center flex-col">
-              <p className="bar-text">{` ${playersBoughtData.value}`}</p>
-              <p className=" bar-text">{` ${playersBoughtData.valueAfter}`}</p>
+            <div className="absolute flex justify-center items-center flex-col">
+              <p className="bar-value fredoka">{` ${playersBoughtData.value}`}</p>
+              <p className=" bar-text fredoka">{` ${playersBoughtData.valueAfter}`}</p>
             </div>
             <CircularProgressBarDiv {...playersBoughtData} />
           </div>
