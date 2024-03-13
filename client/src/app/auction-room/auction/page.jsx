@@ -14,7 +14,7 @@ export default function Auction() {
       className="h-[85%]  my-4 flex flex-col justify-between items-center"
       onClick={enterFullScreen}
     >
-      <div className=" h-[45%] w-full flex justify-center gap-4">
+      <div className=" h-[46%] w-full flex justify-center gap-4">
         <div className="h-full  w-1/2  rounded-md">
           <PlayerSection />
         </div>

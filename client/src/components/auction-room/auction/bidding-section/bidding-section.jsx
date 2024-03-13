@@ -1,6 +1,7 @@
 import BuyerLogo from "../buyers-section/buyer-logo";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 import Heading from "../common-components/heading";
+import ProgressBar from "./progress-bar";
 
 export default function BiddingSection() {
   return (
@@ -78,8 +79,8 @@ export default function BiddingSection() {
         </div>
 
         <div className="w-full  max-h-[30%] grid grid-cols-3 gap-1">
-          <div className="col-span-2 h-full bg-white text-black flex flex-col justify-between p-2 rounded-md text-center mx-1">
-            <div className=" grid grid-cols-3 cantora-one">
+          <div className="col-span-2 h-full bg-white text-black flex flex-col justify-between  rounded-md text-center mx-1">
+            {/* <div className=" grid grid-cols-3 cantora-one">
               <p>Sold</p>
               <p>Unsold</p>
               <p>Total</p>
@@ -89,8 +90,11 @@ export default function BiddingSection() {
               <p>4</p>
               <p>31</p>
             </div>
-            <div className="w-full h-2 bg-black rounded-full"></div>
-          </div>
+  <div className="w-full h-2 bg-black rounded-full"></div>*/}
+    <ProgressBar soldPlayers={17} unsoldPlayers={4} totalPlayers={31}/>
+          </div> 
+
+        
 
           <div className="flex flex-col justify-center ">
             <button className="rounded-full bg-golden px-2 py-1 mx-1 border-white border-solid border-2 text-black font-bold frank-r">

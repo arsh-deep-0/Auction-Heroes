@@ -163,3 +163,21 @@ body {
       background: linear-gradient(143.7deg, #462523 -60%, #cb9b51 2%, #f6e27a 45%, #f6f2c0 50%, #f6e27a 55%, #cb9b51 98%, #462523 160%);
   }
 }
+
+
+.blue-shadow-text {
+  text-shadow: 0rem 0.2rem 0.55rem 0.02rem #9743fe7e;
+}
+
+.bg-pink {
+  background-color: #9e00ff;
+}
+
+.text-pink{
+  color: #9e00ff;
+}
+
+.text-blue{
+  color: #0094ff;
+}
+
