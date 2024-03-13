@@ -37,7 +37,7 @@ export default function BiddingSection() {
           </div>
 
           <div className="w-full  max-h-[70%] grid grid-cols-3 gap-1">
-            <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  p-1 pb-[2px] box-border flex flex-col justify-center items-center">
+            <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">
               <div className="w-[45%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
                   <p
