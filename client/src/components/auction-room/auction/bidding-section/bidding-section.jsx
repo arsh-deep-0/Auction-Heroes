@@ -2,6 +2,8 @@ import BuyerLogo from "../buyers-section/buyer-logo";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 import Heading from "../common-components/heading";
 import ProgressBar from "./progress-bar";
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
+import { VscTriangleRight, VscTriangleLeft } from "react-icons/vsc";
 
 export default function BiddingSection() {
   return (
@@ -35,7 +37,7 @@ export default function BiddingSection() {
           </div>
 
           <div className="w-full  max-h-[70%] grid grid-cols-3 gap-1">
-            <div className="bg-white aspect-[3/2] rounded-xl pink-shadow mx-1  p-1 pb-[2px] box-border flex flex-col justify-center items-center">
+            <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  p-1 pb-[2px] box-border flex flex-col justify-center items-center">
               <div className="w-[50%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
                   <p
@@ -56,13 +58,13 @@ export default function BiddingSection() {
               <p className="gabriela bar-text text-black ">Timer</p>
             </div>
 
-            <div className="bg-white rounded-xl aspect-[3/2] pink-shadow  flex flex-col box-border mx-1 items-center justify-between text-black gabriela  text-center p-[2px] pt-4">
+            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  flex flex-col box-border mx-1 items-center justify-between text-black gabriela  text-center p-[2px] pt-4">
               <p className="bar-text">
                 ₹ <span className="bid-amount-text">5.2</span> Cr
               </p>
               <p className="bar-text">Max Bid : 20 Cr</p>
             </div>
-            <div className="bg-white rounded-xl aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-center box-border ">
+            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-center box-border ">
               <div className=" px-6">
                 <BuyerLogo
                   teamName={"srh"}
@@ -80,26 +82,21 @@ export default function BiddingSection() {
 
         <div className="w-full  max-h-[30%] grid grid-cols-3 gap-1">
           <div className="col-span-2 h-full bg-white text-black flex flex-col justify-between  rounded-md text-center mx-1">
-            {/* <div className=" grid grid-cols-3 cantora-one">
-              <p>Sold</p>
-              <p>Unsold</p>
-              <p>Total</p>
-            </div>
-            <div className=" grid grid-cols-3 cantora-one">
-              <p>17</p>
-              <p>4</p>
-              <p>31</p>
-            </div>
-  <div className="w-full h-2 bg-black rounded-full"></div>*/}
-    <ProgressBar soldPlayers={17} unsoldPlayers={4} totalPlayers={31}/>
-          </div> 
+            <ProgressBar soldPlayers={17} unsoldPlayers={4} totalPlayers={31} />
+          </div>
 
-        
-
-          <div className="flex flex-col justify-center ">
-            <button className="rounded-full bg-golden px-2 py-1 mx-1 border-white border-solid border-2 text-black font-bold frank-r">
+          <div className="flex flex-col justify-center mx-1 gap-2">
+            <button className="rounded-lg bg-golden px-2 py-1  border-white border-solid border-2 text-black font-bold frank-r">
               Place Bid
             </button>
+            <div className="w-full flex justify-between px-1 ">
+              <div className="bg-blue text-white  rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
+                <VscTriangleLeft />
+              </div>
+              <div className="bg-blue text-white rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
+                <VscTriangleRight />
+              </div>
+            </div>
           </div>
         </div>
       </div>
