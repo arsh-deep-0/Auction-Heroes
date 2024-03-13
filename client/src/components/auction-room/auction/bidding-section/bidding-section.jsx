@@ -38,11 +38,11 @@ export default function BiddingSection() {
 
           <div className="w-full  max-h-[70%] grid grid-cols-3 gap-1">
             <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  p-1 pb-[2px] box-border flex flex-col justify-center items-center">
-              <div className="w-[50%] relative flex items-center justify-center">
+              <div className="w-[45%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
                   <p
                     className=""
-                    style={{ fontSize: "clamp(1.2rem,5vw,2rem)" }}
+                    style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
                   >
                     11s
                   </p>
@@ -64,8 +64,8 @@ export default function BiddingSection() {
               </p>
               <p className="bar-text">Max Bid : 20 Cr</p>
             </div>
-            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-center box-border ">
-              <div className=" px-6">
+            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-between box-border ">
+              <div className=" w-[45%] h-[50%]">
                 <BuyerLogo
                   teamName={"srh"}
                   order={4}

@@ -2,7 +2,7 @@ export default function ImageSection() {
   return (
     <div className="relative pink-shadow w-full flex justify-center  rounded-xl border-b-2 border-black border-solid h-full overflow-hidden">
       <img
-        className="absolute  w-full bottom-0  object-cover z-10"
+        className="absolute  max-w-full max-h-full bottom-0  object-cover z-10"
         src="/images/player-images/Virat Kohli .svg"
         alt=""
       />
@@ -21,7 +21,7 @@ export default function ImageSection() {
       </div>
 
       <div className="pt-[50%] w-full h-full absolute  flex justify-center   items-baseline">
-        <div className="h-[100%] min-h-[80px] aspect-square bg-blue rounded-full blur-[8px]"></div>
+        <div className="absolute bottom-0 min-h-[55%]  max-h-[56%] min-w-[60%] max-width-[61%] aspect-square bg-blue rounded-full blur-[8px]"></div>
       </div>
     </div>
   );

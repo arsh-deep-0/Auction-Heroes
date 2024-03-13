@@ -12,7 +12,7 @@ export default function AuctionLayout({ children }) {
           <div className="w-4 h-4 rounded-full bg-white"></div>
         </header>
         {children}
-        <footer className="  text-white   ">
+        <footer className="  text-white flex justify-center  ">
           <img className="rounded-md border-white border-solid border-2 " src="/images/components/bottom.svg" alt="" />
         </footer>
       </div>
