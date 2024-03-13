@@ -1,7 +1,7 @@
 export default function AuctionLayout({ children }) {
   return (
     <>
-      <div className="min-h-screen h-screen max-h-screen flex flex-col min-w-full max-w-full bg-white p-4 justify-between">
+      <div className="min-h-screen h-screen max-h-screen  box-border flex flex-col min-w-full max-w-full bg-white p-4 justify-between">
         <header className="bg-blue-pink shadow-lg text-white py-1 px-2 rounded-lg border-white border-solid border-2 gabriela flex items-center justify-between ">
           <div className="flex items-center gap-2">
             

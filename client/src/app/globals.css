@@ -156,3 +156,10 @@ body {
   border-radius: 2px;
 
 }
+
+
+@layer utilities {
+  .bg-golden{
+      background: linear-gradient(143.7deg, #462523 -60%, #cb9b51 2%, #f6e27a 45%, #f6f2c0 50%, #f6e27a 55%, #cb9b51 98%, #462523 160%);
+  }
+}

@@ -3,7 +3,7 @@ export default function ImageSection() {
     <div className="relative pink-shadow w-full flex justify-center  rounded-xl border-b-2 border-black border-solid h-full overflow-hidden">
       <img
         className="absolute  w-full bottom-0  object-cover z-10"
-        src="/images/player-images/Jos Buttler.svg"
+        src="/images/player-images/Virat Kohli .svg"
         alt=""
       />
       <div className="absolute flex flex-col  w-full">
