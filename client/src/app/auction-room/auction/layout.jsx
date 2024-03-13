@@ -12,8 +12,8 @@ export default function AuctionLayout({ children }) {
           <div className="w-4 h-4 rounded-full bg-white"></div>
         </header>
         {children}
-        <footer className="bg-blue-pink shadow-lg text-white py-2 px-2 rounded-md border-white border-solid border-2  ">
-          Bottom Navbar
+        <footer className="  text-white   ">
+          <img className="rounded-md border-white border-solid border-2 " src="/images/components/bottom.svg" alt="" />
         </footer>
       </div>
     </>
