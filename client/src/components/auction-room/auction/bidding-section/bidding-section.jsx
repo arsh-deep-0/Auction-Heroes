@@ -41,7 +41,7 @@ export default function BiddingSection() {
               <div className="w-[45%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
                   <p
-                    className=""
+                    className="gabriela"
                     style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
                   >
                     11s
