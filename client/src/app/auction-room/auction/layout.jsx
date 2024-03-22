@@ -8,7 +8,7 @@ export default function AuctionLayout({ children }) {
             <p>Auction Heroes</p>
           </div>
 
-          <img className="h-8 w-8" src="/images/components/profile.svg" alt="" />
+          <img className="h-7 w-7 gray-border rounded-full" src="/images/components/profile.svg" alt="" />
         </header>
         {children}
         <footer className="text-white flex justify-center  ">
