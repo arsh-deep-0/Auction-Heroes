@@ -17,7 +17,7 @@ export default function BiddingSection() {
             <Heading
               title={"Room ID -838442"}
               background="#0094ff"
-              font="frank-r"
+              font="poppins-medium"
               fontcolor="white"
               border={1}
             />
@@ -37,7 +37,7 @@ export default function BiddingSection() {
             </div>
           </div>
 
-          <div className="w-full  max-h-[70%] grid grid-cols-3 gap-1">
+          <div className="w-full  max-h-[75%] grid grid-cols-3 gap-1">
             <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">
               <div className="w-[45%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
@@ -61,7 +61,7 @@ export default function BiddingSection() {
 
             <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  flex flex-col box-border mx-1 items-center justify-between text-black poppins-light  text-center p-[2px] pt-4">
               <p className="bar-text">
-                ₹ <span className="bid-amount-text text-blue">5.2</span> Cr
+                ₹ <span className="bid-amount-text text-blue poppins-medium">5.2</span> Cr
               </p>
               <p className="bar-text ">Max Bid : 20 Cr</p>
             </div>
@@ -74,7 +74,7 @@ export default function BiddingSection() {
                 />
               </div>
 
-              <p className="poppins-light text-black  bar-text text-center text-blue">
+              <p className="poppins-medium text-black  bar-text text-center text-blue">
                 Bhaskar Mishra
               </p>
             </div>
@@ -87,7 +87,7 @@ export default function BiddingSection() {
           </div>
 
           <div className="flex flex-col justify-center mx-1 gap-2">
-            <button className="rounded-lg bg-red-500 px-2 py-1  border-white border-solid border-[1px]  font-bold poppins-medium">
+            <button className="rounded-lg text-sm   hover:translate-y-[-4px]  bg-red-500 shadow-blue-500/50 shadow-lg transition ease-in-out 1 active:shadow-lg  active:scale-95 active:transalate-y-4 px-2 py-1  border-white border-solid border-[1px]   poppins-medium">
               Place Bid
             </button>
             {/* <div className="w-full flex justify-between px-1 ">

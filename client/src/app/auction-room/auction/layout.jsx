@@ -2,13 +2,13 @@ export default function AuctionLayout({ children }) {
   return (
     <>
       <div className="min-h-screen h-screen max-h-screen  box-border flex flex-col min-w-full max-w-full bg-light-blue p-4 justify-between">
-        <header className="bg-white shadow-lg text-black py-1 px-8 rounded-lg gray-border gabriela flex items-center justify-between ">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-white"></div>
+        <header className="bg-white shadow-lg text-black  px-2 rounded-lg gray-border poppins-medium flex items-center justify-between ">
+          <div className="flex items-center gap-2 ">
+            <img className="h-10 w-10" src="/images/components/game-logo.svg" alt="" />
             <p>Auction Heroes</p>
           </div>
 
-          <div className="w-4 h-4 rounded-full bg-white"></div>
+          <img className="h-8 w-8" src="/images/components/profile.svg" alt="" />
         </header>
         {children}
         <footer className="text-white flex justify-center  ">

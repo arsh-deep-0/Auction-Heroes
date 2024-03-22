@@ -131,7 +131,7 @@ body {
 }
 
 .stat-text {
-  font-size: clamp(0.1rem, 3vw, 1.65rem);
+  font-size: clamp(0.1rem, 3.1vw, 1.65rem);
   line-height: 1rem;
 }
 

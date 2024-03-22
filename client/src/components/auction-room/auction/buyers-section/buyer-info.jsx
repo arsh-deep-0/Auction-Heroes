@@ -15,7 +15,7 @@ export default function BuyerInfo({
     circleColor: "#7D54F2",
     progressBarColor: "black",
     
-    radius: 1.5,
+   
   };
 
   const playersBoughtData = {
@@ -25,7 +25,7 @@ export default function BuyerInfo({
     circleColor: "white",
     progressBarColor: "#7D54F2",
    
-    radius: 1.5,
+    
   };
 
   return (
