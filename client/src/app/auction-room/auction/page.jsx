@@ -11,7 +11,7 @@ export default function Auction() {
 
   return (
     <div
-      className="h-[85%]  my-4 flex flex-col justify-between items-center"
+      className="h-[85%]  my-4 flex flex-col justify-between items-center text-white"
       onClick={enterFullScreen}
     >
       <div className=" h-[46%] w-full flex justify-center gap-4">
@@ -31,7 +31,7 @@ export default function Auction() {
         <div className="w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
         
       </div>
-      <div className="min-h-[40%] max-h-[50%] bg-blue-pink border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2">
+      <div className="min-h-[40%] max-h-[50%] bg-blue-purple border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2">
         <BiddingSection/>
       </div>
     </div>

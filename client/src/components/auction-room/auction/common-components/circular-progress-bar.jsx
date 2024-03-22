@@ -19,7 +19,6 @@ export default function CircularProgressBarDiv({
       <CircularProgressbar 
         value={percentage}
         background={true}
-        // text={`${valueBefore} ${value} ${valueAfter}`}
         text=""
         strokeWidth={5}
         styles={buildStyles({
@@ -32,7 +31,7 @@ export default function CircularProgressBarDiv({
           // Colors
           pathColor: `${progressBarColor}`,
           textColor: `${textColor}`,
-          trailColor: "#ffffff",
+          trailColor: "#EFF3FF",
           backgroundColor: `${circleColor}`,
         })}
       />

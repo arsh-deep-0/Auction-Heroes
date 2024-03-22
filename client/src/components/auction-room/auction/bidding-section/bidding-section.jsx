@@ -11,28 +11,29 @@ export default function BiddingSection() {
       <div className="w-full h-full  flex flex-col box-border p-4 py-4 justify-between">
         <div className="w-full max-h-[10%]  grid grid-cols-2">
           <div>
-            <Heading title={"Bidding Section"} />
+            <Heading title={"Bidding Section"}  fontcolor="white" fontSize="heading"/>
           </div>
           <div>
             <Heading
               title={"Room ID -838442"}
               background="#0094ff"
               font="frank-r"
+              fontcolor="white"
               border={1}
             />
           </div>
         </div>
 
-        <div className="w-full max-h[50%] flex-col flex gap-4">
+        <div className="w-full max-h[50%] flex-col flex gap-2">
           <div className="w-full  max-h-[20%] grid grid-cols-3 gap-1">
             <div>
-              <Heading title={"Countdown"} font="cantora-one" border={0} />
+              <Heading title={"Countdown"} font="poppins-regular" fontcolor="white" border={0} />
             </div>
             <div>
-              <Heading title={"Current Bid"} font="cantora-one" border={0} />
+              <Heading title={"Current Bid"} font="poppins-regular" fontcolor="white" border={0} />
             </div>
             <div>
-              <Heading title={"Current Bidder"} font="cantora-one" border={0} />
+              <Heading title={"Current Bidder"} font="poppins-regular" fontcolor="white" border={0} />
             </div>
           </div>
 
@@ -41,7 +42,7 @@ export default function BiddingSection() {
               <div className="w-[45%] relative flex items-center justify-center">
                 <div className="absolute flex justify-center items-center flex-col text-white">
                   <p
-                    className="gabriela"
+                    className="poppins-light"
                     style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
                   >
                     11s
@@ -49,20 +50,20 @@ export default function BiddingSection() {
                 </div>
                 <CircularProgressBarDiv
                   percentage={75}
-                  circleColor={"#0094ff"}
-                  textColor={"white"}
+                  circleColor={"#7d54f2"}
+                 
                   progressBarColor={"black"}
                 />
               </div>
 
-              <p className="gabriela bar-text text-black ">Timer</p>
+              <p className="poppins-light bar-text text-black ">Timer</p>
             </div>
 
-            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  flex flex-col box-border mx-1 items-center justify-between text-black gabriela  text-center p-[2px] pt-4">
+            <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  flex flex-col box-border mx-1 items-center justify-between text-black poppins-light  text-center p-[2px] pt-4">
               <p className="bar-text">
-                ₹ <span className="bid-amount-text">5.2</span> Cr
+                ₹ <span className="bid-amount-text text-blue">5.2</span> Cr
               </p>
-              <p className="bar-text">Max Bid : 20 Cr</p>
+              <p className="bar-text ">Max Bid : 20 Cr</p>
             </div>
             <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-between box-border ">
               <div className=" w-[45%] h-[50%]">
@@ -73,7 +74,7 @@ export default function BiddingSection() {
                 />
               </div>
 
-              <p className="gabriela text-black  bar-text text-center">
+              <p className="poppins-light text-black  bar-text text-center text-blue">
                 Bhaskar Mishra
               </p>
             </div>
@@ -86,17 +87,17 @@ export default function BiddingSection() {
           </div>
 
           <div className="flex flex-col justify-center mx-1 gap-2">
-            <button className="rounded-lg bg-golden px-2 py-1  border-white border-solid border-2 text-black font-bold frank-r">
+            <button className="rounded-lg bg-red-500 px-2 py-1  border-white border-solid border-[1px]  font-bold poppins-medium">
               Place Bid
             </button>
-            <div className="w-full flex justify-between px-1 ">
+            {/* <div className="w-full flex justify-between px-1 ">
               <div className="bg-blue text-white  rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
                 <VscTriangleLeft />
               </div>
               <div className="bg-blue text-white rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
                 <VscTriangleRight />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

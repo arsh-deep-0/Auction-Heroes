@@ -46,7 +46,7 @@ export default function BuyersContainer(){
       ];
 
     return <>
-    <div className="pink-shadow h-full w-full rounded-md overflow-y-scroll bg-blue py-2 px-1 flex flex-col gap-2 border-solid border-white border-b-4 border-t-4">
+    <div className="gray-border h-full w-full rounded-md overflow-y-scroll bg-white py-2 px-1 flex flex-col gap-2 border-solid border-white border-b-4 border-t-4">
     {buyersData.map((buyer) => {
         const buyerData = {
           teamName: buyer.teamName,

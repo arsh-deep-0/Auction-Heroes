@@ -1,8 +1,8 @@
-export default function Heading({ title, background = "#000", font = "aoboshi",border=2 }) {
+export default function Heading({ title, background = "#000", font = "poppins-medium", border=0 ,fontcolor="black" , fontSize="stat"}) {
   return (
     <>
       <div className="flex justify-center">
-        <p className={`  border-white border-solid rounded-md pink-shadow text-white min-w-[80%] text-center ${font} py-1 stat-text`} style={{background:background,borderWidth:`${border}px`,}}>
+        <p className={`text-${fontcolor} rounded-md  min-w-[80%] text-center ${font} text-lg  py-1 ${fontSize}-text border-[${border}px]`} >
           {title}
         </p>
       </div>
