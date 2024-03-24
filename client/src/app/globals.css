@@ -131,17 +131,21 @@ body {
 }
 
 .stat-text {
-  font-size: clamp(0.1rem, 3.1vw, 1.65rem);
-  line-height: 1rem;
+  font-size: clamp(0.1rem, 3.0vw, 1.65rem);
+  line-height: 0.75rem;
 }
 
+.circular-bar-text{
+  font-size: clamp(0.1rem, 2.2vw, 1.65rem);
+  line-height: 0.75rem;
+}
 .bar-text {
   font-size: clamp(0.1rem, 2.5vw, 1.65rem);
   line-height: 1rem;
 }
 
 .bar-value{
-  font-size: clamp(0.1rem, 3.5vw, 1.65rem);
+  font-size: clamp(0.1rem, 3.2vw, 1.65rem);
   line-height: 1rem;
 }
 

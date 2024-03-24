@@ -76,4 +76,4 @@ userSchema.methods.generateRefreshToken = async function () {
   );
 };
 
-export const User = mongoose.model("Cfuser", userSchema);
+export const User = mongoose.model("user", userSchema);

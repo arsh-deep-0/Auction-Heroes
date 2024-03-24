@@ -23,12 +23,14 @@ export default function Auction() {
         </div>
       </div>
       {/* divider */}
-      <div className="flex gap-2">
-        <div className="w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
-        <div className=" w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
-        <div className="w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
-        <div className="w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
-        <div className="w-[0.4rem] h-[0.4rem] bg-blue rounded-full"></div>
+      <div className="flex gap-[0.65rem]">
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
+        <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
         
       </div>
       <div className="min-h-[40%] max-h-[50%] bg-blue-purple border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2">
