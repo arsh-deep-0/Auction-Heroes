@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { increaseBid } from "@/lib/features/currentBid/currentBidSlice";
 
+
 export default function PlaceBid() {
   const dispatch = useDispatch();
   return (

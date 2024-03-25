@@ -74,14 +74,6 @@ export default function BiddingSection() {
 
           <div className="flex flex-col justify-center mx-1 gap-2">
             <PlaceBid/>
-            {/* <div className="w-full flex justify-between px-1 ">
-              <div className="bg-blue text-white  rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
-                <VscTriangleLeft />
-              </div>
-              <div className="bg-blue text-white rounded-full flex items-center justify-center p-1 border-white border-2 border-solid">
-                <VscTriangleRight />
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
