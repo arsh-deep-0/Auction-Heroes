@@ -21,13 +21,24 @@ router.route("/register").post(
       maxCount: 1,
     },
   ]),
-  registerUser
+  registerUser,
+  (req) => {
+    const profileImagePath = req.files?.profileImage[0]?.path;
+    console.log(profileImagePath)
+      // Delete files from file system
+      fs.unlink(profileImagePath, (err) => {
+        if (err) {
+          console.error("Error deleting profile image:", err);
+        }
+      });
+    
+  }
 );
 
 router.route("/login").post(loginUser);
 
 //secure routes
 router.route("/logout").post(verifyJWT, logoutUser);
-router.route("/refresh-token").post(refreshAccessToken)
+router.route("/refresh-token").post(refreshAccessToken);
 
 export default router;

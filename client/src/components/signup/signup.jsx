@@ -2,15 +2,38 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export const SignUp = () => {
-  const form = useForm({defaultValues:{
-    userName:"Arsh"
-  }});
+  const router = useRouter()
+  const form = useForm({
+    defaultValues: {
+      userName: "Arsh",
+    },
+  });
   const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const { errors, isSubmitting } = formState;
 
-  const submit = (data) => {
+  const submit = async (data) => {
+    data={...data ,
+    profileImage:data.profileImage[0]}
+    await axios
+      .post("http://localhost:8080/api/v1/users/register", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("form submitted", data);
+        console.log(response.data);
+        console.log("status",response.data.statusCode)
+        if(response.data.statusCode==201){
+
+          router.push("/")
+        }
+      })
+      .catch((err) => console.log(err));
     console.log("form submitted", data);
   };
 
@@ -88,9 +111,13 @@ export const SignUp = () => {
           className="flex gap-2"
         />
         <p className="error">{errors.profileImage?.message}</p>
-        <button className="gray-border bg-blue text-white">Sign Up</button>
+        <button
+          disabled={isSubmitting}
+          className="gray-border bg-blue text-white"
+        >
+          Sign Up
+        </button>
       </form>
-      <DevTool control={control} />
     </div>
   );
 };

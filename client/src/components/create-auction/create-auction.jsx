@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import axios from "axios";
 export default function CreateAuction() {
   const form = useForm({
     defaultValues: {
@@ -38,12 +39,8 @@ export default function CreateAuction() {
 
   console.log("isSubmitting: ", isSubmitting);
 
-  const submit = (data) => {
-    for (let i = 0; i < 10000000000; i++) {
-      if (i == 99999999) {
-        console.log(i);
-      }
-    }
+  const submit = async(data) => {
+   await axios.post()
     console.log("form submitted", data);
   };
 
