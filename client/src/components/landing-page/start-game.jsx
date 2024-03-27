@@ -1,6 +1,6 @@
 import React from 'react'
 import { JoinRoom } from './join-room'
-import CreateRoom from './create-Room'
+import CreateRoom from './create-room'
 
 export const StartGame = () => {
   return (
