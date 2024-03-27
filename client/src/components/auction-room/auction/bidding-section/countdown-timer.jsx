@@ -9,22 +9,14 @@ export default function CountdownTimer() {
   const isAuctionInProcess = useSelector(
     (state) => state.timer.auctionInProcess
   );
-  console.log(isAuctionInProcess);
-  let timerInterval=useRef(null);
+
   useEffect(() => {
-    if (isAuctionInProcess) {
-      timerInterval.current = setInterval(() => {
+    if (isAuctionInProcess && timerValue > 0) {
+      setTimeout(() => {
         dispatch(reduceTimerCount());
       }, 1000);
     }
-  }, [isAuctionInProcess]);
-  console.log(timerValue);
- 
-    if (!isAuctionInProcess || timerValue === 0) {
-      console.log(timerValue, 'clear');
-      clearInterval(timerInterval.current);
-    }
-  
+  }, [isAuctionInProcess, timerValue]);
 
   return (
     <>

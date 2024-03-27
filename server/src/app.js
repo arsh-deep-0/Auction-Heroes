@@ -17,12 +17,12 @@ const io = new Server(httpServer, {
   },
 });
 
-// app.use(
-//   cors({
-//     origin: process.env.CORS_ORIGIN,
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 
 app.set("io", io);
 initializeSocketIO(io);

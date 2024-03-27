@@ -40,7 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const profileImageLocalPath = req.files?.profileImage[0]?.path;
-
+console.log( req)
   if (!profileImageLocalPath) {
     throw new ApiError(400, "Profile Image is required");
   }
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const uploadedProfileImage = await uploadOnCloudinary(profileImageLocalPath);
 
   if (!uploadedProfileImage) {
-    throw new ApiError(400, "Failed to upload Profile Image ");
+    throw new ApiError(400, "Failed to upload Profile Image "); 
   }
 
   const user = await User.create({

@@ -24,6 +24,7 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+      background: white;
 }
 
 @layer utilities {
@@ -37,6 +38,16 @@ body {
   height: 100%;
 }
 
+button {
+  border: gray solid 2px;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+}
+
+button:disabled{
+  opacity: 0.5;
+ 
+}
 .bg-blue-pink {
   background: linear-gradient(15deg, #0094ffc6 40%, #9e00ffbb 110%);
 }
@@ -45,12 +56,12 @@ body {
   background: linear-gradient(-135deg, #7d54f2 0%, #48318c 100%);
 }
 
-.bg-light-blue{
+.bg-light-blue {
   background: #EFF3FF;
 }
 
-.text-blue{
-  color: #7d54f2 ;
+.text-blue {
+  color: #7d54f2;
 }
 
 .gabriela {
@@ -125,7 +136,7 @@ body {
   background: #7D54F2;
 }
 
-.heading-text{
+.heading-text {
   font-size: clamp(0.1rem, 4vw, 1.65rem);
   line-height: 1rem;
 }
@@ -135,21 +146,22 @@ body {
   line-height: 0.75rem;
 }
 
-.circular-bar-text{
+.circular-bar-text {
   font-size: clamp(0.1rem, 2.2vw, 1.65rem);
   line-height: 0.75rem;
 }
+
 .bar-text {
   font-size: clamp(0.1rem, 2.5vw, 1.65rem);
   line-height: 1rem;
 }
 
-.bar-value{
+.bar-value {
   font-size: clamp(0.1rem, 3.2vw, 1.65rem);
   line-height: 1rem;
 }
 
-.bid-amount-text{
+.bid-amount-text {
   font-size: clamp(0.1rem, 7vw, 1.65rem);
   line-height: 1rem;
 }
@@ -203,8 +215,8 @@ body {
 
 
 @layer utilities {
-  .bg-golden{
-      background: linear-gradient(143.7deg, #462523 -60%, #cb9b51 2%, #f6e27a 45%, #f6f2c0 50%, #f6e27a 55%, #cb9b51 98%, #462523 160%);
+  .bg-golden {
+    background: linear-gradient(143.7deg, #462523 -60%, #cb9b51 2%, #f6e27a 45%, #f6f2c0 50%, #f6e27a 55%, #cb9b51 98%, #462523 160%);
   }
 }
 
@@ -217,20 +229,24 @@ body {
   background-color: #9e00ff;
 }
 
-.text-pink{
+.text-pink {
   color: #9e00ff;
 }
 
-.text-sky-blue{
+.text-sky-blue {
   color: #0094ff;
 }
 
-.bg-sky-blue{
+.bg-sky-blue {
   background-color: #0094ff;
 }
 
-.gray-border{
+.gray-border {
   border: 0.75px solid rgba(177, 177, 177, 0.53);
-  box-shadow: 0px 0px 5px rgba(125, 125, 125, 0.25) ;
+  box-shadow: 0px 0px 5px rgba(125, 125, 125, 0.25);
   /* box-shadow: 0px 0rem 0.3rem #9d00ff41; */
+}
+
+.error {
+  color: red;
 }
