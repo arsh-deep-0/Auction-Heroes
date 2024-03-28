@@ -43,7 +43,7 @@ import auctionRouter from "./routes/auction.routes.js";
 
 //routes declarations
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/auction-rules", auctionRulesRouter);
+app.use("/api/v1/auction-rules", auctionRulesRouter); 
 app.use("/api/v1/player", playerRouter);
 app.use("/api/v1/team", teamRouter);
 app.use("/api/v1/auction", auctionRouter);

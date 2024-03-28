@@ -30,10 +30,6 @@ const auctionRulesSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    minBatsmen: {
-      type: Number,
-      required: true,
-    },
     minBowlers: {
       type: Number,
       required: true,

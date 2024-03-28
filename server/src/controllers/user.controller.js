@@ -67,16 +67,30 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
 
+  const { accessToken, refreshToken } =
+    await generateAccessTokenAndRefreshToken(user._id);
+  const loggedInUser = await User.findById(user._id).select(
+    // "-password -refreshToken"
+  );
+
+  const options = {
+    httpOnly: false,
+    secure: false,
+  };
+
   return res
     .status(201)
-    .json(new ApiResponse(201, createdUser, "User registered successfully"));
+    .cookie("accessToken", accessToken, options) 
+    .cookie("refreshToken", refreshToken, options)
+    .setHeader('Set-Cookie', `accessToken=${accessToken}`)
+    .json(new ApiResponse(201, loggedInUser, "User registered successfully"));
 });
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password, userName } = req.body;
-
+console.log(req.body)
   if (!userName && !email) {
-    throw new ApiError(400, `username or email required`);
+    throw new ApiError(400, `username or email required`); 
   }
 
   const user = await User.findOne({

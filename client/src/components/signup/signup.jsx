@@ -19,7 +19,7 @@ export const SignUp = () => {
     data={...data ,
     profileImage:data.profileImage[0]}
     await axios
-      .post("http://localhost:8080/api/v1/users/register", data, {
+      .post("http://localhost:8080/api/v1/users/register", data,{withCredentials: true, credentials: 'include'}, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -28,7 +28,7 @@ export const SignUp = () => {
         console.log("form submitted", data);
         console.log(response.data);
         console.log("status",response.data.statusCode)
-        if(response.data.statusCode==201){
+        if(response.data.statusCode==201){ 
 
           router.push("/")
         }
@@ -55,6 +55,8 @@ export const SignUp = () => {
           className="gray-border  rounded-sm"
         />
         <p className="error">{errors.fullName?.message}</p>
+
+
         <label htmlFor="username">UserName</label>
         <input
           type="text"
@@ -66,6 +68,8 @@ export const SignUp = () => {
           className="gray-border rounded-sm"
         />
         <p className="error">{errors.userName?.message}</p>
+
+
         <label htmlFor="email">E-mail</label>
         <input
           type="email"
@@ -100,6 +104,8 @@ export const SignUp = () => {
           className="gray-border  rounded-sm"
         />
         <p className="error">{errors.password?.message}</p>
+
+
         <label htmlFor="profileImage">File</label>
         <input
           type="file"

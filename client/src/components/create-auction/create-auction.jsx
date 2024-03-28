@@ -23,8 +23,7 @@ export default function CreateAuction() {
     setValue,
   } = form;
 
-  const { errors, isSubmitted, isSubmitting, isSubmitSuccessful, isLoading } =
-    formState;
+  const { errors, isSubmitting, isLoading } = formState;
 
   const totalPlayersValue = watch("playersCount");
   const teamsCountValue = watch("buyersCount");
@@ -39,9 +38,32 @@ export default function CreateAuction() {
 
   console.log("isSubmitting: ", isSubmitting);
 
-  const submit = async(data) => {
-   await axios.post()
-    console.log("form submitted", data);
+  const submit = async (data) => {
+    const rulesData = {
+      ...data,
+      maxOverseas: 5,
+      maxPlayers: data.minPlayers + 2,
+      minWicketkeepers: 1,
+    };
+    await axios
+      .post("http://localhost:8080/api/v1/auction-rules/create", rulesData)
+      .then((response) => {
+        console.log("response ", response.data);
+        console.log("form submitted", data);
+        if (response.data.statusCode == 201) {
+          async () => {
+            auctionData = {
+              ...data,
+              auctionRoomID: response.data.auctionRoomID,
+            };
+            await axios
+              .post("http://localhost:8080/api/v1/auction/create", auctionData)
+              .then((response) => {
+                console.log(response.data)
+              });
+          };
+        }
+      });
   };
 
   const onError = (errors) => {
@@ -66,21 +88,17 @@ export default function CreateAuction() {
           className="gray-border  rounded-sm"
         />
         <p className="error">{errors.auctionName?.message}</p>
+
         <label htmlFor="username">Number of Teams</label>
         <input
           type="number"
           name="buyersCount"
           id="buyersCount"
-          max={10}
-          min={2}
           {...register("buyersCount", {
             valueAsNumber: true,
             required: { value: true, message: "buyersCount is required" },
-            validate: {
-              maxBuyers: (fieldValue) => {
-                return fieldValue <= 10 || "Total Teams cannot be more than 10";
-              },
-            },
+            min: { value: 2, message: "Teams cannot be less than 2" },
+            max: { value: 2, message: "Teams cannot be more than 10" },
           })}
           className="gray-border rounded-sm"
         />
@@ -91,18 +109,11 @@ export default function CreateAuction() {
           type="number"
           name="playersCount"
           id="playersCount"
-          max={100}
-          min={10}
           {...register("playersCount", {
             valueAsNumber: true,
             required: { value: true, message: "playersCount is required" },
-            validate: {
-              maxPlayers: (fieldValue) => {
-                return (
-                  fieldValue <= 100 || "Total Players cannot be more than 100"
-                );
-              },
-            },
+            min: { value: 10, message: "Players cannot be less than 10" },
+            max: { value: 100, message: "Players cannot be more than 100" },
           })}
           className="gray-border rounded-sm"
         />
@@ -113,13 +124,19 @@ export default function CreateAuction() {
           type="number"
           name="minPlayers"
           id="minPlayers"
-          max={calculatedMinPlayersInTeam}
-          min={2}
           {...register("minPlayers", {
             valueAsNumber: true,
             required: {
               value: true,
               message: "minimum dcqPlayers is required",
+            },
+            min: {
+              value: 2,
+              message: "Minimum team Players cannot be less than 2",
+            },
+            max: {
+              value: calculatedMinPlayersInTeam,
+              message: `Minimum team Players cannot be more than ${calculatedMinPlayersInTeam}`,
             },
           })}
           className="gray-border rounded-sm"
@@ -131,11 +148,11 @@ export default function CreateAuction() {
           type="number"
           name="budget"
           id="budget"
-          max={10}
-          min={2}
           {...register("budget", {
             valueAsNumber: true,
             required: { value: true, message: "budget is required" },
+            min: { value: 25, message: "Budget cannot be less than 25" },
+            max: { value: 100, message: "Budget cannot be more than 100" },
           })}
           className="gray-border rounded-sm"
         />
@@ -146,11 +163,20 @@ export default function CreateAuction() {
           type="number"
           name="minBowlers"
           id="minBowlers"
-          max={5}
-          min={2}
           {...register("minBowlers", {
             valueAsNumber: true,
             required: { value: true, message: "minimum Bowlers is required" },
+            min: {
+              value: 1,
+              message: "Minimum bowling members cannot be less than 10",
+            },
+            max: {
+              value: Math.min(5, calculatedMinPlayersInTeam),
+              message: `Minimum bowling members cannot be more than ${Math.min(
+                5,
+                calculatedMinPlayersInTeam
+              )}`,
+            },
           })}
           className="gray-border rounded-sm"
         />
@@ -175,7 +201,6 @@ export default function CreateAuction() {
         >
           Sign Up
         </button>
-        <p className="text-black">{isSubmitting?'true':'false'}</p>
       </form>
     </div>
   );
