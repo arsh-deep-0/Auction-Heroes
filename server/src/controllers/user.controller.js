@@ -38,9 +38,8 @@ const registerUser = asyncHandler(async (req, res) => {
   if (existedUser) {
     throw new ApiError(409, `User with this username or email already exists`);
   }
-
-  const profileImageLocalPath = req.files?.profileImage[0]?.path; 
-
+  const profileImageLocalPath = req.file?.path; 
+ 
   if (!profileImageLocalPath) {
     throw new ApiError(400, "Profile Image is required");
   }
@@ -70,19 +69,18 @@ const registerUser = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken } =
     await generateAccessTokenAndRefreshToken(user._id);
   const loggedInUser = await User.findById(user._id).select(
-    // "-password -refreshToken"
+     "-password -refreshToken"
   );
 
   const options = {
-    httpOnly: false,
-    secure: false,
+    httpOnly: true,
+    secure: true,
   };
 
   return res
     .status(201)
     .cookie("accessToken", accessToken, options) 
     .cookie("refreshToken", refreshToken, options)
-    .setHeader('Set-Cookie', `accessToken=${accessToken}`)
     .json(new ApiResponse(201, loggedInUser, "User registered successfully"));
 });
 

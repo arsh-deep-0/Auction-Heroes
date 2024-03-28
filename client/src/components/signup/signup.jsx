@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export const SignUp = () => {
-  const router = useRouter()
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       userName: "Arsh",
@@ -16,21 +16,31 @@ export const SignUp = () => {
   const { errors, isSubmitting } = formState;
 
   const submit = async (data) => {
-    data={...data ,
-    profileImage:data.profileImage[0]}
-    await axios
-      .post("http://localhost:8080/api/v1/users/register", data,{withCredentials: true, credentials: 'include'}, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+    const form = new FormData();
+    form.append("userName", data.userName);
+    form.append("email", data.email);
+    form.append("fullName", data.fullName);
+    form.append("password", data.password);
+    form.append("profileImage", data.profileImage[0]);
+    data = { ...data, profileImage: data.profileImage[0] };
+
+    const response = await axios
+      .post(
+        "http://localhost:8080/api/v1/users/register",
+        form,
+        { withCredentials: true, credentials: "include" },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            enctype: "multipart/form-data",
+          },
+        }
+      )
       .then((response) => {
         console.log("form submitted", data);
         console.log(response.data);
-        console.log("status",response.data.statusCode)
-        if(response.data.statusCode==201){ 
-
-          router.push("/")
+        if (response.data.statusCode == 201) {
+          router.push("/");
         }
       })
       .catch((err) => console.log(err));
@@ -56,7 +66,6 @@ export const SignUp = () => {
         />
         <p className="error">{errors.fullName?.message}</p>
 
-
         <label htmlFor="username">UserName</label>
         <input
           type="text"
@@ -68,7 +77,6 @@ export const SignUp = () => {
           className="gray-border rounded-sm"
         />
         <p className="error">{errors.userName?.message}</p>
-
 
         <label htmlFor="email">E-mail</label>
         <input
@@ -104,7 +112,6 @@ export const SignUp = () => {
           className="gray-border  rounded-sm"
         />
         <p className="error">{errors.password?.message}</p>
-
 
         <label htmlFor="profileImage">File</label>
         <input

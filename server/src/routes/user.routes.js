@@ -11,19 +11,10 @@ import { refreshAccessToken } from "../controllers/user.controller.js";
 const router = new Router();
 
 router.route("/register").post(
-  upload.fields([
-    {
-      name: "profileImage",
-      maxCount: 1,
-    },
-    {
-      name: "coverImage",
-      maxCount: 1,
-    },
-  ]),
+  upload.single("profileImage"),
   registerUser,
   (req) => {
-    const profileImagePath = req.files?.profileImage[0]?.path;
+    const profileImagePath = req.files?.path;
     console.log(profileImagePath)
       // Delete files from file system
       fs.unlink(profileImagePath, (err) => {
