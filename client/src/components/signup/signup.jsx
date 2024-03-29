@@ -17,8 +17,7 @@ export const SignUp = () => {
   const { register, control, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
 
-const url = process.env.NEXT_PUBLIC_API_URL
-console.log('env: ',url)
+
 
   const submit = async (data) => {
     const form = new FormData();

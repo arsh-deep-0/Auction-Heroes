@@ -52,11 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   console.log('path', profileImageLocalPath);
-  fs.unlink(profileImageLocalPath, (err) => {
-    if (err) {
-      console.error("Error deleting profile image:", err);
-    }
-  })
+ 
 
   const user = await User.create({
     fullName,
