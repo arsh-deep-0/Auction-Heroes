@@ -14,7 +14,8 @@ export const SignUp = () => {
   });
   const { register, control, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
-
+const url = process.env.API_URL
+console.log('env: ',url)
   const submit = async (data) => {
     const form = new FormData();
     form.append("userName", data.userName);
