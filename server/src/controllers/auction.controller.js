@@ -21,7 +21,8 @@ const createRoomID = async (req, res) => {
 };
 
 const createAuction = asyncHandler(async (req, res) => {
-  const { auctionName, hostID, date, auctionRulesID } = req.body;
+  const { auctionName, date, auctionRulesID } = req.body;
+  const hostID=req.user._id;
   console.log(req.body)
   const auctionRoomID = await createRoomID();
   const auction = await Auction.create({

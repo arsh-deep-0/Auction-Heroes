@@ -23,30 +23,28 @@ export const SignUp = () => {
     form.append("password", data.password);
     form.append("profileImage", data.profileImage[0]);
     data = { ...data, profileImage: data.profileImage[0] };
-
-    const response = await axios
-      .post(
+  
+    try {
+      const response = await axios.post(
         "/api/users/register",
         form,
-        { withCredentials: true, credentials: "include" },
         {
+          withCredentials: true, 
           headers: {
-            "Content-Type": "multipart/form-data",
-            enctype: "multipart/form-data",
+            "Content-Type": "multipart/form-data", 
           },
         }
-      )
-      .then((response) => {
-        console.log("form submitted", data);
-        console.log(response.data);
-        if (response.data.statusCode == 201) {
-          router.push("/");
-        }
-      })
-      .catch((err) => console.log(err));
-    console.log("form submitted", data);
+      );
+      console.log("form submitted", data);
+      console.log(response.data);
+      if (response.status === 201) {
+        router.push("/");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
-
+  
   return (
     <div className="flex flex-col gap-2 p-4 w-72 text-black poppins-regular">
       <form

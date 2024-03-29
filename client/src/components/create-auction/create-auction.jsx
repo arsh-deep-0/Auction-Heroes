@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
-import { useCookies } from 'next-client-cookies';
-
+import { useRouter } from "next/navigation";
 
 export default function CreateAuction() {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       buyersCount: 2,
@@ -40,10 +40,6 @@ export default function CreateAuction() {
       setValue("minPlayers", calculatedMinPlayersInTeam);
   }, [teamsCountValue, totalPlayersValue]);
 
- 
-
-  const cookies = useCookies();
-
   const submit = async (data) => {
     const rulesData = {
       ...data,
@@ -51,30 +47,36 @@ export default function CreateAuction() {
       maxPlayers: data.minPlayers + 2,
       minWicketkeepers: 1,
     };
-  
+
     try {
-      const rulesResponse = await axios.post("/api/auction-rules/create", rulesData);
+      const rulesResponse = await axios.post(
+        "/api/auction-rules/create",
+        rulesData
+      );
       console.log("response", rulesResponse.data);
       console.log("form submitted", data);
-  
+
       if (rulesResponse.data.statusCode === 201) {
         const auctionData = {
           ...data,
           auctionRulesID: rulesResponse.data.data._id,
-          hostID:cookies.get('userID'),
-          accessToken: cookies.get('accessToken')
         };
-        console.log(auctionData)
-        
-  
-        const auctionResponse = await axios.post("/api/auction/create", auctionData);
+        console.log(auctionData);
+
+        const auctionResponse = await axios.post(
+          "/api/auction/create",
+          auctionData
+        );
         console.log(auctionResponse.data);
+
+        if(auctionResponse.data.statusCode===201){
+          router.push(`/waiting-room?roomID=${auctionResponse.data.data.auctionRoomID}`)
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
-  
 
   const onError = (errors) => {
     console.log("Error: ", errors);
@@ -138,7 +140,7 @@ export default function CreateAuction() {
             valueAsNumber: true,
             required: {
               value: true,
-              message: "minimum dcqPlayers is required",
+              message: "minimum Players is required",
             },
             min: {
               value: 2,
