@@ -1,3 +1,4 @@
+'use client'
 import { StartGame } from "@/components/landing-page/start-game";
 import Image from "next/image";
 

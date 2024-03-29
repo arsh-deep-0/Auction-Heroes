@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
+import fs from "fs"
 
 const generateAccessTokenAndRefreshToken = async (userID) => {
   try {
@@ -15,7 +16,7 @@ const generateAccessTokenAndRefreshToken = async (userID) => {
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
 
-    return { refreshToken, accessToken };
+    return { refreshToken, accessToken }; 
   } catch (error) {
     throw new ApiError(
       500,
@@ -49,6 +50,13 @@ const registerUser = asyncHandler(async (req, res) => {
   if (!uploadedProfileImage) {
     throw new ApiError(400, "Failed to upload Profile Image ");
   }
+
+  console.log('path', profileImageLocalPath);
+  fs.unlink(profileImageLocalPath, (err) => {
+    if (err) {
+      console.error("Error deleting profile image:", err);
+    }
+  })
 
   const user = await User.create({
     fullName,

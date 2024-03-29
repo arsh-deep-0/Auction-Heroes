@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useForm, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
+import { useCookies } from 'next-client-cookies';
+
+
 export default function CreateAuction() {
   const form = useForm({
     defaultValues: {
@@ -31,12 +34,15 @@ export default function CreateAuction() {
   const calculatedMinPlayersInTeam = parseInt(
     Math.min(totalPlayersValue / teamsCountValue - 1, 11)
   );
+
   useEffect(() => {
     if (calculatedMinPlayersInTeam < minPlayersValue)
       setValue("minPlayers", calculatedMinPlayersInTeam);
   }, [teamsCountValue, totalPlayersValue]);
 
-  console.log("isSubmitting: ", isSubmitting);
+ 
+
+  const cookies = useCookies();
 
   const submit = async (data) => {
     const rulesData = {
@@ -45,26 +51,30 @@ export default function CreateAuction() {
       maxPlayers: data.minPlayers + 2,
       minWicketkeepers: 1,
     };
-    await axios
-      .post("http://localhost:8080/api/v1/auction-rules/create", rulesData)
-      .then((response) => {
-        console.log("response ", response.data);
-        console.log("form submitted", data);
-        if (response.data.statusCode == 201) {
-          async () => {
-            auctionData = {
-              ...data,
-              auctionRoomID: response.data.auctionRoomID,
-            };
-            await axios
-              .post("http://localhost:8080/api/v1/auction/create", auctionData)
-              .then((response) => {
-                console.log(response.data)
-              });
-          };
-        }
-      });
+  
+    try {
+      const rulesResponse = await axios.post("/api/auction-rules/create", rulesData);
+      console.log("response", rulesResponse.data);
+      console.log("form submitted", data);
+  
+      if (rulesResponse.data.statusCode === 201) {
+        const auctionData = {
+          ...data,
+          auctionRulesID: rulesResponse.data.data._id,
+          hostID:cookies.get('userID'),
+          accessToken: cookies.get('accessToken')
+        };
+        console.log(auctionData)
+        
+  
+        const auctionResponse = await axios.post("/api/auction/create", auctionData);
+        console.log(auctionResponse.data);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
+  
 
   const onError = (errors) => {
     console.log("Error: ", errors);

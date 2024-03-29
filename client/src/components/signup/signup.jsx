@@ -26,7 +26,7 @@ export const SignUp = () => {
 
     const response = await axios
       .post(
-        "http://localhost:8080/api/v1/users/register",
+        "/api/users/register",
         form,
         { withCredentials: true, credentials: "include" },
         {

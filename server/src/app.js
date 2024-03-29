@@ -4,7 +4,6 @@ import { Server } from "socket.io";
 import { initializeSocketIO } from "./sockets/index.socket.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 
 const app = express();
 const httpServer = createServer(app);
@@ -21,7 +20,6 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-  
   })
 );
 
@@ -30,10 +28,12 @@ initializeSocketIO(io);
 
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(bodyParser.json())
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 //routes import
 import userRouter from "./routes/user.routes.js";
@@ -41,13 +41,14 @@ import auctionRulesRouter from "./routes/auctionRules.routes.js";
 import playerRouter from "./routes/player.routes.js";
 import teamRouter from "./routes/team.routes.js";
 import auctionRouter from "./routes/auction.routes.js";
-
+import { verifyJWT } from "./middlewares/auth.middleware.js";
 //routes declarations
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/auction-rules", auctionRulesRouter); 
+ app.use(verifyJWT) 
+app.use("/api/v1/auction-rules", auctionRulesRouter);
 app.use("/api/v1/player", playerRouter);
 app.use("/api/v1/team", teamRouter);
-app.use("/api/v1/auction", auctionRouter);  
+app.use("/api/v1/auction", auctionRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");

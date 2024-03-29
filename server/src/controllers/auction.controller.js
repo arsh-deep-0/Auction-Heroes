@@ -13,7 +13,7 @@ const createRoomID = async (req, res) => {
     const auction = await Auction.findOne({
       auctionRoomID: generateSixDigitNumber,
     });
-    if (!auction.length) {
+    if (!auction) {
       unique = true;
       return generateSixDigitNumber;
     }
@@ -22,6 +22,7 @@ const createRoomID = async (req, res) => {
 
 const createAuction = asyncHandler(async (req, res) => {
   const { auctionName, hostID, date, auctionRulesID } = req.body;
+  console.log(req.body)
   const auctionRoomID = await createRoomID();
   const auction = await Auction.create({
     auctionName,

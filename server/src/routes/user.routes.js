@@ -12,18 +12,7 @@ const router = new Router();
 
 router.route("/register").post(
   upload.single("profileImage"),
-  registerUser,
-  (req) => {
-    const profileImagePath = req.files?.path;
-    console.log(profileImagePath)
-      // Delete files from file system
-      fs.unlink(profileImagePath, (err) => {
-        if (err) {
-          console.error("Error deleting profile image:", err);
-        }
-      });
-    
-  }
+  registerUser
 );
 
 router.route("/login").post(loginUser);

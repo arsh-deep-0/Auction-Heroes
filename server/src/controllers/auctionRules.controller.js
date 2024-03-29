@@ -16,6 +16,7 @@ const createAuctionRules = asyncHandler(async (req, res) => {
     minBowlers,
   } = req.body;
 
+  console.log('cookies',req.cookies);
   // Create a new AuctionRules object
   const auctionRules = await AuctionRules.create({
     buyersCount,
