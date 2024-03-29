@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const SignUp = () => {
   const router = useRouter();
@@ -14,8 +16,10 @@ export const SignUp = () => {
   });
   const { register, control, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
-const url = process.env.API_URL
+
+const url = process.env.NEXT_PUBLIC_API_URL
 console.log('env: ',url)
+
   const submit = async (data) => {
     const form = new FormData();
     form.append("userName", data.userName);
