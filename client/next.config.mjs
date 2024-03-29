@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.API_URL;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,15 +14,4 @@ const nextConfig = {
 
 export default nextConfig;
 
-// module.exports = {
-//   reactStrictMode: true,
-//   redirects: async () => {
-//     return [
-//       {
-//         source: "/api/:path*",
-//         destination: `${API_URL}/:path*`,
-// 		permanent:true
-//       },
-//     ];
-//   },
-// };
+
