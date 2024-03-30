@@ -39,24 +39,24 @@ const registerUser = asyncHandler(async (req, res) => {
   if (existedUser) {
     throw new ApiError(409, `User with this username or email already exists`);
   }
-  const profileImageLocalPath = req.file?.path; 
+  // const profileImageLocalPath = req.file?.path; 
  
-  if (!profileImageLocalPath) {
-    throw new ApiError(400, "Profile Image is required");
-  }
+  // if (!profileImageLocalPath) {
+  //   throw new ApiError(400, "Profile Image is required");
+  // }
 
-  const uploadedProfileImage = await uploadOnCloudinary(profileImageLocalPath);
+  // const uploadedProfileImage = await uploadOnCloudinary(profileImageLocalPath);
 
-  if (!uploadedProfileImage) {
-    throw new ApiError(400, "Failed to upload Profile Image ");
-  }
+  // if (!uploadedProfileImage) {
+  //   throw new ApiError(400, "Failed to upload Profile Image ");
+  // }
 
-  console.log('path', profileImageLocalPath);
+  // console.log('path', profileImageLocalPath);
  
 
   const user = await User.create({
     fullName,
-    profileImage: uploadedProfileImage.url,
+    // profileImage: uploadedProfileImage.url,
     email,
     password,
     userName,

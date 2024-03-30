@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import dotenv from 'dotenv';
-dotenv.config();
 
 export const SignUp = () => {
+  
   const router = useRouter();
   const form = useForm({
     defaultValues: {
