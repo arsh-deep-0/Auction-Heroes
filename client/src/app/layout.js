@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/provider";
+import { CookiesProvider } from "next-client-cookies/server";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,9 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <StoreProvider>{children}</StoreProvider>
+        <CookiesProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </CookiesProvider>
       </body>
     </html>
   );

@@ -5,9 +5,16 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const verifyJWT = asyncHandler(async (socket, next) => {
   try {
-    const token = socket.handshake.query.accessToken;
-    //const token = socket.handshake.auth.accessToken;
-    console.log("token: ", token);
+    const tokenString = socket.request.headers.cookie;
+    const pairs = tokenString.split(";");
+
+    // Find the pair containing 'accessToken'
+    const accessTokenPair = pairs.find((pair) => pair.includes("accessToken"));
+
+    // Extract the value of 'accessToken'
+    const accessToken = accessTokenPair.split("=")[1];
+    console.log("token: ", accessToken);
+    const token = accessToken;
 
     if (!token) {
       throw new ApiError(401, "Unauthorized Request");
@@ -20,7 +27,7 @@ const verifyJWT = asyncHandler(async (socket, next) => {
     if (!user) {
       throw new ApiError(401, "Invalid Access Token");
     }
- 
+
     socket.userID = user._id; // Attach userID to the socket
 
     next();

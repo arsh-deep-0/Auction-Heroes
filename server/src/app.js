@@ -14,6 +14,7 @@ const io = new Server(httpServer, {
     origin: process.env.CORS_ORIGIN,
     credentials: true,
   },
+  connectionStateRecovery: {},
 });
 
 app.use(
@@ -44,7 +45,7 @@ import auctionRouter from "./routes/auction.routes.js";
 import { verifyJWT } from "./middlewares/auth.middleware.js";
 //routes declarations
 app.use("/api/v1/users", userRouter);
-//  app.use(verifyJWT) 
+//  app.use(verifyJWT)
 app.use("/api/v1/auction-rules", auctionRulesRouter);
 app.use("/api/v1/player", playerRouter);
 app.use("/api/v1/team", teamRouter);
