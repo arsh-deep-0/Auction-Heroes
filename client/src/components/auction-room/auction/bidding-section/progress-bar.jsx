@@ -3,18 +3,18 @@ export default function ProgressBar({soldPlayers,unsoldPlayers,totalPlayers}){
         <div className='bg-white gap-2 rounded-md text-white border-2 border-solid border-white black-shadow p-2 px-4 w-full flex-col flex  items-center'>
             <div className='text-black w-full justify-between rounded-md flex text-sm'>
                 <div className='flex justify-center flex-col items-center poppins-medium text-sky-blue' >
-                    <p>Sold</p>
-                    <p>{soldPlayers}</p>
+                    <span>Sold</span>
+                    <span>{soldPlayers}</span>
                 </div>
                 <div className='flex justify-center  flex-col items-center poppins-medium text-blue' >
                     
-                    <p>Unsold</p>
-                    <p>{unsoldPlayers}</p>
+                    <span>Unsold</span>
+                    <span>{unsoldPlayers}</span>
                 </div>
                 <div className='flex justify-center  flex-col items-center poppins-medium' >
                     
-                    <p>Total</p>
-                    <p>{totalPlayers}</p>
+                    <span>Total</span>
+                    <span>{totalPlayers}</span>
                 </div>
             </div>
             <div className='bg-black w-full h-2 rounded-md flex overflow-hidden'>

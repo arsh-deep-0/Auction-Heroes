@@ -10,8 +10,8 @@ export default function CurrentBid() {
       <p className="bar-text">
         ₹ <span className="bid-amount-text text-blue poppins-medium">{currentBidAmount}</span>{" "}
         Cr
-      </p>
-      <p className="bar-text ">Max Bid : 20 Cr</p>
+      </span>
+      <p className="bar-text ">Max Bid : 20 Cr</span>
     </div>
   );
 }

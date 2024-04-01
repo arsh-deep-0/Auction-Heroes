@@ -99,7 +99,7 @@ export default function CreateAuction() {
           })}
           className="gray-border  rounded-sm"
         />
-        <p className="error">{errors.auctionName?.message}</p>
+        <p className="error">{errors.auctionName?.message}</span>
 
         <label htmlFor="username">Number of Teams</label>
         <input
@@ -114,7 +114,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.buyersCount?.message}</p>
+        <p className="error">{errors.buyersCount?.message}</span>
 
         <label htmlFor="username">Total Players in Auction</label>
         <input
@@ -129,7 +129,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.playersCount?.message}</p>
+        <p className="error">{errors.playersCount?.message}</span>
 
         <label htmlFor="username">Minimum Players in a Team</label>
         <input
@@ -153,7 +153,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.minPlayers?.message}</p>
+        <p className="error">{errors.minPlayers?.message}</span>
 
         <label htmlFor="username">Budget</label>
         <input
@@ -168,7 +168,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.budget?.message}</p>
+        <p className="error">{errors.budget?.message}</span>
 
         <label htmlFor="username">Minimum Bowling Members</label>
         <input
@@ -192,7 +192,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.minBowlers?.message}</p>
+        <p className="error">{errors.minBowlers?.message}</span>
 
         <label htmlFor="username">Auction Date</label>
         <input
@@ -205,7 +205,7 @@ export default function CreateAuction() {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.date?.message}</p>
+        <p className="error">{errors.date?.message}</span>
 
         <button
           disabled={isSubmitting}

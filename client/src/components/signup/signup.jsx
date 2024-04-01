@@ -65,7 +65,7 @@ export const SignUp = () => {
           })}
           className="gray-border  rounded-sm"
         />
-        <p className="error">{errors.fullName?.message}</p>
+        <p className="error">{errors.fullName?.message}</span>
 
         <label htmlFor="username">UserName</label>
         <input
@@ -77,7 +77,7 @@ export const SignUp = () => {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.userName?.message}</p>
+        <p className="error">{errors.userName?.message}</span>
 
         <label htmlFor="email">E-mail</label>
         <input
@@ -101,7 +101,7 @@ export const SignUp = () => {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.email?.message}</p>
+        <p className="error">{errors.email?.message}</span>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -112,7 +112,7 @@ export const SignUp = () => {
           })}
           className="gray-border  rounded-sm"
         />
-        <p className="error">{errors.password?.message}</p>
+        <p className="error">{errors.password?.message}</span>
 
         <label htmlFor="profileImage">File</label>
         <input
@@ -124,7 +124,7 @@ export const SignUp = () => {
           })}
           className="flex gap-2"
         />
-        <p className="error">{errors.profileImage?.message}</p>
+        <p className="error">{errors.profileImage?.message}</span>
         <button
           disabled={isSubmitting}
           className="gray-border bg-blue text-white"

@@ -28,7 +28,7 @@ export default function CountdownTimer() {
               style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
             >
               {timerValue}
-            </p>
+            </span>
           </div>
           <CircularProgressBarDiv
             percentage={75}
@@ -37,7 +37,7 @@ export default function CountdownTimer() {
           />
         </div>
 
-        <p className="poppins-light bar-text text-black ">Timer</p>
+        <p className="poppins-light bar-text text-black ">Timer</span>
       </div>
     </>
   );

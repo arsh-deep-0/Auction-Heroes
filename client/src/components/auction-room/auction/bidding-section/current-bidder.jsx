@@ -10,7 +10,7 @@ export default function CurrentBidder() {
 
       <p className="poppins-medium text-black  bar-text text-center text-blue">
         Bhaskar Mishra
-      </p>
+      </span>
     </div>
   );
 }

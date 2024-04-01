@@ -32,13 +32,13 @@ export default function BuyerInfo({
     <>
       <div className="relative rounded-lg gray-border h-full w-full bg-white flex flex-col justify-around p-[0.1rem]">
         <div className="h-[20%] text-black poppins-regular stat-text text-center w-full">
-          <p>{playerName}</p>
+          <span>{playerName}</span>
         </div>
         <div className="h-[70%] flex justify-between w-full px-1 py-2 gap-4 ">
           <div className="w-[48%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-white`}>
-              <p className = {"circular-bar-text fredoka "}>{`${spendingData.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></p>
-              <p className="circular-bar-text fredoka">{` ${spendingData.valueAfter}`}</p>
+              <p className = {"circular-bar-text fredoka "}>{`${spendingData.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></span>
+              <p className="circular-bar-text fredoka">{` ${spendingData.valueAfter}`}</span>
             </div>
 
             <CircularProgressBarDiv {...spendingData} />
@@ -46,8 +46,8 @@ export default function BuyerInfo({
 
           <div className="w-[48%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-black`}>
-              <p className="bar-value fredoka">{` ${playersBoughtData.value}`}</p>
-              <p className="circular-bar-text fredoka">{` ${playersBoughtData.valueAfter}`}</p>
+              <p className="bar-value fredoka">{` ${playersBoughtData.value}`}</span>
+              <p className="circular-bar-text fredoka">{` ${playersBoughtData.valueAfter}`}</span>
             </div>
             <CircularProgressBarDiv {...playersBoughtData} />
           </div>

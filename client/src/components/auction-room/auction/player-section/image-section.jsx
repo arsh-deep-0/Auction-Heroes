@@ -8,15 +8,15 @@ export default function ImageSection() {
       />
       <div className="absolute flex flex-col  w-full">
         <div className="flex text-black  justify-between w-full p-2 poppins-medium">
-          <p>Virat</p>
-          <p>Kohli</p>
+          <span>Virat</span>
+          <span>Kohli</span>
         </div>
         <div className="flex text-black poppins-light justify-between w-full p-2 noto- text-[0.65rem] items-center">
           <div>
-            <p>IND </p>
-            <p>Batsman</p>
+            <span>IND </span>
+            <span>Batsman</span>
           </div>
-          <p className="bg-blue text-white px-2 rounded-md py-[0.1rem] border-b-2 border-white border-solid pink-shadow text-xs font-bold">₹2 Cr</p>
+          <p className="bg-blue text-white px-2 rounded-md py-[0.1rem] border-b-2 border-white border-solid pink-shadow text-xs font-bold">₹2 Cr</span>
         </div>
       </div>
 
