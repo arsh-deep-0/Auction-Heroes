@@ -16,7 +16,8 @@ export default function CountdownTimer() {
         dispatch(reduceTimerCount());
       }, 1000);
     }
-  }, []);
+
+  }, [isAuctionInProcess,timerValue]);
 
   return (
     <>
