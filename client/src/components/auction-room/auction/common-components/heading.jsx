@@ -2,7 +2,7 @@ export default function Heading({ title, background = "#000", font = "poppins-me
   return (
     <>
       <div className="flex justify-center">
-        <p className={`text-${fontcolor} rounded-md  min-w-[80%] text-center ${font} text-lg  ${fontSize=="heading"? 'pt-4': 'py-1'} ${fontSize}-text border-[${border}px]`} >
+        <span className={`text-${fontcolor} rounded-md  min-w-[80%] text-center ${font} text-lg  ${fontSize=="heading"? 'pt-4': 'py-1'} ${fontSize}-text border-[${border}px]`} >
           {title}
         </span>
       </div>

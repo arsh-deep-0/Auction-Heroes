@@ -16,14 +16,14 @@ export default function CountdownTimer() {
         dispatch(reduceTimerCount());
       }, 1000);
     }
-  }, [isAuctionInProcess, timerValue]);
+  }, []);
 
   return (
     <>
       <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">
         <div className="w-[45%] relative flex items-center justify-center">
           <div className="absolute flex justify-center items-center flex-col text-white">
-            <p
+            <span
               className="poppins-light"
               style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
             >
@@ -37,7 +37,7 @@ export default function CountdownTimer() {
           />
         </div>
 
-        <p className="poppins-light bar-text text-black ">Timer</span>
+        <span className="poppins-light bar-text text-black ">Timer</span>
       </div>
     </>
   );

@@ -8,7 +8,7 @@ export default function CurrentBidder() {
         <BuyerLogo teamName={"srh"} order={4} orderVisibility={"hidden"} />
       </div>
 
-      <p className="poppins-medium text-black  bar-text text-center text-blue">
+      <span className="poppins-medium text-black  bar-text text-center text-blue">
         Bhaskar Mishra
       </span>
     </div>

@@ -16,7 +16,7 @@ export default function ImageSection() {
             <span>IND </span>
             <span>Batsman</span>
           </div>
-          <p className="bg-blue text-white px-2 rounded-md py-[0.1rem] border-b-2 border-white border-solid pink-shadow text-xs font-bold">₹2 Cr</span>
+          <span className="bg-blue text-white px-2 rounded-md py-[0.1rem] border-b-2 border-white border-solid pink-shadow text-xs font-bold">₹2 Cr</span>
         </div>
       </div>
 

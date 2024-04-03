@@ -5,7 +5,7 @@ export default function AuctionLayout({ children }) {
         <header className="bg-white shadow-lg text-black py-1 px-2 rounded-lg gray-border poppins-medium flex items-center justify-between ">
           <div className="flex items-center gap-2 ">
             <img className="h-8 w-8" src="/images/components/game-logo.svg" alt="" />
-            <p className="text-blue ">Auction Heroes</span>
+            <span className="text-blue ">Auction Heroes</span>
           </div>
 
           <img className="h-6 w-6 gray-border rounded-full" src="/images/components/profile.svg" alt="" />

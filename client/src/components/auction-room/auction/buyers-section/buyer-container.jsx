@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import Buyer from "./buyer";
 
 export default function BuyersContainer() {
-  const buyersData = useSelector((state) => state.buyers);
   
+  const buyersData = useSelector((state) => state.buyers);
+
   const renderedBuyers = buyersData.map((buyer) => {
     return <Buyer key={buyer.teamName} buyerOrder={buyer.order} />;
   });

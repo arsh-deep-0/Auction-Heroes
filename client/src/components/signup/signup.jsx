@@ -4,8 +4,12 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Cookies from 'universal-cookie';
+
+
 
 export const SignUp = () => {
+  const cookies = new Cookies(null, { path: '/' });
   
   const router = useRouter();
   const form = useForm({
@@ -41,6 +45,7 @@ export const SignUp = () => {
       console.log("form submitted", data);
       console.log(response.data);
       if (response.status === 201) {
+        cookies.set('userID', response.data.data._id);
         router.push("/");
       }
     } catch (err) {
@@ -65,7 +70,7 @@ export const SignUp = () => {
           })}
           className="gray-border  rounded-sm"
         />
-        <p className="error">{errors.fullName?.message}</span>
+        <p className="error">{errors.fullName?.message}</p>
 
         <label htmlFor="username">UserName</label>
         <input
@@ -77,7 +82,7 @@ export const SignUp = () => {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.userName?.message}</span>
+        <p className="error">{errors.userName?.message}</p>
 
         <label htmlFor="email">E-mail</label>
         <input
@@ -101,7 +106,7 @@ export const SignUp = () => {
           })}
           className="gray-border rounded-sm"
         />
-        <p className="error">{errors.email?.message}</span>
+        <p className="error">{errors.email?.message}</p>
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -112,7 +117,7 @@ export const SignUp = () => {
           })}
           className="gray-border  rounded-sm"
         />
-        <p className="error">{errors.password?.message}</span>
+        <p className="error">{errors.password?.message}</p>
 
         <label htmlFor="profileImage">File</label>
         <input
@@ -124,7 +129,7 @@ export const SignUp = () => {
           })}
           className="flex gap-2"
         />
-        <p className="error">{errors.profileImage?.message}</span>
+        <p className="error">{errors.profileImage?.message}</p>
         <button
           disabled={isSubmitting}
           className="gray-border bg-blue text-white"
