@@ -48,7 +48,7 @@ const buyerSlice = createSlice({
   initialState,
   reducers: {
     addBuyer: (state, action) => {
-      initialState.push(action.payload);
+      state.push(action.payload);
     },
   },
 });

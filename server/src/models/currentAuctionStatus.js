@@ -4,11 +4,13 @@ const currentAuctionStatusSchema = new mongoose.Schema(
   {
     auctionID: {
       type: mongoose.SchemaTypes.ObjectId,
+      ref:"Auction",
       required: true,
       index: true,
     },
     currentBidder: {
       type: mongoose.SchemaTypes.ObjectId,
+      ref:"User",
       required: true,
     },
     currentTimer: {

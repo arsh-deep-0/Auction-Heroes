@@ -33,6 +33,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       
     },
+    latestWaitingRoom:{
+      type:Number
+    }
   },
   { timestamps: true }
 );

@@ -38,6 +38,10 @@ const auctionSchema = new mongoose.Schema(
       ref: "AuctionRules",
       required: true,
     },
+    hasAuctionStarted:{
+      type:Boolean,
+      default: false,
+    }
   },
   { timestamps: true }
 );

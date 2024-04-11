@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {users: []};
 
 const waitingRoomParticpantSlice = createSlice({
   name: "waitingRoomParticpant",
   initialState,
   reducers: {
     addParticipant:(state,action)=>{
-        state.push(action.payload);
+        state.users=action.payload;
     }
   },
 });

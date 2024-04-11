@@ -4,6 +4,7 @@ import { ApiResponse } from "../utils/apiResponse.js";
 import { Auction } from "../models/auction.model.js";
 import { AuctionRules } from "../models/auctionRules.model.js";
 import { User } from "../models/user.model.js";
+import { WaitingRoom } from "../models/waitingRoom.model.js";
 
 const createRoomID = async (req, res) => {
   let unique = false;
@@ -22,8 +23,8 @@ const createRoomID = async (req, res) => {
 
 const createAuction = asyncHandler(async (req, res) => {
   const { auctionName, date, auctionRulesID } = req.body;
-  const hostID=req.user._id;
-  console.log(req.body)
+  const hostID = req.user._id;
+  console.log(req.body);
   const auctionRoomID = await createRoomID();
   const auction = await Auction.create({
     auctionName,
@@ -37,6 +38,8 @@ const createAuction = asyncHandler(async (req, res) => {
 
   const createdAuction = await Auction.findOne(auction?._id);
 
+  await createWaitingRoom(auctionRoomID);
+
   if (!createdAuction) {
     throw new ApiError(
       500,
@@ -49,6 +52,13 @@ const createAuction = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, createdAuction, "Auction created succesfully"));
 });
 
+const createWaitingRoom = async (auctionRoomID) => {
+  console.log(auctionRoomID);
+  await WaitingRoom.create({
+    waitingRoomID: auctionRoomID,
+  });
+};
+
 const addBuyerToAuction = async (socket, joiningData) => {
   try {
     const { userID, waitingRoomID } = joiningData;
@@ -60,17 +70,17 @@ const addBuyerToAuction = async (socket, joiningData) => {
     const isMember = await isAuctionMember(userID, auction);
     console.log("isMember: ", isMember);
     if (isMember) {
-      socket.join(`${waitingRoomID}`)
+      socket.join(`${waitingRoomID}`);
       return { waitingRoomID, userID, wasMember: true };
     }
 
     console.log(user);
-    await isHostOrUserHimself(user, socket, auction); // Check if the user attempting to remove the buyer is the buyer or the auction host
+    await isHostOrUserHimself(user, socket, auction); // Check if the user attempting to add the buyer is the buyer or the auction host
 
     auction.buyers.push(userID);
     await auction.save({ validateBeforeSave: false });
 
-    socket.join(`${waitingRoomID}`)
+    socket.join(`${waitingRoomID}`);
 
     // Emit an event indicating successful addition of the buyer
     return { waitingRoomID, userID, wasMember: false };
@@ -91,7 +101,7 @@ const removeBuyerFromAuction = async (socket, removingData) => {
 
     const isMember = await isAuctionMember(userID, auction);
     if (!isMember) {
-      socket.leave(`${waitingRoomID}`)
+      socket.leave(`${waitingRoomID}`);
       return { waitingRoomID, userID, wasMember: false };
     }
 
@@ -99,12 +109,92 @@ const removeBuyerFromAuction = async (socket, removingData) => {
     auction.buyers.pull(userID);
     await auction.save({ validateBeforeSave: false });
 
-    socket.leave(`${waitingRoomID}`)
+    socket.leave(`${waitingRoomID}`);
     return { waitingRoomID, userID, wasMember: true };
   } catch (error) {
-    console.error("Error in removeBuyerToAuction:", error);
+    console.error("Error in removeBuyerFromAuction:", error);
     return { error: error.message };
   }
+};
+
+const joinWaitingRoom = async (socket, joiningData) => {
+  const result = await addBuyerToAuction(socket, joiningData);
+  console.log("result: ", result);
+  
+  const existingParticipant = await WaitingRoom.findOneAndUpdate(
+    {
+      waitingRoomID: joiningData.waitingRoomID,
+      participants: { $elemMatch: { userID: socket.userID } }
+    },
+    {
+      $set: { "participants.$.isOnline": true },
+      $addToSet: {
+        onlineParticipants: socket.userID,
+      },
+    },
+    {
+      new:true
+    }
+  );
+
+  if (!existingParticipant) {
+    const waitingRoom = await WaitingRoom.findOneAndUpdate(
+      {
+        waitingRoomID: joiningData.waitingRoomID,
+      },
+      {
+        $addToSet: {
+          participants: { userID: socket.userID, isOnline: true },
+          onlineParticipants: socket.userID,
+        },
+      },
+      {
+        new: true,
+        upsert: true,
+      }
+    );
+
+    const user = await User.findById(socket.userID);
+    user.latestWaitingRoom = joiningData.waitingRoomID;
+    await user.save();
+
+    console.log("updated room: ", waitingRoom);
+    result.users = waitingRoom.participants;
+    return result;
+  } else {
+    const user = await User.findById(socket.userID);
+    user.latestWaitingRoom = joiningData.waitingRoomID;
+    await user.save();
+
+    console.log("updated room: ", existingParticipant);
+    result.users = existingParticipant.participants;
+    return result;
+  }
+};
+
+
+const leaveWaitingRoom = async (socket, leavingData) => {
+  const result = await removeBuyerFromAuction(socket, leavingData);
+  const waitingRoom = await WaitingRoom.findOneAndUpdate(
+    {
+      waitingRoomID: joiningData.waitingRoomID,
+      "participants.userID": socket.userID,
+    },
+    {
+      "participants.$.isOnline": false,
+      "participants.$.userID": socket.userID,
+    },
+    {
+      new: true,
+      upsert: true,
+    }
+  );
+  waitingRoom.onlineParticipants.pull( socket.userID );
+  await waitingRoom.save();
+
+  console.log("updated room: ", waitingRoom);
+  result.users = waitingRoom.participants;
+  return result;
 };
 
 const getAuctionByRoomID = async (auctionRoomID) => {
@@ -115,6 +205,18 @@ const getAuctionByRoomID = async (auctionRoomID) => {
     throw new ApiError(404, "Room does not exist");
   }
   return auction;
+};
+
+const getWaitingRoomByRoomID = async (auctionRoomID) => {
+  console.log(auctionRoomID);
+  const waitingRoom = await WaitingRoom.findOne({
+    waitingRoomID: auctionRoomID,
+  });
+  console.log(waitingRoom);
+  if (!waitingRoom) {
+    throw new ApiError(404, "Waiting Room does not exist");
+  }
+  return waitingRoom;
 };
 
 const isHostOrUserHimself = async (user, socket, auction) => {
@@ -142,6 +244,10 @@ const isAuctionMember = async (userID, auction) => {
   return false;
 };
 
+const hasAuctionStarted = async (auction) => {
+  return auction.hasAuctionStarted;
+};
+
 const isHost = async (socket, auction) => {
   if (auction.host.toString() !== socket.userID.toString()) {
     throw new ApiError(403, "Unauthorized request");
@@ -152,9 +258,11 @@ export {
   createAuction,
   addBuyerToAuction,
   removeBuyerFromAuction,
+  joinWaitingRoom,
+  leaveWaitingRoom,
   getAuctionByRoomID,
   isHostOrUserHimself,
   getUser,
   isHost,
-  isAuctionMember
+  isAuctionMember,
 };

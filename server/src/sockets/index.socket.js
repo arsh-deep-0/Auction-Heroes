@@ -1,5 +1,5 @@
 import playerSocket from "./player.socket.js";
-import auctionSocket from "./auction.socket.js";
+import auctionSocket, { onLeavingWaitingRoom } from "./auction.socket.js";
 import { verifyJWT } from "../middlewares/authSocket.middleware.js";
 
 const initializeSocketIO = (io) => {
@@ -20,6 +20,7 @@ const initializeSocketIO = (io) => {
         auctionSocket(io,socket)();
 
         socket.on("disconnect", () => {
+          onLeavingWaitingRoom(io,socket)();
           console.log(`User ${userID} disconnected`);
         });
       } catch (error) {
