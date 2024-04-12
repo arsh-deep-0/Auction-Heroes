@@ -4,7 +4,7 @@ import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
-import fs from "fs"
+import fs from "fs";
 
 const generateAccessTokenAndRefreshToken = async (userID) => {
   try {
@@ -16,7 +16,7 @@ const generateAccessTokenAndRefreshToken = async (userID) => {
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
 
-    return { refreshToken, accessToken }; 
+    return { refreshToken, accessToken };
   } catch (error) {
     throw new ApiError(
       500,
@@ -39,8 +39,8 @@ const registerUser = asyncHandler(async (req, res) => {
   if (existedUser) {
     throw new ApiError(409, `User with this username or email already exists`);
   }
-  // const profileImageLocalPath = req.file?.path; 
- 
+  // const profileImageLocalPath = req.file?.path;
+
   // if (!profileImageLocalPath) {
   //   throw new ApiError(400, "Profile Image is required");
   // }
@@ -52,7 +52,6 @@ const registerUser = asyncHandler(async (req, res) => {
   // }
 
   // console.log('path', profileImageLocalPath);
- 
 
   const user = await User.create({
     fullName,
@@ -73,7 +72,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const { accessToken, refreshToken } =
     await generateAccessTokenAndRefreshToken(user._id);
   const loggedInUser = await User.findById(user._id).select(
-     "-password -refreshToken"
+    "-password -refreshToken"
   );
 
   const options = {
@@ -83,16 +82,16 @@ const registerUser = asyncHandler(async (req, res) => {
 
   return res
     .status(201)
-    .cookie("accessToken", accessToken, options) 
+    .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(new ApiResponse(201, loggedInUser, "User registered successfully"));
 });
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password, userName } = req.body;
-console.log(req.body)
+  console.log(req.body);
   if (!userName && !email) {
-    throw new ApiError(400, `username or email required`); 
+    throw new ApiError(400, `username or email required`);
   }
 
   const user = await User.findOne({
@@ -238,18 +237,53 @@ const getUserAnalytics = asyncHandler(async (req, res) => {
     throw new ApiError(`Username is missing`);
   }
 
-   const userAnalytics=await User.aggregate([
+  const userAnalytics = await User.aggregate([
     {
-      $match:{
-        userName:username?.toLowerCase() 
-      }
+      $match: {
+        userName: username?.toLowerCase(),
+      },
     },
     {
-      $lookup:{
-        from:"contracts"
-      }
-    }
-  ])
+      $lookup: {
+        from: "contracts",
+      },
+    },
+  ]);
+});
+
+const getUserName = asyncHandler(async (req, res) => {
+  const userID = req.params.userID;
+  const user = await User.findById(userID);
+  if (!user) {
+    throw new ApiError(400, "Wrong UserID");
+  }
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        userName: user.userName,
+      },
+      "UserName fetched sucessfully"
+    )
+  );
+});
+const getFullName = asyncHandler(async (req, res) => {
+  const userID = req.params.userID;
+  const user = await User.findById(userID);
+  if (!user) {
+    throw new ApiError(400, "Wrong UserID");
+  }
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        userName: user.fullName,
+      },
+      "UserName fetched sucessfully"
+    )
+  );
 });
 
 export {
@@ -259,4 +293,6 @@ export {
   refreshAccessToken,
   changeCurrentPassword,
   getCurrentUser,
+  getUserName,
+  getFullName
 };

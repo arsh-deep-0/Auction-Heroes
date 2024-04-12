@@ -40,7 +40,8 @@ body {
 }
 
 button {
-  border: gray solid 2px;
+  border: 0.75px solid rgba(177, 177, 177, 0.53);
+  box-shadow: 0px 0px 5px rgba(125, 125, 125, 0.25);
   border-radius: 0.25rem;
   padding: 0.2rem;
 }
@@ -108,25 +109,21 @@ button:disabled{
 .poppins-light {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
-  font-style: normal;
 }
 
 .poppins-regular {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-style: normal;
 }
 
 .poppins-medium {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-  font-style: normal;
 }
 
 .poppins-semibold {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-style: normal;
 }
 
 .pink-shadow {
