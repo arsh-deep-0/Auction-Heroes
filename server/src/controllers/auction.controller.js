@@ -254,6 +254,22 @@ const isHost = async (socket, auction) => {
   }
 };
 
+const checkHostByRoomID = async(roomID,socket)=>{
+  const auction= await getAuctionByRoomID(roomID);
+  return auction.host.toString() !== socket.userID.toString()
+}
+
+const getHostByRoomID = asyncHandler(async(req,res)=>{
+  const roomID= req.params.roomID;
+  const auction = await Auction.findOne({auctionRoomID:roomID})
+  if(!auction){
+    throw new ApiError(400,'Invalid Room ID')
+  }
+  return res
+  .status(201)
+  .json(new ApiResponse(201, {host:auction.host}, "Host info send successfully"));
+})
+
 export {
   createAuction,
   addBuyerToAuction,
@@ -265,4 +281,6 @@ export {
   getUser,
   isHost,
   isAuctionMember,
+  getHostByRoomID,
+  checkHostByRoomID,
 };

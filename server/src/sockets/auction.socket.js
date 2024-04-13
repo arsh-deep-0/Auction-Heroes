@@ -1,5 +1,6 @@
 import {
   addBuyerToAuction,
+  checkHostByRoomID,
   joinWaitingRoom,
   leaveWaitingRoom,
   removeBuyerFromAuction,
@@ -57,6 +58,18 @@ const auctionSocket = (io, socket) => {
         console.error("Error in removeBuyerFromAuction:", error);
       }
     });
+
+    socket.on('start-auction',async(data)=>{
+      try {
+        const {waitingRoomID}=data
+        const isHost= checkHostByRoomID(waitingRoomID,socket);
+        if(isHost){
+          io.to(waitingRoomID).emit('auction-started')
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    })
   };
 };
 
