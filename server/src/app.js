@@ -47,7 +47,7 @@ import { verifyJWT } from "./middlewares/auth.middleware.js";
 
 app.use((req,res,next)=>{
   console.log('path: ',req.path)
-  if(req.path.startsWith("/api/v1/users")){
+  if(req.path.startsWith("/api/v1/users")|| req.path=='/'){
     next()
   }else{
     verifyJWT(req,res,next)
