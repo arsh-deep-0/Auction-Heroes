@@ -13,7 +13,7 @@ import { refreshAccessToken } from "../controllers/user.controller.js";
 const router = new Router();
 
 router.route("/register").post(
-  upload.single("profileImage"),
+  // upload.single("profileImage"),
   registerUser
 );
 
