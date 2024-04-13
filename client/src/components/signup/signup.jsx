@@ -28,8 +28,8 @@ export const SignUp = () => {
     form.append("email", data.email);
     form.append("fullName", data.fullName);
     form.append("password", data.password);
-    form.append("profileImage", data.profileImage[0]);
-    data = { ...data, profileImage: data.profileImage[0] };
+    // form.append("profileImage", data.profileImage[0]);
+    // data = { ...data, profileImage: data.profileImage[0] };
   
     try {
       const response = await axios.post(
@@ -119,7 +119,7 @@ export const SignUp = () => {
         />
         <p className="error">{errors.password?.message}</p>
 
-        <label htmlFor="profileImage">File</label>
+        {/* <label htmlFor="profileImage">File</label>
         <input
           type="file"
           id="profileImage"
@@ -129,7 +129,7 @@ export const SignUp = () => {
           })}
           className="flex gap-2"
         />
-        <p className="error">{errors.profileImage?.message}</p>
+        <p className="error">{errors.profileImage?.message}</p> */}
         <button
           disabled={isSubmitting}
           className="gray-border bg-blue text-white"
