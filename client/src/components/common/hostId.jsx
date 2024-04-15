@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function getHostID(waitingRoomID) {
   try {
-    const response = await axios.get(`/api/auction/getHost/${waitingRoomID}`);
+    const response = await axios.get(`/api/auction/getHost/${waitingRoomID}`,{withCredentials:true});
     console.log(response)
     return response.data.data.host;
   } catch (error) {
