@@ -14,7 +14,7 @@ const verifyJWT = asyncHandler(async (socket, next) => {
 
     // Extract the value of 'accessToken'
     const accessToken = accessTokenPair.split("=")[1];
-    console.log("acc token: ", accessToken);
+    console.log("accessToken token: ", accessToken);
     const token = accessToken;
 
     if (!token) {
