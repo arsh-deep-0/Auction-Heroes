@@ -6,6 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 const verifyJWT = asyncHandler(async (socket, next) => {
   try {
     const tokenString = socket.request.headers.cookie;
+    console.log('token string ',tokenString);
     const pairs = tokenString.split(";");
 
     // Find the pair containing 'accessToken'
@@ -13,7 +14,7 @@ const verifyJWT = asyncHandler(async (socket, next) => {
 
     // Extract the value of 'accessToken'
     const accessToken = accessTokenPair.split("=")[1];
-    console.log("token: ", accessToken);
+    console.log("acc token: ", accessToken);
     const token = accessToken;
 
     if (!token) {

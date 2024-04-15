@@ -46,7 +46,6 @@ export const SignUp = () => {
       console.log(response.data);
       if (response.status === 201) {
         cookies.set('userID', response.data.data._id);
-        document.cookie = `accessTokens=${response.data.data._id}; SameSite=None; Secure; HttpOnly; max-age=${30 * 24 * 60 * 60 * 1000}`;
         router.push("/");
       }
     } catch (err) {

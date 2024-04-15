@@ -4,7 +4,7 @@ const SOCKET_URL=process.env.SOCKET_URL;
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	env:{
-		SOCKET_URL:"http://localhost:8080/"
+		SOCKET_URL:SOCKET_URL
 	},
   async rewrites() {
     return [
