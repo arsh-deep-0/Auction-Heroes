@@ -10,11 +10,15 @@ export const StartGame = () => {
   const navigateToJoinRoom = () => {
     router.push("/join-room");
   };
+  const navigateToSignUp = () => {
+    router.push("/sign-up");
+  };
 
   return (
     <div className="flex justify-between p-4 gap-4">
       <button onClick={navigateToCreateRoom}>Create Room</button>
       <button onClick={navigateToJoinRoom}>Join Room</button>
+      <button onClick={navigateToSignUp}>Sign up</button>
     </div>
   );
 };
