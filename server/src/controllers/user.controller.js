@@ -120,6 +120,8 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
+    sameSite: 'None',
+    partitioned: true,
   };
 
   return res
@@ -150,6 +152,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: 'None',
+    partitioned: true,
   };
 
   return res
@@ -190,6 +193,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite:'None',
+      partitioned: true,
     };
     const { accessToken, refreshToken } =
       await generateAccessTokenAndRefreshToken(user._id);
