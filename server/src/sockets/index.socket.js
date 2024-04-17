@@ -1,6 +1,7 @@
 import playerSocket from "./player.socket.js";
 import auctionSocket, { onLeavingWaitingRoom } from "./auction.socket.js";
 import { verifyJWT } from "../middlewares/authSocket.middleware.js";
+import buyerActionsSocket from "./buyerActions.socket.js";
 
 const initializeSocketIO = (io) => {
   return io
@@ -18,6 +19,7 @@ const initializeSocketIO = (io) => {
 
         playerSocket(io,socket)();
         auctionSocket(io,socket)();
+        buyerActionsSocket(io,socket)();
 
         socket.on("disconnect", () => {
           onLeavingWaitingRoom(io,socket)();

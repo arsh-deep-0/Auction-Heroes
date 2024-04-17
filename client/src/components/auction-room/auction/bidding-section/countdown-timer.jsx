@@ -5,20 +5,31 @@ import { reduceTimerCount } from "@/lib/features/timer/timerSlice";
 
 export default function CountdownTimer() {
   const dispatch = useDispatch();
-  const timerValue = useSelector((state) => state.timer.time);
-  const isAuctionInProcess = useSelector(
-    (state) => state.timer.auctionInProcess
-  );
+  const timerValue=5
+  // const timerValue = useSelector((state) => state.timer.time);
+  // const isAuctionInProcess = useSelector(
+  //   (state) => state.timer.auctionInProcess
+  // );
 
-  useEffect(() => {
-    if (isAuctionInProcess && timerValue > 0) {
-      setTimeout(() => {
-        dispatch(reduceTimerCount());
-      }, 1000);
-    }
+  // useEffect(() => {
+  //   if (isAuctionInProcess && timerValue > 0) {
+  //     setTimeout(() => {
+  //       dispatch(reduceTimerCount());
+  //     }, 1000);
+  //   }
 
-  }, [isAuctionInProcess,timerValue]);
+  // }, [isAuctionInProcess,timerValue]);
 
+  // useEffect(()=>{
+  //   if(isAuctionInProcess && timerValue>0){
+  //     reduceTimer();
+  //   }
+  // })
+
+  const reduceTimer = ()=>{
+
+  }
+  
   return (
     <>
       <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">

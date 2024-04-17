@@ -59,17 +59,17 @@ const auctionSocket = (io, socket) => {
       }
     });
 
-    socket.on('start-auction',async(data)=>{
+    socket.on("start-auction", async (data) => {
       try {
-        const {waitingRoomID}=data
-        const isHost= checkHostByRoomID(waitingRoomID,socket);
-        if(isHost){
-          io.to(waitingRoomID).emit('auction-started')
+        const { waitingRoomID } = data;
+        const isHost = checkHostByRoomID(waitingRoomID, socket);
+        if (isHost) {
+          io.to(waitingRoomID).emit("auction-started");
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    })
+    });
   };
 };
 
@@ -82,7 +82,10 @@ export const onLeavingWaitingRoom = (io, socket) => {
     console.log("socket.userID: ", socket.userID);
 
     const user = await User.findById(socket.userID);
-    const waitingRoomID = user.latestWaitingRoom;
+    const waitingRoomID = user?.latestWaitingRoom;
+    if (!waitingRoomID) {
+      return;
+    }
 
     // Save the updated waiting room
     const newRoom = await WaitingRoom.findOneAndUpdate(
@@ -104,7 +107,7 @@ export const onLeavingWaitingRoom = (io, socket) => {
     try {
       await newRoom?.save();
     } catch (err) {
-      console.log("error while saving : ", err); 
+      console.log("error while saving : ", err);
     }
 
     io.to(`${waitingRoomID}`).emit("update-status", newRoom.participants);
