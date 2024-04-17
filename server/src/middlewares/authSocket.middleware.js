@@ -6,7 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 const verifyJWT = asyncHandler(async (socket, next) => {
   try {
     console.log(socket.request.headers)
-    const tokenString = socket.request.headers.cookie;
+    const tokenString = socket?.handshake?.headers?.cookie || socket?.request?.headers?.cookie;
     console.log('token string ',tokenString);
     const pairs = tokenString.split(";");
 
