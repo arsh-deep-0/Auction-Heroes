@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-    origin: ['http://localhost:3000/','https://auction-heroes.vercel.app'], exposedHeaders: ["Set-Cookie"] 
+    origin: process.env.CORS_ORIGIN, exposedHeaders: ["Set-Cookie"] 
   })
 );
 
