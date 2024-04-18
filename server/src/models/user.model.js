@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema(
       required: [true, "password is required"],
       min: [8, "Must be at least 8 characters, got {VALUE}"],
     },
+    accessToken:{
+      type: String,
+    },
     refreshToken: {
       type: String,
     },

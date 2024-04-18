@@ -27,7 +27,7 @@ const generateAccessTokenAndRefreshToken = async (userID) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { userName, fullName, email, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
 
   if (
     [userName, fullName, email, password].some((field) => field?.trim() === "")
@@ -72,21 +72,24 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const { accessToken, refreshToken } =
     await generateAccessTokenAndRefreshToken(user._id);
-  const loggedInUser = await User.findById(user._id).select(
+
+  let loggedInUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
+
+  loggedInUser.accessToken = accessToken;
+  console.log("logged in user", loggedInUser);
 
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite:'None',
-    partitioned: true 
+    sameSite: "None",
+    partitioned: true,
   };
 
   return res
     .status(201)
     .cookie("accessToken", accessToken, options)
-    .cookie("__Host-accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(new ApiResponse(201, loggedInUser, "User registered successfully"));
 });
@@ -121,12 +124,12 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: 'None',
+    sameSite: "None",
     partitioned: true,
   };
 
   return res
-    .status(200) 
+    .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(
@@ -152,7 +155,7 @@ const logoutUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
-    sameSite: 'None',
+    sameSite: "None",
     partitioned: true,
   };
 
@@ -193,8 +196,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
-      sameSite:'None',
-      path: '/',
+      sameSite: "None",
+      path: "/",
       partitioned: true,
     };
     const { accessToken, refreshToken } =
@@ -209,7 +212,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { accessTokenCookieName:accessToken, refreshToken: newRefreshToken },
+          { accessTokenCookieName: accessToken, refreshToken: newRefreshToken },
           "Access Token refreshed"
         )
       );
@@ -306,5 +309,5 @@ export {
   changeCurrentPassword,
   getCurrentUser,
   getUserName,
-  getFullName
+  getFullName,
 };
