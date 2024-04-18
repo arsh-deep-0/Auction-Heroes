@@ -5,6 +5,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const verifyJWT = asyncHandler(async (socket, next) => {
   try {
+    const tk = socket.handshake.query.accessToken;
+    console.log('tk:',tk)
     console.log(socket.request.headers)
     const tokenString = socket?.handshake?.headers?.cookie || socket?.request?.headers?.cookie;
     console.log('token string ',tokenString);
