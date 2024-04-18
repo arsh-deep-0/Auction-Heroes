@@ -16,6 +16,10 @@ const io = new Server(httpServer, {
     withCredentials: true,
     exposedHeaders: ["Set-Cookie"],
   },
+  withCredentials: true,
+  sameSite:'None',
+  cookie: true,
+  exposedHeaders: ["Set-Cookie"],
   connectionStateRecovery: {},
 });
 
