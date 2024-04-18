@@ -13,6 +13,7 @@ const io = new Server(httpServer, {
   cors: {
     origin: process.env.CORS_ORIGIN,
     credentials: true,
+    withCredentials: true,
     exposedHeaders: ["Set-Cookie"],
   },
   connectionStateRecovery: {},
@@ -22,6 +23,7 @@ app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
+    withCredentials: true,
     exposedHeaders: ["Set-Cookie"],
   })
 );
