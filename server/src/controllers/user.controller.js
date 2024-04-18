@@ -80,12 +80,14 @@ const registerUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite:'None',
+    path: '/',
     partitioned: true,
   };
 
   return res
     .status(201)
     .cookie("accessToken", accessToken, options)
+    .cookie("__Host-accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(new ApiResponse(201, loggedInUser, "User registered successfully"));
 });
@@ -193,12 +195,14 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite:'None',
+      path: '/',
       partitioned: true,
     };
     const { accessToken, refreshToken } =
       await generateAccessTokenAndRefreshToken(user._id);
     const newRefreshToken = refreshToken;
 
+    const accessTokenCookieName = "__Host-" + "accessToken";
     return res
       .status(200)
       .cookie("accessToken", accessToken, options)
@@ -206,7 +210,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { accessToken, refreshToken: newRefreshToken },
+          { accessTokenCookieName:accessToken, refreshToken: newRefreshToken },
           "Access Token refreshed"
         )
       );
