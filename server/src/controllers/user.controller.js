@@ -80,8 +80,7 @@ const registerUser = asyncHandler(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite:'None',
-    path: '/',
-    partitioned: true,
+    partitioned: true 
   };
 
   return res
