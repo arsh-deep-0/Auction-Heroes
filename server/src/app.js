@@ -13,12 +13,12 @@ const io = new Server(httpServer, {
   cors: {
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-    withCredentials: true,
     exposedHeaders: ["Set-Cookie"],
   },
   withCredentials: true,
   sameSite:'None',
   cookie: true,
+  secure: true,
   exposedHeaders: ["Set-Cookie"],
   connectionStateRecovery: {},
 });
