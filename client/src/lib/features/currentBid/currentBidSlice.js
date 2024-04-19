@@ -8,20 +8,15 @@ const initialState = {
 const currentBidSlice = createSlice({
   name: "currentBid",
   initialState,
-  reducers: {
-    increaseBid: (state) => {
-      const rem = (state.amount * 10) % 10;
-      if (rem == 0 || rem == 8) {
-        state.amount += 0.2;
-      } else state.amount += 0.3;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase("BID_INC", (state, action) => {
-      state.amount=action.payload.currentAmount;
-    });
+      state.amount = action.payload.currentAmount;
+    }),
+    builder.addCase("CURRENT_BID_INFO", (state, action) => {
+      state.amount = action.payload.currentAmount;
+    })
   },
 });
 
 export default currentBidSlice.reducer;
-export const { increaseBid } = currentBidSlice.actions;

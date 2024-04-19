@@ -8,8 +8,12 @@ import CountdownTimer from "./countdown-timer";
 import CurrentBid from "./current-bid";
 import CurrentBidder from "./current-bidder";
 import PlaceBid from "./place-bid";
+import { useSearchParams } from "next/navigation";
 
 export default function BiddingSection() {
+  const searchParams = useSearchParams();
+
+  const roomID = searchParams.get("roomID");
   return (
     <>
       <div className="w-full h-full  flex flex-col box-border p-4 py-4 justify-between">
@@ -23,7 +27,7 @@ export default function BiddingSection() {
           </div>
           <div>
             <Heading
-              title={"Room ID -838442"}
+              title={"Room ID -" + roomID}
               background="#0094ff"
               font="poppins-medium"
               fontcolor="white"
@@ -61,9 +65,9 @@ export default function BiddingSection() {
           </div>
 
           <div className="w-full  max-h-[75%] grid grid-cols-3 gap-1">
-            <CountdownTimer/>
-            <CurrentBid/>
-            <CurrentBidder/>
+            <CountdownTimer />
+            <CurrentBid />
+            <CurrentBidder />
           </div>
         </div>
 
@@ -73,7 +77,7 @@ export default function BiddingSection() {
           </div>
 
           <div className="flex flex-col justify-center mx-1 gap-2">
-            <PlaceBid/>
+            <PlaceBid />
           </div>
         </div>
       </div>

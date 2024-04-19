@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { socket } from "../socket";
 import Cookies from "universal-cookie";
-import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { addParticipant } from "@/lib/features/waiting-room-participants/waitingRoomParticipantsSlice";
@@ -60,7 +59,7 @@ export default function Page() {
         </div>
       </div>
 
-      <StartOptions />
+      <StartOptions users={waitingRoomParticipantsData}/>
     </div>
   );
 }

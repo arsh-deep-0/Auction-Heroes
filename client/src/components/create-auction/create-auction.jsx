@@ -50,7 +50,7 @@ export default function CreateAuction() {
 
     try {
       const rulesResponse = await axios.post(
-        "/api/auction-rules/create",
+        "/api/auctions-rules/create",
         rulesData,
         { withCredentials: true }
       );
@@ -65,7 +65,7 @@ export default function CreateAuction() {
         console.log(auctionData);
 
         const auctionResponse = await axios.post(
-          "/api/auction/create",
+          "/api/auctions/create",
           auctionData,
           { withCredentials: true }
         );

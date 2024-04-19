@@ -1,35 +1,35 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef,useState } from "react";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceTimerCount } from "@/lib/features/timer/timerSlice";
 
 export default function CountdownTimer() {
   const dispatch = useDispatch();
-  const timerValue=5
-  // const timerValue = useSelector((state) => state.timer.time);
-  // const isAuctionInProcess = useSelector(
-  //   (state) => state.timer.auctionInProcess
-  // );
+  const [countdown, setCountdown] = useState(15);
+  const timerValue = useSelector((state) => state.timer.time);
 
-  // useEffect(() => {
-  //   if (isAuctionInProcess && timerValue > 0) {
-  //     setTimeout(() => {
-  //       dispatch(reduceTimerCount());
-  //     }, 1000);
-  //   }
+  useEffect(() => {
+    let intervalId;
+    
+    if (timerValue !== null) {
+      intervalId = setInterval(() => {
+        const elapsedSeconds = Math.floor((Date.now() - timerValue) / 1000);
+        const newCountdown = 16 - elapsedSeconds;
+        if (newCountdown >= 0) {
+          setCountdown(newCountdown);
+        } else {
+          setCountdown(null);
+          clearInterval(intervalId);
+        }
+      }, 1000);
+    }
 
-  // }, [isAuctionInProcess,timerValue]);
+    return () => clearInterval(intervalId);
+  }, [timerValue]);
 
-  // useEffect(()=>{
-  //   if(isAuctionInProcess && timerValue>0){
-  //     reduceTimer();
-  //   }
-  // })
 
-  const reduceTimer = ()=>{
-
-  }
   
+
   return (
     <>
       <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">
@@ -39,12 +39,12 @@ export default function CountdownTimer() {
               className="poppins-light"
               style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
             >
-              {timerValue}
+              {countdown}
             </span>
           </div>
           <CircularProgressBarDiv
-            percentage={75}
-            circleColor={"#7d54f2"}
+            percentage={countdown*100/15}
+            circleColor={countdown>5||countdown==null?"#7d54f2":"red"}
             progressBarColor={"black"}
           />
         </div>

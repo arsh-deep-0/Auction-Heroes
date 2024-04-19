@@ -2,24 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   auctionInProcess: false,
-  time: 15,
+  time: 14,
 };
 
 const timerSlice = createSlice({
   name: "timer",
   initialState,
-  reducers: {
-    reduceTimerCount: (state) => {
-      state.time--;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase("currentBid/increaseBid", (state) => {
-      state.auctionInProcess = true;
-      state.time = 15;
+    builder.addCase("BID_INC", (state, action) => {
+      state.auctionInProcess = action.payload.auctionInProcess; 
+      state.time = action.payload.time;
     });
   },
 });
 
 export default timerSlice.reducer;
-export const { reduceTimerCount } = timerSlice.actions;

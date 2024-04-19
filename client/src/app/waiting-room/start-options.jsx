@@ -5,8 +5,9 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import getHostID from "@/components/common/hostId";
+import createTeams from "@/utils/createTeams";
 
-export default function StartOptions() {
+export default function StartOptions(users) {
   const cookies = new Cookies(null, { path: "/" });
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -23,7 +24,8 @@ export default function StartOptions() {
     fetchData();
   }, []);
 
-  const startAuction = () => {
+  const startAuction = async () => {
+    await createTeams({ users, roomID });
     socket.emit("start-auction", { waitingRoomID: roomID });
   };
   useEffect(() => {

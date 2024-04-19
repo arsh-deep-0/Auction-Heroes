@@ -4,14 +4,12 @@ const teamSchema = new mongoose.Schema({
   teamName: {
     type: String,
     required: true,
-    unique: true,
   },
   teamLogo: {
     type: String,
     required: true,
-    unique: true,
   },
-  intialPurse: {
+  initialPurse: {
     type: Number,
     required: true,
   },
@@ -39,6 +37,18 @@ const teamSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  auctionRoomID: {
+    type: Number,
+    required: true,
+  },
+  order: {
+    type: Number,
+    required: true,
+  },
+  playersBoughtCount:{
+    type: Number,
+    required: true,
+  }
 });
 
 export const Team = mongoose.model("Team", teamSchema);

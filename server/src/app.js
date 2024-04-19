@@ -62,9 +62,9 @@ app.use((req, res, next) => {
 //routes declarations
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auction-rules", auctionRulesRouter);
-app.use("/api/v1/player", playerRouter);
-app.use("/api/v1/team", teamRouter);
-app.use("/api/v1/auction", auctionRouter);
+app.use("/api/v1/players", playerRouter);
+app.use("/api/v1/teams", teamRouter);
+app.use("/api/v1/auctions", auctionRouter);
 
 app.get("/", (req, res) => {
   res.send("hello world");

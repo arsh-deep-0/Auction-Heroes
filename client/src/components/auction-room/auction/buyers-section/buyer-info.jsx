@@ -1,27 +1,27 @@
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 
 export default function BuyerInfo({
+  teamLogo,
+  currentPurse,
+  initialPurse,
+  playersBoughtCount,
   teamName,
-  currentWallet,
-  totalWallet,
-  playersBought,
-  playerName,
 }) {
   const spendingData = {
-    value: currentWallet.toFixed(1),
+    value: currentPurse.toFixed(1),
     valueBefore: "₹",
     valueAfter: "Cr",
-    percentage: (currentWallet / totalWallet) * 100,
+    percentage: (currentPurse / initialPurse) * 100,
     circleColor: "#7D54F2",
     progressBarColor: "black",
     
    
   };
 
-  const playersBoughtData = {
-    value: playersBought,
+  const playersBoughtCountData = {
+    value: playersBoughtCount,
     valueAfter: "Players",
-    percentage: (playersBought / 14) * 100,
+    percentage: (playersBoughtCount / 14) * 100,
     circleColor: "white",
     progressBarColor: "#7D54F2",
    
@@ -32,9 +32,9 @@ export default function BuyerInfo({
     <>
       <div className="relative rounded-lg gray-border h-full w-full bg-white flex flex-col justify-around p-[0.1rem]">
         <div className="h-[20%] text-black poppins-regular stat-text text-center w-full">
-          <span>{playerName}</span>
+          <span>{teamName}</span>
         </div>
-        <div className="h-[70%] flex justify-between w-full px-1 py-2 gap-4 ">
+        <div className="h-[70%] flex justify-between w-full px-1 pb-1 gap-4 ">
           <div className="w-[48%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-white`}>
               <span className = {"circular-bar-text fredoka "}>{`${spendingData.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></span>
@@ -46,10 +46,10 @@ export default function BuyerInfo({
 
           <div className="w-[48%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-black`}>
-              <span className="bar-value fredoka">{` ${playersBoughtData.value}`}</span>
-              <span className="circular-bar-text fredoka">{` ${playersBoughtData.valueAfter}`}</span>
+              <span className="bar-value fredoka">{` ${playersBoughtCountData.value}`}</span>
+              <span className="circular-bar-text fredoka">{` ${playersBoughtCountData.valueAfter}`}</span>
             </div>
-            <CircularProgressBarDiv {...playersBoughtData} />
+            <CircularProgressBarDiv {...playersBoughtCountData} />
           </div>
         </div>
       </div>

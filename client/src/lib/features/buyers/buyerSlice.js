@@ -1,57 +1,64 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    teamName: "mi",
-    currentWallet: 23.6,
-    totalWallet: 50,
-    playersBought: 7,
-    playerName: "Arshdeep Singh",
-    order: 1,
-  },
-  {
-    teamName: "csk",
-    currentWallet: 33.6,
-    totalWallet: 50,
-    playersBought: 4,
-    playerName: "Bhavya Vohra",
-    order: 2,
-  },
-  {
-    teamName: "srh",
-    currentWallet: 17.7,
-    totalWallet: 50,
-    playersBought: 4,
-    playerName: "Akash Choudary",
-    order: 3,
-  },
-  {
-    teamName: "rr",
-    currentWallet: 40.2,
-    totalWallet: 50,
-    playersBought: 3,
-    playerName: "Manik Raj",
-    order: 4,
-  },
-  {
-    teamName: "pbks",
-    currentWallet: 23.6,
-    totalWallet: 50,
-    playersBought: 7,
-    playerName: "Bhaskar Mishra",
-    order: 5,
-  },
-];
+const initialState = {
+  buyers: [
+    // {
+    //   teamLogo: "mi",
+    //   currentPurse: 23.6,
+    //   initialPurse: 50,
+    //   playersBoughtCount: 7,
+    //   teamName: "Arshdeep Singh",
+    //   order: 1,
+    // },
+    // {
+    //   teamLogo: "csk",
+    //   currentPurse: 33.6,
+    //   initialPurse: 50,
+    //   playersBoughtCount: 4,
+    //   teamName: "Bhavya Vohra",
+    //   order: 2,
+    // },
+    // {
+    //   teamLogo: "srh",
+    //   currentPurse: 17.7,
+    //   initialPurse: 50,
+    //   playersBoughtCount: 4,
+    //   teamName: "Akash Choudary",
+    //   order: 3,
+    // },
+    // {
+    //   teamLogo: "rr",
+    //   currentPurse: 40.2,
+    //   initialPurse: 50,
+    //   playersBoughtCount: 3,
+    //   teamName: "Manik Raj",
+    //   order: 4,
+    // },
+    // {
+    //   teamLogo: "pbks",
+    //   currentPurse: 23.6,
+    //   initialPurse: 50,
+    //   playersBoughtCount: 7,
+    //   teamName: "Bhaskar Mishra",
+    //   order: 5,
+    // },
+  ],
+};
 
 const buyerSlice = createSlice({
   name: "buyers",
   initialState,
   reducers: {
     addBuyer: (state, action) => {
-      state.push(action.payload);
+      state.buyers.push(action.payload);
+    },
+    addBuyers: (state, action) => {
+      console.log("action paylaod: ", action.payload);
+      state.buyers = action.payload;
+      console.log("state: ", state.buyers);
     },
   },
 });
 
 export default buyerSlice.reducer;
-export const { addBuyer } = buyerSlice.actions;
+export const { addBuyer, addBuyers } = buyerSlice.actions;

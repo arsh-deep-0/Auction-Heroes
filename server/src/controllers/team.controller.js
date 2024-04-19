@@ -7,21 +7,27 @@ const createTeam = asyncHandler(async (req, res) => {
   const {
     teamName,
     teamLogo,
-    intialPurse,
+    initialPurse,
     currentPurse,
     currentPlayerCount,
     isComplete,
     teamPoints,
+    auctionRoomID,
+    order,
+    playersBoughtCount
   } = req.body;
 
   const team = await Team.create({
     teamName,
     teamLogo,
-    intialPurse,
+    initialPurse,
     currentPurse,
     currentPlayerCount,
     isComplete,
     teamPoints,
+    auctionRoomID,
+    order,
+    playersBoughtCount
   });
 
   const createdTeam = await Team.findOne(team._id);
@@ -117,4 +123,16 @@ const getTeamAnalytics = asyncHandler(async (req, res) => {
     );
 });
 
-export { createTeam, getTeamAnalytics };
+const getAllTeamsByRoomID = asyncHandler(async(req,res)=>{
+  const roomID= req.params.roomID;
+  const allTeams=await Team.find({auctionRoomID:roomID});
+  console.log('Teams', allTeams);
+  if(!allTeams){
+    throw new ApiError(404, 'Teams not found')
+  }
+
+  return res
+  .status(201)
+  .json(new ApiResponse(201,allTeams,'Teams found successfully'))
+}) 
+export { createTeam, getTeamAnalytics ,getAllTeamsByRoomID};

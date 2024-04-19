@@ -2,6 +2,7 @@ import playerSocket from "./player.socket.js";
 import auctionSocket, { onLeavingWaitingRoom } from "./auction.socket.js";
 import { verifyJWT } from "../middlewares/authSocket.middleware.js";
 import buyerActionsSocket from "./buyerActions.socket.js";
+import currentStateSocket from "./getCurrentState.socket.js";
 
 const initializeSocketIO = (io) => {
   return io
@@ -15,14 +16,15 @@ const initializeSocketIO = (io) => {
         console.log("Authenticated user connected with ID:", userID);
 
         socket.emit("newConnection", `hello user ${socket.id}`);
-        console.log(`a user connected with id ${socket.id}`);
+        console.log(`a user connected with id ${socket.id}`); 
 
-        playerSocket(io,socket)();
-        auctionSocket(io,socket)();
-        buyerActionsSocket(io,socket)();
+        currentStateSocket(io, socket)();
+        playerSocket(io, socket)();
+        auctionSocket(io, socket)();
+        buyerActionsSocket(io, socket)(); 
 
         socket.on("disconnect", () => {
-          onLeavingWaitingRoom(io,socket)();
+          onLeavingWaitingRoom(io, socket)();
           console.log(`User ${userID} disconnected`);
         });
       } catch (error) {
