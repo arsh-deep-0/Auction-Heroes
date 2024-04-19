@@ -2,12 +2,16 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { eventTypes } from "@/constants/eventTypes";
 import { useSearchParams } from "next/navigation";
+import Cookies from "universal-cookie";
 
 export default function PlaceBid() {
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const roomID = searchParams.get("roomID");
   const currentBidValue = useSelector((state) => state.currentBid.amount);
+  const cookies = new Cookies(null, { path: "/" });
+
+  const userID = cookies.get("userID");
 
   useEffect(() => {
     dispatch({
@@ -24,6 +28,7 @@ export default function PlaceBid() {
       payload: {
         auctionRoomID: roomID,
         currentAmount: currentBidValue,
+        currentBidderID: userID,
       },
     };
   };

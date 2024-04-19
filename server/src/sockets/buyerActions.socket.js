@@ -13,6 +13,7 @@ const buyerActionsSocket = (io, socket) => {
       // Using template literals for keys
       const currentBidKey = `currentBid-${bidData.auctionRoomID}`;
       const timerKey = `timer-${bidData.auctionRoomID}`;
+      const currentBidderKey = `timer-${bidData.currentBidderID}`;
 
       // Using try...catch block for error handling
       try {
@@ -20,6 +21,7 @@ const buyerActionsSocket = (io, socket) => {
         const multi = redisClient.multi();
         multi.set(currentBidKey, bidData.currentAmount);
         multi.set(timerKey, bidData.currentAmount);
+        multi.set(currentBidderKey,bidData.currentBidderID)
         await multi.exec(); // Execute the multi commands
 
         console.log("send bid data", bidData);

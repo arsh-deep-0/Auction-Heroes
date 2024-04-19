@@ -40,7 +40,7 @@ export default function BuyersContainer() {
   useEffect(() => {
     const renderedBuyers = buyersData?.map((buyer) => {
       console.log(buyer);
-      return <Buyer key={buyer._id} buyerOrder={buyer.order} />;
+      return <Buyer key={buyer._id} buyerOrder={buyer.order} initialBuyer={buyer} />;
     });
     setRenderedBuyersList(renderedBuyers);
   }, [buyersData]);

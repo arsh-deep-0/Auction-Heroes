@@ -1,11 +1,20 @@
 import { useSelector } from "react-redux";
 import BuyerInfo from "./buyer-info";
 import BuyerLogo from "./buyer-logo";
+import { useEffect, useState } from "react";
 
-export default function Buyer({ buyerOrder}) {
-  const buyer = useSelector(state=>state.buyers.buyers[buyerOrder-1])
-  const state= useSelector(state=>state.buyers.buyers)
-  console.log('buyer State: ', state)
+export default function Buyer({ buyerOrder,initialBuyer}) {
+  const [buyer, setBuyer] = useState(initialBuyer);
+
+  // Subscribe to Redux store updates
+  const reduxBuyer = useSelector(state => state.buyers.buyers[buyerOrder]);
+
+  // Update local state when Redux store changes
+  useEffect(() => {
+    setBuyer(reduxBuyer);
+  }, [reduxBuyer]);
+
+  
   console.log('buyer:',buyer);
   return (
     <>
