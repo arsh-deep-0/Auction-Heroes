@@ -141,5 +141,20 @@ const iSAlreadySold = async (auctionId, playerId) => {
   }
 };
 
+const getPlayerByOrder = asyncHandler(async(req,res)=>{
+  const order = req.params.order;
+  
+  const player=await Player.findOne({order})
+  console.log('get player:',player)
+  if(!player){
+    throw new ApiError(404,'couldn\'t find player')
+  }
+  return res
+  .status(201)
+  .json(
+    new ApiResponse(201, player, "player send successfully")
+  );
+})
 
-export { createPlayer, sellPlayer, sellPlayerSocket, getAllplayers };
+
+export { createPlayer, sellPlayer, sellPlayerSocket, getAllplayers ,getPlayerByOrder};

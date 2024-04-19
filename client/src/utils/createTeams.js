@@ -2,8 +2,10 @@ import axios from "axios";
 
 async function createTeams({ users, roomID }) {
   console.log("state: ", users);
+
+  const avatars =['mi','csk','rcb','srh','pbks','rr','kkr','gt','dc','lsg']
   
-  let order=0
+  let order=1
   users.users.forEach(async (user) => {
     try {
       const res = await axios.get(`/api/users/getFullName/${user.userID}`);
@@ -11,7 +13,7 @@ async function createTeams({ users, roomID }) {
       
       const team = {
         teamName: res.data.data.userName,
-        teamLogo: "csk",
+        teamLogo: avatars[order-1],
         initialPurse: 50,
         currentPurse: 50,
         auctionRoomID: roomID,

@@ -11,6 +11,12 @@ export default function PlaceBid() {
   const currentBidValue = useSelector((state) => state.currentBid.amount);
   const cookies = new Cookies(null, { path: "/" });
 
+  const currentPlayerOrder = useSelector(
+    (state) => state.currentBid.currentPlayerOrder
+  );
+  console.log('cpo: ',currentPlayerOrder)
+  const fullName = cookies.get("fullName");
+  const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
   useEffect(() => {
@@ -29,6 +35,9 @@ export default function PlaceBid() {
         auctionRoomID: roomID,
         currentAmount: currentBidValue,
         currentBidderID: userID,
+        currentPlayerOrder: currentPlayerOrder,
+        currentBidderName: fullName,
+        currentBidderLogo:teamLogo
       },
     };
   };

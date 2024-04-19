@@ -38,7 +38,8 @@ export default function BuyersContainer() {
   }, [roomID]);
 
   useEffect(() => {
-    const renderedBuyers = buyersData?.map((buyer) => {
+    const sortedBuyersData = buyersData?.slice().sort((a, b) => a.order - b.order);
+    const renderedBuyers = sortedBuyersData?.map((buyer) => {
       console.log(buyer);
       return <Buyer key={buyer._id} buyerOrder={buyer.order} initialBuyer={buyer} />;
     });

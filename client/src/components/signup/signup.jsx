@@ -46,6 +46,7 @@ export const SignUp = () => {
       console.log(response.data);
       if (response.status === 201) {
         cookies.set('userID', response.data.data._id);
+        cookies.set('fullName', response.data.data.fullName);
         cookies.set('accessTokenID', response.data.data.accessToken);
         router.push("/");
       }
