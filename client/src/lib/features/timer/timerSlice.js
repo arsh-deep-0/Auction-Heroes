@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   auctionInProcess: false,
-  time: 14,
+  time: 15,
 };
 
 const timerSlice = createSlice({

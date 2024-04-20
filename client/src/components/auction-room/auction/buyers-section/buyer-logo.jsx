@@ -1,4 +1,5 @@
 export default function BuyerLogo({teamLogo, order ,orderVisibility=""}) {
+  console.log('team-logo:',teamLogo)
   return (
     <>
       <div className="w-full h-full flex flex-col justify-between p-[0.15rem]">

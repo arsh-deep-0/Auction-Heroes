@@ -1,16 +1,38 @@
-import React, { useEffect, useRef,useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { reduceTimerCount } from "@/lib/features/timer/timerSlice";
+import { eventTypes } from "@/constants/eventTypes";
+import { useSearchParams } from "next/navigation";
+import Cookies from "universal-cookie";
 
 export default function CountdownTimer() {
   const dispatch = useDispatch();
   const [countdown, setCountdown] = useState(15);
   const timerValue = useSelector((state) => state.timer.time);
+  const auctionInProcess = useSelector(
+    (state) => state.timer.auctionInProcess
+  );
+
+  const searchParams = useSearchParams();
+  const roomID = searchParams.get("roomID");
+  const cookies = new Cookies(null, { path: "/" });
+  const currentBidValue = useSelector((state) => state.currentBid.amount);
+  const currentBidderLogo = useSelector(
+    (state) => state.currentBid.currentBidderLogo
+  );
+
+  const currentPlayerOrder = useSelector(
+    (state) => state.currentBid.currentPlayerOrder
+  );
+
+  const fullName = cookies.get("fullName");
+  const teamLogo = cookies.get("teamLogo");
+  const userID = cookies.get("userID");
 
   useEffect(() => {
     let intervalId;
-    
+
     if (timerValue !== null) {
       intervalId = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timerValue) / 1000);
@@ -18,6 +40,10 @@ export default function CountdownTimer() {
         if (newCountdown >= 0) {
           setCountdown(newCountdown);
         } else {
+          console.log('auctionInPogress',auctionInProcess)
+          if (auctionInProcess) {
+            dispatch(sellPlayer());
+          }
           setCountdown(null);
           clearInterval(intervalId);
         }
@@ -27,8 +53,19 @@ export default function CountdownTimer() {
     return () => clearInterval(intervalId);
   }, [timerValue]);
 
-
-  
+  const sellPlayer = () => {
+    return {
+      type: eventTypes.SELL_PLAYER,
+      payload: {
+        auctionRoomID: roomID,
+        sellingAmount: currentBidValue,
+        buyerID: userID,
+        currentPlayerOrder: currentPlayerOrder,
+        buyerName: fullName,
+        buyerLogo: teamLogo,
+      },
+    };
+  };
 
   return (
     <>
@@ -43,8 +80,8 @@ export default function CountdownTimer() {
             </span>
           </div>
           <CircularProgressBarDiv
-            percentage={countdown*100/15}
-            circleColor={countdown>5||countdown==null?"#7d54f2":"red"}
+            percentage={(countdown * 100) / 15}
+            circleColor={countdown > 5 || countdown == null ? "#7d54f2" : "red"}
             progressBarColor={"black"}
           />
         </div>

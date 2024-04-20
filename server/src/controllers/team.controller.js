@@ -14,7 +14,8 @@ const createTeam = asyncHandler(async (req, res) => {
     teamPoints,
     auctionRoomID,
     order,
-    playersBoughtCount
+    playersBoughtCount,
+    userID
   } = req.body;
 
   const team = await Team.create({
@@ -27,7 +28,8 @@ const createTeam = asyncHandler(async (req, res) => {
     teamPoints,
     auctionRoomID,
     order,
-    playersBoughtCount
+    playersBoughtCount,
+    userID
   });
 
   const createdTeam = await Team.findOne(team._id);

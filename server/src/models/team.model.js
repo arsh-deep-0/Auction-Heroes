@@ -48,6 +48,9 @@ const teamSchema = new mongoose.Schema({
   playersBoughtCount:{
     type: Number,
     required: true,
+  },
+  userID:{
+    type:mongoose.Schema.Types.ObjectId,
   }
 });
 

@@ -144,6 +144,11 @@ button:disabled{
   line-height: 0.75rem;
 }
 
+.stats-text{
+  font-size: clamp(0.1rem, 3.75vw, 1.65rem);
+  line-height: 0.75rem;
+}
+
 .circular-bar-text {
   font-size: clamp(0.1rem, 2.2vw, 1.65rem);
   line-height: 0.75rem;

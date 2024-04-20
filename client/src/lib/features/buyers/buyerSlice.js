@@ -56,7 +56,21 @@ const buyerSlice = createSlice({
       console.log("action paylaod: ", action.payload);
       state.buyers = action.payload;
       console.log("state: ", state.buyers);
-    },
+    }, 
+  },
+  extraReducers: (builder) => {
+    builder.addCase("PLAYER_SOLD", (state, action) => {
+      //for buyer with logo , set currentPurse=currentPurse-amountSold
+      const buyerIndex = state.buyers.findIndex(
+        (buyer) => buyer.teamLogo === action.payload.buyerLogo
+      );
+      if (buyerIndex !== -1) {
+        const buyingTeam = state.buyers[buyerIndex];
+
+        buyingTeam.currentPurse = action.payload.currentPurse;
+        buyingTeam.playersBoughtCount = action.payload.playersBoughtCount;
+      }
+    });
   },
 });
 

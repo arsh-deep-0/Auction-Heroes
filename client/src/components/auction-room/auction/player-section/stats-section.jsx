@@ -12,30 +12,33 @@ export default function Stats() {
   useEffect(() => {
     const fetchPlayer = async () => {
       if (currentOrder) {
-        // Check if currentOrder is defined
         const playerInfo = await getPlayerByOrder(currentOrder);
         console.log("playerInfo: ", playerInfo);
-        setPlayer(playerInfo); 
+        setPlayer(playerInfo);
       }
     };
 
     fetchPlayer();
     console.log("Player:", player);
-  }, [currentOrder]); 
+  }, [currentOrder]);
   return (
     <>
       <div className="grid grid-flow-row grid-cols-3 w-full gap-2 h-full">
         <div className="bg-blue  rounded-md  items-center gray-border poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
           <img src="/images/components/bat.svg" alt="" />
-          <span className="stat-text text-center">{player?.battingPoints}</span>
+          <span className="stats-text text-center">
+            {player?.battingPoints}
+          </span>
         </div>
         <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
           <img src="/images/components/bowl.svg" alt="" />
-          <span className="stat-text text-center">{player?.bowlingPoints}</span>
+          <span className="stats-text text-center">
+            {player?.bowlingPoints}
+          </span>
         </div>
         <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
           <img src="/images/components/wicket.svg" alt="" />
-          <span className="stat-text text-center">{player?.wkPoints}</span>
+          <span className="stats-text text-center">{player?.wkPoints}</span>
         </div>
       </div>
     </>

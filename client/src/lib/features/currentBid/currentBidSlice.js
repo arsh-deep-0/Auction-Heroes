@@ -22,12 +22,15 @@ const currentBidSlice = createSlice({
       state.currentBidderLogo = action.payload.currentBidderLogo;
     }),
       builder.addCase("CURRENT_BID_INFO", (state, action) => {
-        console.log('action-pay',action.payload)
+        console.log("action-pay", action.payload);
         state.amount = action.payload.currentAmount;
         state.currentPlayerOrder = action.payload.currentPlayerOrder;
         state.currentBidderID = action.payload.currentBidderID;
         state.currentBidderName = action.payload.currentBidderName;
         state.currentBidderLogo = action.payload.currentBidderLogo;
+      }),
+      builder.addCase("PLAYER_SOLD", (state, action) => {
+        state.currentPlayerOrder++;
       });
   },
 });

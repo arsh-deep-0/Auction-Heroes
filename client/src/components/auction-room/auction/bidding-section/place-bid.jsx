@@ -1,24 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { eventTypes } from "@/constants/eventTypes";
 import { useSearchParams } from "next/navigation";
 import Cookies from "universal-cookie";
 
 export default function PlaceBid() {
+  const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const roomID = searchParams.get("roomID");
-  const currentBidValue = useSelector((state) => state.currentBid.amount);
   const cookies = new Cookies(null, { path: "/" });
+  const currentBidValue = useSelector((state) => state.currentBid.amount);
+  const currentBidderLogo = useSelector(
+    (state) => state.currentBid.currentBidderLogo
+  );
 
   const currentPlayerOrder = useSelector(
     (state) => state.currentBid.currentPlayerOrder
   );
-  console.log('cpo: ',currentPlayerOrder)
+
+  console.log("cpo: ", currentPlayerOrder);
   const fullName = cookies.get("fullName");
   const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
+  console.log("disable:", currentBidderLogo, teamLogo);
+  useEffect(() => {
+    setIsDisabled(currentBidderLogo === teamLogo);
+
+    console.log("isDisabled:", isDisabled);
+  }, [currentBidderLogo, teamLogo]);
   useEffect(() => {
     dispatch({
       type: eventTypes.GET_CURRENT_BID_INFO,
@@ -37,7 +48,7 @@ export default function PlaceBid() {
         currentBidderID: userID,
         currentPlayerOrder: currentPlayerOrder,
         currentBidderName: fullName,
-        currentBidderLogo:teamLogo
+        currentBidderLogo: teamLogo,
       },
     };
   };
@@ -47,6 +58,7 @@ export default function PlaceBid() {
       onClick={() => {
         dispatch(bidUp());
       }}
+      disabled={isDisabled}
     >
       Place Bid
     </button>

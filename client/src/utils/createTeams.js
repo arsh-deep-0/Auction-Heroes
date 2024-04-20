@@ -21,7 +21,8 @@ async function createTeams({ users, roomID }) {
         isComplete: false,
         teamPoints: 0,
         order:order++,
-        playersBoughtCount:0
+        playersBoughtCount:0,
+        userID:user.userID
       };
             
       const teamRes = await axios.post(`/api/teams/create`, team);
