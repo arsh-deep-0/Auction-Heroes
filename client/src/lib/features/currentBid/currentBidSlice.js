@@ -30,7 +30,7 @@ const currentBidSlice = createSlice({
         state.currentBidderLogo = action.payload.currentBidderLogo;
       }),
       builder.addCase("PLAYER_SOLD", (state, action) => {
-        state.currentPlayerOrder++;
+        state.currentPlayerOrder=action.payload.currentPlayerOrder;
       });
   },
 });

@@ -4,14 +4,15 @@ import BuyerLogo from "./buyer-logo";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 
-export default function Buyer({ buyerOrder, initialBuyer }) {
+export default function Buyer({ buyerOrder, initialBuyer ,logo}) {
   const cookies = new Cookies(null, { path: "/" });
   const fullName=cookies.get('fullName');
   const [buyer, setBuyer] = useState(initialBuyer);
 
-  const reduxBuyer = useSelector((state) => state.buyers.buyers[buyerOrder-1]);
+  const reduxBuyer = useSelector((state) => state.buyers.buyers[logo]);
 
   useEffect(() => {
+    console.log('reduxBuyer', reduxBuyer);
     if(reduxBuyer){
       setBuyer(reduxBuyer);
       console.log('comapre:',buyer?.teamName,fullName)
@@ -32,7 +33,7 @@ export default function Buyer({ buyerOrder, initialBuyer }) {
         </div>
         <div className="w-[70%] ">
           {/* {buyer.teamName} */}
-          {buyer&&<BuyerInfo {...buyer} />}
+          {buyer&&<BuyerInfo {...buyer} teamLogo={buyer.teamLogo} />}
         </div>
       </div>
     </>

@@ -8,15 +8,17 @@ const buyerActionsSocket = (io, socket) => {
       bidData.currentAmount = increaseBid(bidData.currentAmount);
       bidData.time = Date.now();
       bidData.auctionInProcess = true;
-      socket.join(bidData.auctionRoomID);
+      const auctionRoomID = bidData.auctionRoomID;
+      socket.join(auctionRoomID);
 
       // Using template literals for keys
-      const currentBidKey = `currentBid-${bidData.auctionRoomID}`;
-      const timerKey = `timer-${bidData.auctionRoomID}`;
-      const currentBidderIDKey = `currentBidderID-${bidData.auctionRoomID}`;
-      const currentBidderNameKey = `currentBidderName-${bidData.auctionRoomID}`;
-      const currentBidderLogoKey = `currentBidderLogo-${bidData.auctionRoomID}`;
-      const currentPlayerOrderKey = `currentPlayerOrder-${bidData.auctionRoomID}`;
+      const currentBidKey = `currentBid-${auctionRoomID}`;
+      const timerKey = `timer-${auctionRoomID}`;
+      const auctionInProcessKey = `auctionInProcess-${auctionRoomID}`; 
+      const currentBidderIDKey = `currentBidderID-${auctionRoomID}`;
+      const currentBidderNameKey = `currentBidderName-${auctionRoomID}`;
+      const currentBidderLogoKey = `currentBidderLogo-${auctionRoomID}`;
+      const currentPlayerOrderKey = `currentPlayerOrder-${auctionRoomID}`;
 
       try {
         // Using multi to execute Redis commands atomically
@@ -27,9 +29,10 @@ const buyerActionsSocket = (io, socket) => {
         multi.set(currentBidderNameKey, bidData.currentBidderName);
         multi.set(currentBidderLogoKey, bidData.currentBidderLogo);
         multi.set(currentPlayerOrderKey, bidData.currentPlayerOrder);
+        multi.set(auctionInProcessKey, bidData.auctionInProcess); 
         await multi.exec();
         console.log("send bid data", bidData);
-        io.to(bidData.auctionRoomID).emit("BID_INC", bidData);
+        io.to(auctionRoomID).emit("BID_INC", bidData);
       } catch (error) {
         console.error("Error in Redis operation:", error);
       }
@@ -37,14 +40,15 @@ const buyerActionsSocket = (io, socket) => {
 
     socket.on("SELL_PLAYER", async (sellingData) => {
       console.log('sellPlayer',sellingData)
-      const buyerPurseKey = `${sellingData.buyerLogo}-purse-${sellingData.auctionRoomID}`;
-      const buyerBoughtPlayersCountKey = `${sellingData.buyerLogo}-playerCount-${sellingData.auctionRoomID}`;
-      const currentBidKey = `currentBid-${sellingData.auctionRoomID}`;
-      const timerKey = `timer-${sellingData.auctionRoomID}`;
-      const currentBidderIDKey = `currentBidderID-${sellingData.auctionRoomID}`;
-      const currentBidderNameKey = `currentBidderName-${sellingData.auctionRoomID}`;
-      const currentBidderLogoKey = `currentBidderLogo-${sellingData.auctionRoomID}`;
-      const currentPlayerOrderKey = `currentPlayerOrder-${sellingData.auctionRoomID}`;
+      const auctionRoomID=sellingData.auctionRoomID;
+      const buyerPurseKey = `${sellingData.buyerLogo}-purse-${auctionRoomID}`;
+      const buyerBoughtPlayersCountKey = `${sellingData.buyerLogo}-playerCount-${auctionRoomID}`;
+      const currentBidKey = `currentBid-${auctionRoomID}`;
+      const timerKey = `timer-${auctionRoomID}`;
+      const currentBidderIDKey = `currentBidderID-${auctionRoomID}`;
+      const currentBidderNameKey = `currentBidderName-${auctionRoomID}`;
+      const currentBidderLogoKey = `currentBidderLogo-${auctionRoomID}`;
+      const currentPlayerOrderKey = `currentPlayerOrder-${auctionRoomID}`;
 
       const multi = redisClient.multi();
 
@@ -54,8 +58,8 @@ const buyerActionsSocket = (io, socket) => {
       const [buyerPurse, buyerBoughtPlayersCount] = await multi.exec();
       console.log('buyerPurse',buyerPurse,buyerBoughtPlayersCount)
 
-      multi.set(buyerPurseKey, buyerPurse - sellingData.sellingPrice);
-      multi.set(buyerBoughtPlayersCountKey, buyerBoughtPlayersCount + 1);
+      multi.set(buyerPurseKey, Number(buyerPurse[1]) - Number(sellingData.sellingAmount));
+      multi.set(buyerBoughtPlayersCountKey, Number(buyerBoughtPlayersCount[1]) + 1);
       multi.set(currentBidKey, 0);
       multi.set(timerKey, 0);
       multi.set(currentBidderIDKey,null);
@@ -66,12 +70,15 @@ const buyerActionsSocket = (io, socket) => {
       multi.exec();
 
       const soldData = {
-        currentPurse: buyerPurse - sellingData.sellingPrice,
-        playersBoughtCount: buyerBoughtPlayersCount + 1,
-        auctionRoomID: sellingData.auctionRoomID,
+        currentPurse: Number(buyerPurse[1]) - Number(sellingData.sellingAmount),
+        playersBoughtCount: Number(buyerBoughtPlayersCount[1]) + 1,
+        auctionRoomID: auctionRoomID,
         buyerLogo: sellingData.buyerLogo,
+        currentPlayerOrder:Number(sellingData.currentPlayerOrder)+1
       };
-      io.to(sellingData.auctionRoomID).emit("PLAYER_SOLD", soldData);
+
+      console.log('player selling data:',soldData);
+      io.to(auctionRoomID).emit("PLAYER_SOLD", soldData);
     });
   };
 };

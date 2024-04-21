@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import CircularProgressBarDiv from "../common-components/circular-progress-bar";
 
 export default function BuyerInfo({
@@ -7,11 +8,13 @@ export default function BuyerInfo({
   playersBoughtCount,
   teamName,
 }) {
+  const buyer = useSelector((state) => state.buyers.buyers[teamLogo]);
+  console.log('buyer info comp:',buyer)
   const spendingData = {
-    value: currentPurse?.toFixed(1),
+    value: buyer.currentPurse?.toFixed(1),
     valueBefore: "₹",
     valueAfter: "Cr",
-    percentage: (currentPurse / initialPurse) * 100,
+    percentage: (buyer.currentPurse / buyer.initialPurse) * 100,
     circleColor: "#7D54F2",
     progressBarColor: "black",
     
@@ -19,9 +22,9 @@ export default function BuyerInfo({
   };
 
   const playersBoughtCountData = {
-    value: playersBoughtCount,
+    value: buyer.playersBoughtCount,
     valueAfter: "Players",
-    percentage: (playersBoughtCount / 14) * 100,
+    percentage: (buyer.playersBoughtCount / 14) * 100,
     circleColor: "white",
     progressBarColor: "#7D54F2",
    

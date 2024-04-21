@@ -18,16 +18,15 @@ export default function CountdownTimer() {
   const roomID = searchParams.get("roomID");
   const cookies = new Cookies(null, { path: "/" });
   const currentBidValue = useSelector((state) => state.currentBid.amount);
-  const currentBidderLogo = useSelector(
-    (state) => state.currentBid.currentBidderLogo
+ 
+  // const currentBidderName=useSelector(()=>{})
+
+  const currentBid = useSelector(
+    (state) => state.currentBid
   );
 
-  const currentPlayerOrder = useSelector(
-    (state) => state.currentBid.currentPlayerOrder
-  );
-
-  const fullName = cookies.get("fullName");
-  const teamLogo = cookies.get("teamLogo");
+  // const fullName = cookies.get("fullName");
+  // const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
   useEffect(() => {
@@ -41,7 +40,8 @@ export default function CountdownTimer() {
           setCountdown(newCountdown);
         } else {
           console.log('auctionInPogress',auctionInProcess)
-          if (auctionInProcess) {
+          if (auctionInProcess&&userID==currentBid.currentBidderID) {
+            
             dispatch(sellPlayer());
           }
           setCountdown(null);
@@ -59,10 +59,10 @@ export default function CountdownTimer() {
       payload: {
         auctionRoomID: roomID,
         sellingAmount: currentBidValue,
-        buyerID: userID,
-        currentPlayerOrder: currentPlayerOrder,
-        buyerName: fullName,
-        buyerLogo: teamLogo,
+        buyerID: currentBid.currentBidderID,
+        currentPlayerOrder: currentBid.currentPlayerOrder,
+        buyerName: currentBid.currentBidderName,
+        buyerLogo: currentBid.currentBidderLogo,
       },
     };
   };

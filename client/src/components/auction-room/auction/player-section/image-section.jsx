@@ -26,7 +26,8 @@ export default function ImageSection() {
     <div className="relative gray-border w-full flex justify-center  rounded-md h-full overflow-hidden bg-white">
       <img
         className="absolute  max-w-full max-h-full bottom-0  object-cover z-10"
-        src={player?.playerImgSrc}
+        // src={player?.playerImgSrc}
+        src="https://res.cloudinary.com/djjlp95mb/image/upload/v1713723502/wvlpsbeb2dgdvzpoq2ny.webp"
         alt=""
       />
       <div className="absolute flex flex-col  w-full">

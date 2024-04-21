@@ -12,8 +12,7 @@ export default function BuyersContainer() {
   const dispatch = useDispatch();
 
   const buyersData = useSelector((state) => state.buyers.buyers);
- 
-
+  console.log("buyersData:", buyersData);
   const getTeams = async () => {
     try {
       const teams = await getAllTeamsByRoomID(roomID);
@@ -29,7 +28,11 @@ export default function BuyersContainer() {
       try {
         const teams = await getTeams();
         console.log("dispatching:", teams);
-        dispatch(addBuyers(teams));
+        const buyers = convertTeamsToReduxStateBuyers(teams);
+        console.log("buyers-data", buyers);
+        dispatch(addBuyers(buyers));
+        dispatch(getBuyersData(roomID,teams))
+        const teamLogos = teams.map((team) => team.teamLogo);
       } catch (error) {
         console.error("Error dispatching teams:", error);
       }
@@ -38,12 +41,24 @@ export default function BuyersContainer() {
   }, [roomID]);
 
   useEffect(() => {
-    const sortedBuyersData = buyersData?.slice().sort((a, b) => a.order - b.order);
-    const renderedBuyers = sortedBuyersData?.map((buyer) => {
-      console.log(buyer);
-      return <Buyer key={buyer._id} buyerOrder={buyer.order} initialBuyer={buyer} />;
-    });
-    setRenderedBuyersList(renderedBuyers);
+    console.log("buyersData:", buyersData);
+    if (buyersData) {
+      const sortedBuyersData = Object.values(buyersData).sort(
+        (a, b) => a.order - b.order
+      );
+      const renderedBuyers = sortedBuyersData?.map((buyer) => {
+        console.log(buyer);
+        return (
+          <Buyer
+            key={buyer._id}
+            buyerOrder={buyer.order}
+            initialBuyer={buyer}
+            logo={buyer.teamLogo}
+          />
+        );
+      });
+      setRenderedBuyersList(renderedBuyers);
+    }
   }, [buyersData]);
 
   return (
@@ -54,3 +69,18 @@ export default function BuyersContainer() {
     </>
   );
 }
+
+// const getTeamData =
+const convertTeamsToReduxStateBuyers = (teams) => {
+  return teams?.reduce((acc, obj) => {
+    acc[obj.teamLogo] = obj;
+    return acc;
+  }, {});
+};
+
+const getBuyersData = (roomID, teams) => {
+  return {
+    type: "GET_BUYERS_INFO",
+    payload: { auctionRoomID: roomID, teams: teams },
+  };
+};

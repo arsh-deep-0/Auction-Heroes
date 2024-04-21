@@ -6,11 +6,10 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 const verifyJWT = asyncHandler(async (socket, next) => {
   try {
     let token = socket.handshake.query.accessToken;
-    console.log("socket token:", token);
-    console.log(socket.request.headers);
+
     const tokenString =
       socket?.handshake?.headers?.cookie || socket?.request?.headers?.cookie;
-    console.log("token string ", tokenString);
+
     if (tokenString) {
       const pairs = tokenString.split(";");
 
@@ -21,7 +20,6 @@ const verifyJWT = asyncHandler(async (socket, next) => {
 
       // Extract the value of 'accessToken'
       const accessToken = accessTokenPair.split("=")[1];
-      console.log("accessToken token: ", accessToken);
       token = accessToken;
     }
 
