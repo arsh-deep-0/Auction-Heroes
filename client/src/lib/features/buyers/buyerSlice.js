@@ -1,4 +1,5 @@
-import { createSlice ,current} from "@reduxjs/toolkit";
+import { convertTeamsToReduxStateBuyers } from "@/components/auction-room/auction/buyers-section/buyer-container";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   buyers: {
@@ -56,33 +57,37 @@ const buyerSlice = createSlice({
       console.log("action paylaod: ", action.payload);
       state.buyers = action.payload;
       console.log("state: ", state.buyers);
-    }, 
+    },
   },
   extraReducers: (builder) => {
     builder.addCase("PLAYER_SOLD", (state, action) => {
       //for buyer with logo , set currentPurse=currentPurse-amountSold
-      console.log('sold action payload:',action.payload)
-      const logo=action.payload.buyerLogo;
-      console.log('logo:',logo)
-      console.log('state in PLAYER_SOLD reducer:',current(state))
-        const buyingTeam = current(state.buyers[logo]);
-        console.log('buying team:',buyingTeam)
+      console.log("sold action payload:", action.payload);
+      const logo = action.payload.buyerLogo;
+      console.log("logo:", logo);
+      console.log("state in PLAYER_SOLD reducer:", current(state));
+      const buyingTeam = current(state.buyers[logo]);
+      console.log("buying team:", buyingTeam);
 
-        state.buyers[logo].currentPurse = action.payload.currentPurse;
-        state.buyers[logo].playersBoughtCount = action.payload.playersBoughtCount;
+      state.buyers[logo].currentPurse = action.payload.currentPurse;
+      state.buyers[logo].playersBoughtCount = action.payload.playersBoughtCount;
 
-        console.log('updated state:',current(state))
-      
+      console.log("updated state:", current(state));
     });
-    builder.addCase("BUYERS_INFO",(state,action)=>{
-      console.log('buyers info:',action.payload)
-      //action.payload object is like this {mi:{currentPurse:21,playersBoughtCount:7,teamLogo:'mi'},csk:{currentPurse:21,playersBoughtCount:7,teamLogo:'mi'}} update the state accordingly
-      const updatedBuyersInfo = action.payload.buyers;
+    builder.addCase("BUYERS_INFO", (state, action) => {
+      console.log("buyers info:", action.payload);
+      const buyers =  typeof action.payload === "object" ? action.payload : JSON.parse(action.payload); 
+      console.log("buyers in buyers info:",buyers);
+      const updatedBuyersInfo = convertTeamsToReduxStateBuyers(buyers);
+      console.log('updatedBuyersInfo',updatedBuyersInfo)
+
       Object.keys(updatedBuyersInfo).forEach((logo) => {
         state.buyers[logo].currentPurse = updatedBuyersInfo[logo].currentPurse;
-        state.buyers[logo].playersBoughtCount = updatedBuyersInfo[logo].playersBoughtCount;
+        state.buyers[logo].playersBoughtCount =
+          updatedBuyersInfo[logo].playersBoughtCount;
       });
-    })
+      console.log('state',state)
+    });
   },
 });
 

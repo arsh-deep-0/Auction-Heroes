@@ -137,4 +137,13 @@ const getAllTeamsByRoomID = asyncHandler(async(req,res)=>{
   .status(201)
   .json(new ApiResponse(201,allTeams,'Teams found successfully'))
 }) 
-export { createTeam, getTeamAnalytics ,getAllTeamsByRoomID};
+
+const getAllTeamsByRoomIDFunction = async(roomID)=>{
+  const allTeams=await Team.find({auctionRoomID:roomID});
+  console.log('Teams', allTeams);
+  if(!allTeams){
+    throw new ApiError(404, 'Teams not found')
+  }
+
+  return allTeams}
+export { createTeam, getTeamAnalytics ,getAllTeamsByRoomID,getAllTeamsByRoomIDFunction};

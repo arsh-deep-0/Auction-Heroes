@@ -41,6 +41,10 @@ const auctionSchema = new mongoose.Schema(
     hasAuctionStarted:{
       type:Boolean,
       default: false,
+    },
+    currentPlayerOrder: {
+      type: Number,
+      default: 1,
     }
   },
   { timestamps: true }

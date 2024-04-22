@@ -2,13 +2,12 @@ import mongoose from "mongoose";
 
 const currentAuctionStatusSchema = new mongoose.Schema(
   {
-    auctionID: {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref:"Auction",
+    auctionRoomID: {
+      type:Number,
       required: true,
       index: true,
     },
-    currentBidder: {
+    currentBidderID: {
       type: mongoose.SchemaTypes.ObjectId,
       ref:"User",
       required: true,

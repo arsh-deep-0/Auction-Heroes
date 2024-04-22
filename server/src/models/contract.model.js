@@ -2,17 +2,14 @@ import mongoose from "mongoose";
 
 const contractSchema = new mongoose.Schema(
   {
-    buyer_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Team",
+    buyerLogo: {
+      type: String,
     },
-    player_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Player",
+    playerOrder: {
+      type:Number,
     },
-    auction_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Auction",
+    auctionRoomID: {
+      type:Number
     },
     amountSold:{
       type:Number

@@ -70,8 +70,9 @@ export default function BuyersContainer() {
   );
 }
 
-// const getTeamData =
-const convertTeamsToReduxStateBuyers = (teams) => {
+
+export const convertTeamsToReduxStateBuyers = (teams) => {
+  console.log('teams',teams);
   return teams?.reduce((acc, obj) => {
     acc[obj.teamLogo] = obj;
     return acc;

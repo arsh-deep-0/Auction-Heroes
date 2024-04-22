@@ -72,15 +72,15 @@ const sellPlayer = asyncHandler(async (req, res) => {
     );
 });
 
-const sellPlayerSocket = async (socket, sellingData) => {
+const sellPlayerSocket = async ( sellingData) => {
   try {
-    const { buyer, player, auctionID, amountSold } = sellingData;
-    console.log(buyer, player);
+    const { buyerLogo, currentPlayerOrder, auctionRoomID, sellingAmount } = sellingData;
+    console.log(buyerLogo, currentPlayerOrder);
 
-    const auction = await Auction.findOne({ _id: auctionID });
-    isHost(socket, auction);
+    //const auction = await Auction.findOne({ _id: auctionID });
+    //isHost(socket, auction);
 
-    const playerAlreadySold = await iSAlreadySold(auctionID, player);
+    const playerAlreadySold = await iSAlreadySold(auctionRoomID, currentPlayerOrder);
     console.log(playerAlreadySold);
     if (playerAlreadySold) {
       return { response: "player already sold" };
@@ -88,10 +88,10 @@ const sellPlayerSocket = async (socket, sellingData) => {
     }
 
     const contract = await Contract.create({
-      buyer_ID: buyer,
-      player_ID: player,
-      auction_ID: auctionID,
-      amountSold,
+      buyerLogo: buyerLogo,
+      playerOrder: currentPlayerOrder,
+      amountSold:sellingAmount,
+      auctionRoomID:auctionRoomID
     });
     console.log(contract);
 
@@ -124,14 +124,14 @@ const getAllplayers = async ( socket, auctionRoomID ) => {
 
 
 // Function to search for documents with a particular auction_id and check if player_id exists (this will be used to check if player is already sold or not)
-const iSAlreadySold = async (auctionId, playerId) => {
+const iSAlreadySold = async (auctionId, playerOrder) => {
   try {
     // Query for documents with the specified auction_id
-    const contracts = await Contract.find({ auction_ID: auctionId });
+    const contracts = await Contract.find({ auctionRoomID: auctionId });
 
     // Check if playerId exists for any of the contracts found
     const playerExists = contracts.some((contract) =>
-      contract.player_ID.equals(playerId)
+      contract.playerOrder.equals(playerOrder)
     );
 
     return playerExists;
@@ -143,7 +143,7 @@ const iSAlreadySold = async (auctionId, playerId) => {
 
 const getPlayerByOrder = asyncHandler(async(req,res)=>{
   const order = req.params.order;
-  
+  console.log('order',order);
   const player=await Player.findOne({order})
   console.log('get player:',player)
   if(!player){
