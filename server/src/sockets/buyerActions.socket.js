@@ -33,7 +33,7 @@ const buyerActionsSocket = (io, socket) => {
 
       const updatedCurrentBidInfo = {
         currentAmount: 0,
-        timer: 15,
+        timer: 60,
         auctionInProgress: false,
         currentBidderName: null,
         currentBidderLogo: null,
@@ -70,6 +70,26 @@ const buyerActionsSocket = (io, socket) => {
 
       await sellPlayerSocket(sellingData);
     });
+
+    socket.on("SKIP_PLAYER",async(sellingData)=>{
+      const auctionRoomID = sellingData.auctionRoomID;
+      const currentBidInfoKey = `currentBidInfo-${auctionRoomID}`;
+
+      const updatedCurrentBidInfo = {
+        currentAmount: 0,
+        timer: 60,
+        auctionInProgress: false,
+        currentBidderName: null,
+        currentBidderLogo: null,
+        currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1),
+      };
+      await redisClient.set(
+        currentBidInfoKey,
+        JSON.stringify(updatedCurrentBidInfo)
+      );
+      console.log('skipped player', updatedCurrentBidInfo)
+      io.to(auctionRoomID).emit("CURRENT_BID_INFO", updatedCurrentBidInfo);
+    })
   };
 };
 export default buyerActionsSocket;

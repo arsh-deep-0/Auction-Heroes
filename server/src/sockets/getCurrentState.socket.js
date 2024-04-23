@@ -22,7 +22,7 @@ const currentStateSocket = (io, socket) => {
         const auction = await getAuctionByRoomID(auctionRoomID);
         roomData = {
           currentAmount: 0,
-          timer: 15,
+          timer: 60,
           auctionInProgress: false,
           currentBidderName: null,
           currentBidderLogo: null,

@@ -32,6 +32,7 @@ export default function PlaceBid() {
   useEffect(() => {
     const fetchPlayer = async () => {
       if (currentOrder) {
+        setIsLoading(true)
         const playerInfo = await getPlayerByOrder(currentOrder);
         console.log("playerInfo: ", playerInfo);
         setPlayer(playerInfo);
@@ -51,6 +52,7 @@ export default function PlaceBid() {
 
   console.log("all buyers:", buyers);
   const currentPurse = buyers?.buyers?.[teamLogo]?.currentPurse;
+  const playersBought = buyers?.buyers?.[teamLogo]?.playersBought
   console.log("currentPurse:", currentPurse);
 
   
@@ -58,7 +60,8 @@ export default function PlaceBid() {
     console.log("disable:", currentBidderLogo, teamLogo);
     const isCurrentBidder = currentBidderLogo === teamLogo;
     const hasNotEnoughMoney = currentPurse < currentBidValue + 0.3;
-    const disable = isCurrentBidder || hasNotEnoughMoney;
+    const hasBoughtEightPlayers = playersBought > 7
+    const disable = isCurrentBidder || hasNotEnoughMoney || hasBoughtEightPlayers;
 
     setIsDisabled(disable);
 

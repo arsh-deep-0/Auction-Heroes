@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 
 export default function CountdownTimer() {
   const dispatch = useDispatch();
-  const [countdown, setCountdown] = useState(15);
+  const [countdown, setCountdown] = useState(60);
   const timerValue = useSelector((state) => state.timer.time);
   const auctionInProcess = useSelector(
     (state) => state.timer.auctionInProcess
@@ -19,23 +19,42 @@ export default function CountdownTimer() {
   const cookies = new Cookies(null, { path: "/" });
   const currentBidValue = useSelector((state) => state.currentBid.amount);
  
-  // const currentBidderName=useSelector(()=>{})
+ 
 
   const currentBid = useSelector(
     (state) => state.currentBid
   );
 
   // const fullName = cookies.get("fullName");
-  // const teamLogo = cookies.get("teamLogo");
+   const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
   useEffect(() => {
     let intervalId;
+    console.log('auctionInProgess:',auctionInProcess)
+    if(!auctionInProcess){
+      const timer= Date.now();
+      intervalId = setInterval(() => {
+        const elapsedSeconds = Math.floor((Date.now() - timer) / 1000);
+        const newCountdown = 10 - elapsedSeconds;
+        if (newCountdown >= 0) {
+          setCountdown(newCountdown);
+        } else {
+          console.log('auctionInPogress',auctionInProcess)
+          if (!auctionInProcess&&teamLogo=='mi') {
+            
+            dispatch(nextPlayer());
+          }
+          setCountdown(null);
+          clearInterval(intervalId);
+        }
+      }, 1000);
+    }
 
     if (timerValue !== null&&auctionInProcess) {
       intervalId = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timerValue) / 1000);
-        const newCountdown = 2 - elapsedSeconds;
+        const newCountdown = 15 - elapsedSeconds;
         if (newCountdown >= 0) {
           setCountdown(newCountdown);
         } else {
@@ -51,7 +70,7 @@ export default function CountdownTimer() {
     }
 
     return () => clearInterval(intervalId);
-  }, [timerValue]);
+  }, [timerValue,auctionInProcess,currentBid]);
 
   const sellPlayer = () => {
     return {
@@ -66,6 +85,20 @@ export default function CountdownTimer() {
       },
     };
   };
+
+  const nextPlayer =()=>{
+    return {
+      type: eventTypes.SKIP_PLAYER,
+      payload: {
+        auctionRoomID: roomID,
+        sellingAmount: currentBidValue,
+        buyerID: currentBid.currentBidderID,
+        currentPlayerOrder: currentBid.currentPlayerOrder,
+        buyerName: currentBid.currentBidderName,
+        buyerLogo: currentBid.currentBidderLogo,
+      },
+    };
+  }
 
   return (
     <>

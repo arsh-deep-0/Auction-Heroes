@@ -121,6 +121,10 @@ const getAllplayers = async ( socket, auctionRoomID ) => {
   return players;
 };
 
+const getAllBoughtPlayers = async(socket,auctionRoomID)=>{
+  
+}
+
 
 
 // Function to search for documents with a particular auction_id and check if player_id exists (this will be used to check if player is already sold or not)
