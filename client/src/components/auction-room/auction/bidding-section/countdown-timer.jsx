@@ -10,67 +10,65 @@ export default function CountdownTimer() {
   const dispatch = useDispatch();
   const [countdown, setCountdown] = useState(60);
   const timerValue = useSelector((state) => state.timer.time);
-  const auctionInProcess = useSelector(
-    (state) => state.timer.auctionInProcess
-  );
+  const auctionInProcess = useSelector((state) => state.timer.auctionInProcess);
+  console.log("auctionInprogress state:", auctionInProcess);
 
   const searchParams = useSearchParams();
   const roomID = searchParams.get("roomID");
   const cookies = new Cookies(null, { path: "/" });
   const currentBidValue = useSelector((state) => state.currentBid.amount);
- 
- 
 
-  const currentBid = useSelector(
-    (state) => state.currentBid
-  );
+  const currentState=useSelector(state=>state)
+  console.log('current State:',currentState)
 
+  const currentBid = useSelector((state) => state.currentBid);
+  const playerOrder = currentBid.currentPlayerOrder
   // const fullName = cookies.get("fullName");
-   const teamLogo = cookies.get("teamLogo");
+  const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
   useEffect(() => {
-    let intervalId;
-    console.log('auctionInProgess:',auctionInProcess)
-    if(!auctionInProcess){
-      const timer= Date.now();
-      intervalId = setInterval(() => {
+    let intervalId1;
+    let intervalId2;
+    console.log("auctionInProgess:", auctionInProcess);
+    if (!auctionInProcess) {
+      const timer = Date.now();
+      intervalId1 = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timer) / 1000);
-        const newCountdown = 10 - elapsedSeconds;
+        const newCountdown = 45 - elapsedSeconds;
         if (newCountdown >= 0) {
           setCountdown(newCountdown);
         } else {
-          console.log('auctionInPogress',auctionInProcess)
-          if (!auctionInProcess&&teamLogo=='mi') {
-            
+          console.log("auctionInPogress", auctionInProcess);
+          if (!auctionInProcess && teamLogo == "mi") {
             dispatch(nextPlayer());
           }
           setCountdown(null);
-          clearInterval(intervalId);
+          clearInterval(intervalId1);
         }
       }, 1000);
     }
 
-    if (timerValue !== null&&auctionInProcess) {
-      intervalId = setInterval(() => {
+    if (timerValue !== null && auctionInProcess) {
+      intervalId2 = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timerValue) / 1000);
         const newCountdown = 15 - elapsedSeconds;
         if (newCountdown >= 0) {
           setCountdown(newCountdown);
         } else {
-          console.log('auctionInPogress',auctionInProcess)
-          if (auctionInProcess&&userID==currentBid.currentBidderID) {
-            
+          console.log("auctionInPogress", auctionInProcess);
+          if (auctionInProcess && userID == currentBid.currentBidderID) {
             dispatch(sellPlayer());
           }
           setCountdown(null);
-          clearInterval(intervalId);
+          clearInterval(intervalId2);
         }
       }, 1000);
     }
 
-    return () => clearInterval(intervalId);
-  }, [timerValue,auctionInProcess,currentBid]);
+    return () => {clearInterval(intervalId1);
+    clearInterval(intervalId2)}
+  }, [timerValue, auctionInProcess, playerOrder]);
 
   const sellPlayer = () => {
     return {
@@ -86,7 +84,7 @@ export default function CountdownTimer() {
     };
   };
 
-  const nextPlayer =()=>{
+  const nextPlayer = () => {
     return {
       type: eventTypes.SKIP_PLAYER,
       payload: {
@@ -98,7 +96,7 @@ export default function CountdownTimer() {
         buyerLogo: currentBid.currentBidderLogo,
       },
     };
-  }
+  };
 
   return (
     <>

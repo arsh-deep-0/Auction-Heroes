@@ -14,6 +14,7 @@ export default function Page() {
   const searchParams = useSearchParams();
   const dispatch = useDispatch();
   const roomID = searchParams.get("roomID");
+  cookies.set('roomID',roomID)
 
   useEffect(() => {
     socket.connect();

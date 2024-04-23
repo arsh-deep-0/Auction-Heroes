@@ -3,7 +3,7 @@ import axios from "axios";
 async function createTeams({ users, roomID }) {
   console.log("state: ", users);
 
-  const avatars =['mi','csk','rcb','srh','pbks','rr','kkr','gt','dc','lsg']
+  const avatars =['host','mi','csk','rcb','srh','pbks','rr','kkr','gt','dc','lsg']
   
   let order=1
   users.users.forEach(async (user) => {

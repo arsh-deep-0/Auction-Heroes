@@ -33,11 +33,11 @@ const buyerActionsSocket = (io, socket) => {
 
       const updatedCurrentBidInfo = {
         currentAmount: 0,
-        timer: 60,
-        auctionInProgress: false,
+        timer: 45,
+        auctionInProcess: false,
         currentBidderName: null,
         currentBidderLogo: null,
-        currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1),
+        currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1), 
       };
       await redisClient.set(
         currentBidInfoKey,
@@ -77,7 +77,7 @@ const buyerActionsSocket = (io, socket) => {
 
       const updatedCurrentBidInfo = {
         currentAmount: 0,
-        timer: 60,
+        timer: 45,
         auctionInProgress: false,
         currentBidderName: null,
         currentBidderLogo: null,

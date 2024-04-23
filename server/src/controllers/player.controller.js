@@ -121,10 +121,24 @@ const getAllplayers = async ( socket, auctionRoomID ) => {
   return players;
 };
 
-const getAllBoughtPlayers = async(socket,auctionRoomID)=>{
-  
+const getAllBoughtPlayers = async(socket,data)=>{
+const {auctionRoomID,teamLogo}=data;
+const allPlayers = await Contract.find({auctionRoomID,teamLogo})
+console.log('all contracts:',allPlayers)
 }
 
+const getAllBoughtPlayersReq = asyncHandler(async(req,res)=>{
+  const auctionRoomID=Number(req.params.auctionRoomID);
+  const buyerLogo=req.params.teamLogo;
+  const allPlayers = await Contract.find({auctionRoomID,buyerLogo})
+  console.log('all contracts:',allPlayers)
+
+  return res.
+  status(201)
+  .json(
+    new ApiResponse(201, allPlayers, "players send successfully")
+  );
+  })
 
 
 // Function to search for documents with a particular auction_id and check if player_id exists (this will be used to check if player is already sold or not)
@@ -161,4 +175,4 @@ const getPlayerByOrder = asyncHandler(async(req,res)=>{
 })
 
 
-export { createPlayer, sellPlayer, sellPlayerSocket, getAllplayers ,getPlayerByOrder};
+export { createPlayer, sellPlayer, sellPlayerSocket, getAllplayers ,getPlayerByOrder,getAllBoughtPlayers,getAllBoughtPlayersReq};

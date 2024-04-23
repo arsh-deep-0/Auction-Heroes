@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPlayer, getPlayerByOrder, sellPlayer } from "../controllers/player.controller.js";
+import { createPlayer, getAllBoughtPlayers, getAllBoughtPlayersReq, getPlayerByOrder, sellPlayer } from "../controllers/player.controller.js";
 
 
 
@@ -10,5 +10,7 @@ router.route('/create').post(createPlayer)
 router.route('/sell').post(sellPlayer)
 
 router.route('/get/:order').get(getPlayerByOrder)
+
+router.route('/getAllPlayers/:auctionRoomID/:teamLogo').get(getAllBoughtPlayersReq)
 
 export default router;

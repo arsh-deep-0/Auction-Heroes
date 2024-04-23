@@ -13,6 +13,10 @@ const timerSlice = createSlice({
     builder.addCase("BID_INC", (state, action) => {
       state.auctionInProcess = action.payload.auctionInProcess; 
       state.time = action.payload.time;
+    }),
+    builder.addCase("CURRENT_BID_INFO", (state, action) => {
+      console.log("PLAYER_SOLD", action.payload);
+      state.auctionInProcess = action.payload.auctionInProcess; 
     });
   },
 });
