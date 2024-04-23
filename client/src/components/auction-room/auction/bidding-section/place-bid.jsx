@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import getPlayerByOrder from "@/utils/getPlayerByOrder";
 
 export default function PlaceBid() {
-  const [isLoading,setIsLoading] =useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
@@ -32,12 +32,13 @@ export default function PlaceBid() {
   useEffect(() => {
     const fetchPlayer = async () => {
       if (currentOrder) {
-        setIsLoading(true)
+        setIsLoading(true);
         const playerInfo = await getPlayerByOrder(currentOrder);
         console.log("playerInfo: ", playerInfo);
         setPlayer(playerInfo);
-        setIsLoading(false)
-        
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
       }
     };
 
@@ -52,21 +53,27 @@ export default function PlaceBid() {
 
   console.log("all buyers:", buyers);
   const currentPurse = buyers?.buyers?.[teamLogo]?.currentPurse;
-  const playersBought = buyers?.buyers?.[teamLogo]?.playersBought
+  const playersBought = buyers?.buyers?.[teamLogo]?.playersBought;
   console.log("currentPurse:", currentPurse);
 
-  
   useEffect(() => {
     console.log("disable:", currentBidderLogo, teamLogo);
     const isCurrentBidder = currentBidderLogo === teamLogo;
     const hasNotEnoughMoney = currentPurse < currentBidValue + 0.3;
-    const hasBoughtEightPlayers = playersBought > 7
-    const disable = isCurrentBidder || hasNotEnoughMoney || hasBoughtEightPlayers;
+    const hasBoughtEightPlayers = playersBought > 7;
+    const disable =
+      isCurrentBidder || hasNotEnoughMoney || hasBoughtEightPlayers;
 
     setIsDisabled(disable);
 
     console.log("isDisabled:", isDisabled);
-  }, [currentBidderLogo, teamLogo,currentPlayerOrder,currentPurse,currentBidValue]);
+  }, [
+    currentBidderLogo,
+    teamLogo,
+    currentPlayerOrder,
+    currentPurse,
+    currentBidValue,
+  ]);
 
   useEffect(() => {
     dispatch({
@@ -92,9 +99,11 @@ export default function PlaceBid() {
     };
   };
   if (isLoading) {
-    return <div className="w-full h-full flex justify-center items-center">
-      <div>Loading...</div>
-    </div>;
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        <div>Loading...</div>
+      </div>
+    );
   }
   return (
     <button

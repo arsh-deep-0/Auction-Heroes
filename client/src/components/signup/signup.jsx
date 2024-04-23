@@ -14,7 +14,7 @@ export const SignUp = () => {
   const router = useRouter();
   const form = useForm({
     defaultValues: {
-      userName: "Arsh",
+      userName: "",
     },
   });
   const { register, control, handleSubmit, formState } = form;
