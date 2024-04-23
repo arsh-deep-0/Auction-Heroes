@@ -32,10 +32,10 @@ export default function CountdownTimer() {
   useEffect(() => {
     let intervalId;
 
-    if (timerValue !== null) {
+    if (timerValue !== null&&auctionInProcess) {
       intervalId = setInterval(() => {
         const elapsedSeconds = Math.floor((Date.now() - timerValue) / 1000);
-        const newCountdown = 16 - elapsedSeconds;
+        const newCountdown = 2 - elapsedSeconds;
         if (newCountdown >= 0) {
           setCountdown(newCountdown);
         } else {

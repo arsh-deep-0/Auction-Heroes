@@ -7,6 +7,7 @@ import { redisClient } from "../utils/redis.js";
 const currentStateSocket = (io, socket) => {
   return () => {
     socket.on("GET_CURRENT_BID_INFO", async (roomData) => {
+      socket.join(roomData.auctionRoomID)
       console.log("got room data", roomData);
 
       const auctionRoomID = roomData.auctionRoomID;
@@ -35,6 +36,7 @@ const currentStateSocket = (io, socket) => {
     });
 
     socket.on("GET_BUYERS_INFO", async (buyerData) => {
+      socket.join(buyerData.auctionRoomID)
       console.log("buyer data", buyerData);
       const roomID = buyerData.auctionRoomID;
       console.log("teams:", buyerData.teams);
@@ -53,7 +55,7 @@ const currentStateSocket = (io, socket) => {
         redisClient.set(buyersInfoKey, JSON.stringify(buyerData.buyers));
       }
 
-      console.log('buyers Info', buyerData)
+      console.log('buyers Info', buyerData) 
       io.to(socket.id).emit("BUYERS_INFO", buyerData.buyers);
     });
   };

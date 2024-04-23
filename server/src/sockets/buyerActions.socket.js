@@ -7,7 +7,10 @@ const buyerActionsSocket = (io, socket) => {
       console.log("got bid data", bidData);
       console.log(socket.userID, socket.rooms);
 
-      bidData.currentAmount = increaseBid(bidData.currentAmount);
+      bidData.currentAmount = increaseBid(
+        bidData.currentAmount,
+        bidData.basePrice
+      );
       bidData.time = Date.now();
       bidData.auctionInProcess = true;
       const auctionRoomID = bidData.auctionRoomID;
@@ -54,27 +57,29 @@ const buyerActionsSocket = (io, socket) => {
         (team) => team.teamLogo === sellingData.buyerLogo
       );
       console.log("buyINGTeam:", buyingTeam);
-      console.log(sellingData.sellingAmount)
+      console.log(sellingData.sellingAmount);
       buyingTeam.currentPurse =
-        Number(buyingTeam.currentPurse) - Number(sellingData.sellingAmount); 
-      buyingTeam.playersBoughtCount = Number(buyingTeam.playersBoughtCount) + 1;  
+        Number(buyingTeam.currentPurse) - Number(sellingData.sellingAmount);
+      buyingTeam.playersBoughtCount = Number(buyingTeam.playersBoughtCount) + 1;
 
       await redisClient.set(buyersInfoKey, JSON.stringify(updatedBuyersInfo));
-      console.log('buyersInfo sent:',updatedBuyersInfo) 
+      console.log("buyersInfo sent:", updatedBuyersInfo);
       io.to(auctionRoomID).emit("BUYERS_INFO", updatedBuyersInfo);
 
       console.log("player selling data:", sellingData);
 
       await sellPlayerSocket(sellingData);
-     
     });
   };
 };
 export default buyerActionsSocket;
 
-function increaseBid(amount) {
+function increaseBid(amount, basePrice) {
   amount = amount * 10;
-  if (amount < 1000) {
+  if (amount == 0) {
+    return basePrice;
+  }
+  if (amount < 100) {
     let last_dig = amount % 10;
     if (last_dig == 2 || last_dig == 5) {
       amount = amount + 3;

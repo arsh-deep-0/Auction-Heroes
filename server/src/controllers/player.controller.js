@@ -57,9 +57,9 @@ const sellPlayer = asyncHandler(async (req, res) => {
   console.log(player, " ", buyer);
 
   const contract = await Contract.create({ buyer, player });
-  console.log(contract);
+  console.log('contract',contract);
 
-  const createdContract = await Contract.findOne(contract?._id);
+  const createdContract = await Contract.findOne(contract?._id); 
 
   if (!createdContract) {
     throw new ApiError(500, "Something went wrong while creating the contract");
@@ -80,12 +80,12 @@ const sellPlayerSocket = async ( sellingData) => {
     //const auction = await Auction.findOne({ _id: auctionID });
     //isHost(socket, auction);
 
-    const playerAlreadySold = await iSAlreadySold(auctionRoomID, currentPlayerOrder);
-    console.log(playerAlreadySold);
-    if (playerAlreadySold) {
-      return { response: "player already sold" };
-      //throw new ApiError(400, "Player already sold");
-    }
+    //const playerAlreadySold = await iSAlreadySold(auctionRoomID, currentPlayerOrder);
+    // console.log(playerAlreadySold);  
+    // if (playerAlreadySold) {
+    //   return { response: "player already sold" };
+    //   //throw new ApiError(400, "Player already sold");
+    // }
 
     const contract = await Contract.create({
       buyerLogo: buyerLogo,
@@ -93,7 +93,7 @@ const sellPlayerSocket = async ( sellingData) => {
       amountSold:sellingAmount,
       auctionRoomID:auctionRoomID
     });
-    console.log(contract);
+    console.log('contract:',contract);
 
     const createdContract = await Contract.findOne(contract?._id);
 

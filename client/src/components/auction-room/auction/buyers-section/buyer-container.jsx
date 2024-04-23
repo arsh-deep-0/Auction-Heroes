@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { addBuyers } from "@/lib/features/buyers/buyerSlice";
 
 export default function BuyersContainer() {
+  const [isLoading,setIsLoading]=useState(true)
   const [renderedBuyersList, setRenderedBuyersList] = useState([]);
   const searchParams = useSearchParams();
   const roomID = searchParams.get("roomID");
@@ -58,8 +59,15 @@ export default function BuyersContainer() {
         );
       });
       setRenderedBuyersList(renderedBuyers);
+      setIsLoading(false)
     }
   }, [buyersData]);
+
+  if (isLoading) {
+    return <div className="w-full h-full flex justify-center items-center text-black">
+      <div>Loading...</div>
+    </div>;
+  }
 
   return (
     <>

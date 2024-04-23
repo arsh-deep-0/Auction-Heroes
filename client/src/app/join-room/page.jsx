@@ -32,4 +32,4 @@ function JoinRoom() {
   );
 }
 
-export default JoinRoom;
+export default JoinRoom; 

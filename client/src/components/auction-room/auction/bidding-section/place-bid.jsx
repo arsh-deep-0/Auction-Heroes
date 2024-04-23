@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { eventTypes } from "@/constants/eventTypes";
 import { useSearchParams } from "next/navigation";
 import Cookies from "universal-cookie";
+import getPlayerByOrder from "@/utils/getPlayerByOrder";
 
 export default function PlaceBid() {
+  const [isLoading,setIsLoading] =useState(true)
   const [isDisabled, setIsDisabled] = useState(false);
   const dispatch = useDispatch();
   const searchParams = useSearchParams();
@@ -19,17 +21,50 @@ export default function PlaceBid() {
     (state) => state.currentBid.currentPlayerOrder
   );
 
+  const currentOrder = useSelector(
+    (state) => state.currentBid.currentPlayerOrder
+  );
+
+  const buyers = useSelector((state) => state.buyers);
+
+  const [player, setPlayer] = useState(null); // Define player state
+
+  useEffect(() => {
+    const fetchPlayer = async () => {
+      if (currentOrder) {
+        const playerInfo = await getPlayerByOrder(currentOrder);
+        console.log("playerInfo: ", playerInfo);
+        setPlayer(playerInfo);
+        setIsLoading(false)
+        
+      }
+    };
+
+    fetchPlayer();
+    console.log("Player:", player);
+  }, [currentOrder]);
+
   console.log("cpo: ", currentPlayerOrder);
   const fullName = cookies.get("fullName");
   const teamLogo = cookies.get("teamLogo");
   const userID = cookies.get("userID");
 
-  console.log("disable:", currentBidderLogo, teamLogo);
+  console.log("all buyers:", buyers);
+  const currentPurse = buyers?.buyers?.[teamLogo]?.currentPurse;
+  console.log("currentPurse:", currentPurse);
+
+  
   useEffect(() => {
-    setIsDisabled(currentBidderLogo === teamLogo);
+    console.log("disable:", currentBidderLogo, teamLogo);
+    const isCurrentBidder = currentBidderLogo === teamLogo;
+    const hasNotEnoughMoney = currentPurse < currentBidValue + 0.3;
+    const disable = isCurrentBidder || hasNotEnoughMoney;
+
+    setIsDisabled(disable);
 
     console.log("isDisabled:", isDisabled);
-  }, [currentBidderLogo, teamLogo]);
+  }, [currentBidderLogo, teamLogo,currentPlayerOrder,currentPurse,currentBidValue]);
+
   useEffect(() => {
     dispatch({
       type: eventTypes.GET_CURRENT_BID_INFO,
@@ -49,9 +84,15 @@ export default function PlaceBid() {
         currentPlayerOrder: currentPlayerOrder,
         currentBidderName: fullName,
         currentBidderLogo: teamLogo,
+        basePrice: player.basePrice,
       },
     };
   };
+  if (isLoading) {
+    return <div className="w-full h-full flex justify-center items-center">
+      <div>Loading...</div>
+    </div>;
+  }
   return (
     <button
       className="rounded-lg text-sm hover:translate-y-[-4px]  bg-red-500 shadow-blue-500/50 shadow-lg transition ease-in-out duration-75 1 active:shadow-lg  active:scale-95 active:transalate-y-4 px-2 py-1  border-white border-solid border-[1px] poppins-medium"
