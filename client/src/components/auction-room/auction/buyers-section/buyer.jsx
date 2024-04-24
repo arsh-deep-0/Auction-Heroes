@@ -33,7 +33,7 @@ export default function Buyer({ buyerOrder, initialBuyer ,logo}) {
         </div>
         <div className="w-[70%] ">
           {/* {buyer.teamName} */}
-          {buyer&&<BuyerInfo {...buyer} teamLogo={buyer.teamLogo} />}
+          {buyer&&<BuyerInfo {...buyer} teamLogo={buyer?.teamLogo} />}
         </div>
       </div>
     </>

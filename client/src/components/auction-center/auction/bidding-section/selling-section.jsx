@@ -44,7 +44,9 @@ export default function SellingSection() {
   };
 
   const handleSellPlayer = () => {
+    console.log('set to null')
     setSelected(null);
+    console.log('value',selected)
     dispatch({
       type: eventTypes.SELL_PLAYER,
       payload: {
