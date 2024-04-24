@@ -130,7 +130,7 @@ console.log('all contracts:',allPlayers)
 const getAllBoughtPlayersReq = asyncHandler(async(req,res)=>{
   const auctionRoomID=Number(req.params.auctionRoomID);
   const buyerLogo=req.params.teamLogo;
-  const allPlayers = await Contract.find({auctionRoomID,buyerLogo})
+  const allPlayers = await Contract.find({auctionRoomID,buyerLogo}) 
   console.log('all contracts:',allPlayers)
 
   return res.

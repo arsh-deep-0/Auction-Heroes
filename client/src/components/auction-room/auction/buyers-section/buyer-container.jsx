@@ -71,7 +71,7 @@ export default function BuyersContainer() {
 
   return (
     <>
-      <div className="gray-border h-full w-full rounded-md overflow-y-scroll bg-white py-2 px-1 flex flex-col gap-2 border-solid border-white border-b-4 border-t-4">
+      <div className="gray-border h-full w-full rounded-md overflow-y-scroll  py-2 px-1 grid grid-cols-2  gap-2 border-solid border-white border-b-4 border-t-4 lg:p-4">
         {renderedBuyersList}
       </div>
     </>

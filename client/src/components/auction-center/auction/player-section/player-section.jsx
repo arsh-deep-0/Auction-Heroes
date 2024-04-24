@@ -5,15 +5,13 @@ import Stats from "./stats-section";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
-export default function PlayerSection(isFullScreen) {
+export default function PlayerSection() {
   const currentOrder = useSelector(
     (state) => state.currentBid.currentPlayerOrder
   );
 
-
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState(null); 
   useEffect(() => {
-    
     const fetchPlayer = async () => {
       if (currentOrder) {
         // Check if currentOrder is defined
@@ -21,32 +19,26 @@ export default function PlayerSection(isFullScreen) {
         console.log("playerInfo: ", playerInfo);
         setPlayer(playerInfo); // Update player state
       }
-      return () => {
-       
-      };
     };
 
     fetchPlayer();
     console.log("Player:", player);
-  }, [currentOrder]);
-
-  
+  }, [currentOrder]); 
   return (
     <>
-      <div className={`${isFullScreen ? "gap-8" : "gap-0"} flex flex-col items-center  w-full h-full justify-center `}>
-
-        <div className={`h-[10%] w-full `}>
+      <div className="flex flex-col items-center  w-full h-full justify-between">
+        <div className="h-[10%] w-full ">
           <Heading title="Player Stats" fontSize="heading" />
         </div>
-
         <div className="flex flex-col h-[90%] justify-between gap-4 w-full">
-          <div className="h-[80%] w-full ">
-            <ImageSection player={player} />
-          </div>
-          <div className="h-[10%] w-full">
-            <Stats player={player} />
-          </div>
+        <div className="h-[80%] w-full ">
+          <ImageSection player={player}/>
         </div>
+        <div className="h-[12%] w-full">
+          <Stats player={player}/>
+        </div>
+        </div>
+        
       </div>
     </>
   );

@@ -9,7 +9,7 @@ const rankingSchema = new mongoose.Schema({
   ranking: {
     type: Number,
     required: true,
-  },
+  }, 
   totalPoints:{
     type: Number,
     required: true,

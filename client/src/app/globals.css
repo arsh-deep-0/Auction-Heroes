@@ -135,12 +135,12 @@ button:disabled{
 }
 
 .heading-text {
-  font-size: clamp(0.1rem, 4vw, 1.65rem);
+  font-size: clamp(0.1rem, 4vw, 1.2rem);
   line-height: 1rem;
 }
 
 .stat-text {
-  font-size: clamp(0.1rem, 3.0vw, 1.65rem);
+  font-size: clamp(0.1rem, 3.0vw, 1.35rem); 
   line-height: 0.75rem;
 }
 
@@ -150,7 +150,7 @@ button:disabled{
 }
 
 .circular-bar-text {
-  font-size: clamp(0.1rem, 2.2vw, 1.65rem);
+  font-size: clamp(0.1rem, 2.2vw, 0.8rem);
   line-height: 0.75rem;
 }
 
@@ -160,8 +160,8 @@ button:disabled{
 }
 
 .bar-value {
-  font-size: clamp(0.1rem, 3.2vw, 1.65rem);
-  line-height: 1rem;
+  font-size: clamp(0.1rem, 3.2vw, 1.2rem);
+  line-height: 1.1rem;
 }
 
 .bid-amount-text {
@@ -206,6 +206,7 @@ button:disabled{
 ::-webkit-scrollbar {
   background-color: white;
   width: 4px;
+  height: 2px;
 }
 
 

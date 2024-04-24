@@ -20,9 +20,10 @@ const socketMiddleware = (store) => {
 
     const websocketActionTypes = Object.values(eventTypes);
 
+    console.log('gen action',action)
     // Check if the current action type is in the array of websocketActionTypes
     if (websocketActionTypes.includes(action.type)) {
-      console.log(action);
+      console.log('socket action:',action);
       // Emit WebSocket messages for specific actions
       const { type, payload } = action;
       socket.emit(type, payload);

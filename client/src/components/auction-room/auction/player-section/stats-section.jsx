@@ -23,21 +23,21 @@ export default function Stats() {
   }, [currentOrder]);
   return (
     <>
-      <div className="grid grid-flow-row grid-cols-3 w-full gap-2 h-full">
-        <div className="bg-blue  rounded-md  items-center gray-border poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
-          <img src="/images/components/bat.svg" alt="" />
+      <div className="grid grid-flow-row grid-cols-3 w-full gap-8 h-full">
+        <div className="bg-blue  rounded-md  items-center gray-border poppins-medium text-sm gap- grid grid-cols-2 px-[0.4rem]">
+          <img className="scale-110" src="/images/components/bat.svg" alt="" />
           <span className="stats-text text-center">
             {player?.battingPoints}
           </span>
         </div>
-        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
-          <img src="/images/components/bowl.svg" alt="" />
+        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.4rem]">
+          <img className="scale-110" src="/images/components/bowl.svg" alt="" />
           <span className="stats-text text-center">
             {player?.bowlingPoints}
           </span>
         </div>
-        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
-          <img src="/images/components/wicket.svg" alt="" />
+        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.4rem]">
+          <img className="scale-110" src="/images/components/wicket.svg" alt="" />
           <span className="stats-text text-center">{player?.wkPoints}</span>
         </div>
       </div>

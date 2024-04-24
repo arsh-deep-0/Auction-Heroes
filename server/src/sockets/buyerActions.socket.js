@@ -88,7 +88,7 @@ const buyerActionsSocket = (io, socket) => {
         JSON.stringify(updatedCurrentBidInfo)
       );
       console.log('skipped player', updatedCurrentBidInfo)
-      io.to(auctionRoomID).emit("CURRENT_BID_INFO", updatedCurrentBidInfo);
+      io.to(auctionRoomID).emit("CURRENT_BID_INFO", updatedCurrentBidInfo); 
     })
   };
 };
