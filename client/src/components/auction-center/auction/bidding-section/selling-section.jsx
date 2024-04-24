@@ -95,7 +95,7 @@ export default function SellingSection() {
             className={` ${
               selected == 1 ? "border-red-500 border-2 border-solid" : ""
             } w-12 aspect-square bg-white rounded-full p-2 gray-border pointer-events-auto`}
-            src="/images/team-logos/MIDlogo.webp"
+            src="/images/team-logos/MIlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "MI");
@@ -103,7 +103,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
-            src="/images/team-logos/CSKslogo.webp"
+            src="/images/team-logos/CSKlogo.webp"
             alt=""
             onClick={() => {
               handleClick(2, "CSK");
@@ -111,7 +111,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/RCBJlogo.webp"
+            src="/images/team-logos/RCBlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "RCB");
@@ -119,7 +119,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/SRFlogo.webp"
+            src="/images/team-logos/SRHlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "SRH");
@@ -127,7 +127,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/KKRDlogo.webp"
+            src="/images/team-logos/KKRlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "KKR");
@@ -135,7 +135,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/PBKSSlogo.webp"
+            src="/images/team-logos/PBKSlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "PBKS");
@@ -143,7 +143,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/rrDlogo.webp"
+            src="/images/team-logos/RRlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "RR");
@@ -151,7 +151,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/gDtlogo.webp"
+            src="/images/team-logos/GTlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "GT");
@@ -159,7 +159,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/dcDlogo.webp"
+            src="/images/team-logos/DClogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "DC");
@@ -167,7 +167,7 @@ export default function SellingSection() {
           />
           <img
             className="w-12 aspect-square bg-white rounded-full p-2"
-            src="/images/team-logos/lDsglogo.webp"
+            src="/images/team-logos/LSGlogo.webp"
             alt=""
             onClick={() => {
               handleClick(1, "LSG");
