@@ -6,8 +6,9 @@ export default function page() {
   return (
     <div className='h-full w-full p-4 flex flex-col justify-between items-center poppins-regular bg-light-blue'>
         <div className='poppins-medium px-4 py-1 bg-blue text-white flex justify-center rounded-md w-56'>
-            Create Final team 
+             Final team 
         </div>
+        
         {/* <PlayersTable/> */}
         <Players/>
         <div className='flex justify-between gap-8'>
