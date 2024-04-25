@@ -43,26 +43,34 @@ export default function SellingSection() {
     };
   };
 
-  const handleSellPlayer = () => {
-    console.log('set to null')
-    setSelected(null);
-    console.log('value',selected)
-    dispatch({
+  const unsoldPlayer = ()=>{
+    return {
       type: eventTypes.SELL_PLAYER,
       payload: {
         auctionRoomID: roomID,
-        sellingAmount: Number(amount),
+        sellingAmount: 0,
         buyerID: "random",
         currentPlayerOrder: currentBid.currentPlayerOrder,
-        buyerName: buyerLogo,
-        buyerLogo: buyerLogo,
+        buyerName: 'unsold',
+        buyerLogo: 'unsold',
       },
-    });
+    };
+  }
+
+  const handleSellPlayer = () => {
+    if(buyerLogo){
+      console.log('set to null')
+      setSelected(null);
+      console.log('value',selected)
+      dispatch(sellPlayer()); 
+    }else{
+      alert('select buyer logo')
+    }
    
   };
 
   const handleUnsoldPlayer = () => {
-    dispatch(unsoldPlayer);
+    dispatch(unsoldPlayer());
     setSelected(null);
   };
 
@@ -90,7 +98,7 @@ export default function SellingSection() {
       <div className="flex flex-col justify-between  items-center bg-blue rounded-md w-full p-4 text-white  ">
         <div>Select Team</div>
 
-        <div className="flex gap-2 px-0  justify-between  overflow-auto items-center p-4">
+        <div className="flex gap-2 px-0  justify-between  overflow-auto items-center p-2">
           <img
             className={` ${
               selected == 1 ? "border-red-500 border-2 border-solid" : ""
@@ -179,7 +187,8 @@ export default function SellingSection() {
         <div>Selected Team</div>
         {buyerLogo && (
           <img
-            className="w-20 aspect-square"
+
+            className="w-14 aspect-square bg-white rounded-full"
             src={`/images/team-logos/${buyerLogo}logo.webp`}
             alt=""
           />

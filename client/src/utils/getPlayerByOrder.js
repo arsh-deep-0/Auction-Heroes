@@ -1,8 +1,10 @@
 import axios from "axios";
 
-async function getPlayerByOrder(order) {
+
+async function getPlayerByOrder(order,roomID) {
   try {
-    const res = await axios.get(`/api/players/get/${order}`);
+   
+    const res = await axios.get(`/api/players/get/${order}/${roomID}`);
     console.log('res:',res);
     const player = res.data.data;
     console.log("player: ", player);

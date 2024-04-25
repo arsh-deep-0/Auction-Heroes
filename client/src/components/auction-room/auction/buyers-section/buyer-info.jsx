@@ -40,8 +40,8 @@ export default function BuyerInfo({
         <div className="h-[70%] flex justify-around w-full px-1 pb-1 gap-4 ">
           <div className="w-[40%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-white`}>
-              <span className = {"circular-bar-text fredoka "}>{`${spendingData?.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></span>
-              <span className="circular-bar-text fredoka">{` ${spendingData?.valueAfter}`}</span>
+              <span className = {"circular-bar-text poppins-regular "}>{`${spendingData?.valueBefore} `}<span className="bar-value">{`${spendingData.value}`}</span></span>
+              <span className="circular-bar-text poppins-regular">{` ${spendingData?.valueAfter}`}</span>
             </div>
 
             <CircularProgressBarDiv {...spendingData} />
@@ -49,8 +49,8 @@ export default function BuyerInfo({
 
           <div className="w-[40%] aspect-square flex justify-center items-center">
             <div className={`absolute flex justify-center items-center flex-col text-black`}>
-              <span className="bar-value fredoka">{` ${playersBoughtCountData?.value}`}</span>
-              <span className="circular-bar-text fredoka">{` ${playersBoughtCountData?.valueAfter}`}</span>
+              <span className="bar-value poppins-regular">{` ${playersBoughtCountData?.value}`}</span>
+              <span className="circular-bar-text poppins-regular">{` ${playersBoughtCountData?.valueAfter}`}</span>
             </div>
             <CircularProgressBarDiv {...playersBoughtCountData} />
           </div>

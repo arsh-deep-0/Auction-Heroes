@@ -160,12 +160,21 @@ const iSAlreadySold = async (auctionId, playerOrder) => {
 };
 
 const getPlayerByOrder = asyncHandler(async(req,res)=>{
+  console.log("getPlayerByOrder",req.params.auctionRoomID,req.params);
   const order = req.params.order;
+  const auctionRoomID = req.params.auctionRoomID;
   console.log('order',order);
   const player=await Player.findOne({order})
   console.log('get player:',player)
   if(!player){
     throw new ApiError(404,'couldn\'t find player')
+  }
+  const isSold = await Contract.findOne({playerOrder:order,auctionRoomID})
+  console.log('isSold',isSold)
+  if(isSold){
+    player.isSold =true
+  }else{
+    player.isSold=false
   }
   return res
   .status(201)

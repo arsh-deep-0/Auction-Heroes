@@ -33,7 +33,7 @@ export default function PlaceBid() {
     const fetchPlayer = async () => {
       if (currentOrder) {
         setIsLoading(true);
-        const playerInfo = await getPlayerByOrder(currentOrder);
+        const playerInfo = await getPlayerByOrder(currentOrder,roomID);
         console.log("playerInfo: ", playerInfo);
         setPlayer(playerInfo);
         setTimeout(() => {

@@ -1,44 +1,48 @@
 import getPlayerByOrder from "@/utils/getPlayerByOrder";
-import Heading from "../common-components/heading";
-import ImageSection from "./image-section";
-import Stats from "./stats-section";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
 
-export default function PlayerSection() {
+export default function Stats() {
   const currentOrder = useSelector(
     (state) => state.currentBid.currentPlayerOrder
   );
+  const searchParamms= useSearchParams();
+  const roomID = searchParamms.get('roomID');
 
-  const [player, setPlayer] = useState(null); 
+  const [player, setPlayer] = useState(null); // Define player state
+
   useEffect(() => {
     const fetchPlayer = async () => {
       if (currentOrder) {
-        // Check if currentOrder is defined
-        const playerInfo = await getPlayerByOrder(currentOrder);
+        const playerInfo = await getPlayerByOrder(currentOrder,roomID);
         console.log("playerInfo: ", playerInfo);
-        setPlayer(playerInfo); // Update player state
+        setPlayer(playerInfo);
       }
     };
 
     fetchPlayer();
     console.log("Player:", player);
-  }, [currentOrder]); 
+  }, [currentOrder]);
   return (
     <>
-      <div className="flex flex-col items-center  w-full h-full justify-between">
-        <div className="h-[10%] w-full ">
-          <Heading title="Player Stats" fontSize="heading" />
+      <div className="grid grid-flow-row grid-cols-3 w-full gap-2 h-full">
+        <div className="bg-blue  rounded-md  items-center gray-border poppins-medium text-sm gap- grid grid-cols-2 px-[0.2rem]">
+          <img className="scale-110" src="/images/components/bat.svg" alt="" />
+          <span className="stats-text text-center">
+            {player?.battingPoints}
+          </span>
         </div>
-        <div className="flex flex-col h-[90%] justify-between gap-4 w-full">
-        <div className="h-[88%] w-full ">
-          <ImageSection player={player}/>
+        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
+          <img className="scale-110" src="/images/components/bowl.svg" alt="" />
+          <span className="stats-text text-center">
+            {player?.bowlingPoints}
+          </span>
         </div>
-        <div className="h-[12%] w-full">
-          <Stats player={player}/>
+        <div className="bg-blue  rounded-md  justify-center items-center gray-border  poppins-medium text-sm gap-1 grid grid-cols-2 px-[0.2rem]">
+          <img className="scale-110" src="/images/components/wicket.svg" alt="" />
+          <span className="stats-text text-center">{player?.wkPoints}</span>
         </div>
-        </div>
-        
       </div>
     </>
   );

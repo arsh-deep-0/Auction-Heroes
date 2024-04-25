@@ -1,8 +1,11 @@
 import getPlayerByOrder from "@/utils/getPlayerByOrder";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function ImageSection() {
+  const searchParamms= useSearchParams();
+  const roomID = searchParamms.get('roomID');
   const [isLoading, setIsLoading] = useState(true)
   
   const currentOrder = useSelector(
@@ -16,7 +19,7 @@ export default function ImageSection() {
       if (currentOrder) {
         // Check if currentOrder is defined
         setIsLoading(true);
-        const playerInfo = await getPlayerByOrder(currentOrder);
+        const playerInfo = await getPlayerByOrder(currentOrder,roomID);
         setPlayer(playerInfo); 
         setIsLoading(false)
       }
@@ -33,6 +36,7 @@ export default function ImageSection() {
 
   return (
     <div className="relative gray-border w-full flex justify-center  rounded-md h-full overflow-hidden bg-white">
+      {player.isSold && <img  className="absolute " src="/images/player-images/sold1.png" alt="" />}
       <img
         className="absolute  max-w-[90%] max-h-full bottom-0  object-cover z-10"
        src={player?.playerImgSrc}

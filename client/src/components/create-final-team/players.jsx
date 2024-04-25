@@ -35,7 +35,7 @@ export default function Players() {
   useEffect(() => {
     const fetchAllPlayers = async () => {
       const playerDataPromises = myPlayers.map(async (player) => {
-        const playerData = await getPlayerByOrder(player.playerOrder);
+        const playerData = await getPlayerByOrder(player.playerOrder,roomID);
         console.log("pd", playerData);
         return playerData;
       });

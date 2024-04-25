@@ -1,10 +1,13 @@
 import getPlayerByOrder from "@/utils/getPlayerByOrder";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 
 
 export default function ImageSection() {
+  const searchParamms= useSearchParams();
+  const roomID = searchParamms.get('roomID');
   const [isLoading, setIsLoading] = useState(true)
   const cookies = new Cookies(null, { path: "/" });
   const currentOrder =  useSelector(state=>{state.currentBid.currentPlayerOrder })||1
@@ -16,7 +19,7 @@ export default function ImageSection() {
       if (currentOrder) {
 
         setIsLoading(true);
-        const playerInfo = await getPlayerByOrder(currentOrder);
+        const playerInfo = await getPlayerByOrder(currentOrder,roomID);
         setPlayer(playerInfo); 
         setIsLoading(false)
       }

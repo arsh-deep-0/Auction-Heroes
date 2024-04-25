@@ -9,7 +9,7 @@ router.route('/create').post(createPlayer)
 
 router.route('/sell').post(sellPlayer)
 
-router.route('/get/:order').get(getPlayerByOrder)
+router.route('/get/:order/:auctionRoomID').get(getPlayerByOrder)
 
 router.route('/getAllPlayers/:auctionRoomID/:teamLogo').get(getAllBoughtPlayersReq)
 

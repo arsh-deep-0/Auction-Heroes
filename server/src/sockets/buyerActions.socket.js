@@ -37,7 +37,7 @@ const buyerActionsSocket = (io, socket) => {
         auctionInProcess: false,
         currentBidderName: null,
         currentBidderLogo: null,
-        currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1), 
+        currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1),
       };
       await redisClient.set(
         currentBidInfoKey,
@@ -56,22 +56,27 @@ const buyerActionsSocket = (io, socket) => {
       const buyingTeam = updatedBuyersInfo.find(
         (team) => team.teamLogo === sellingData.buyerLogo
       );
+
       console.log("buyINGTeam:", buyingTeam);
+
       console.log(sellingData.sellingAmount);
-      buyingTeam.currentPurse =
-        Number(buyingTeam.currentPurse) - Number(sellingData.sellingAmount);
-      buyingTeam.playersBoughtCount = Number(buyingTeam.playersBoughtCount) + 1;
+      if (buyingTeam) {
+        buyingTeam.currentPurse =
+          Number(buyingTeam.currentPurse) - Number(sellingData.sellingAmount);
+        buyingTeam.playersBoughtCount =
+          Number(buyingTeam.playersBoughtCount) + 1;
 
-      await redisClient.set(buyersInfoKey, JSON.stringify(updatedBuyersInfo));
-      console.log("buyersInfo sent:", updatedBuyersInfo);
-      io.to(auctionRoomID).emit("BUYERS_INFO", updatedBuyersInfo);
+        await redisClient.set(buyersInfoKey, JSON.stringify(updatedBuyersInfo));
+        1;
+        console.log("player selling data:", sellingData);
 
-      console.log("player selling data:", sellingData);
+        await sellPlayerSocket(sellingData);
+      }else{
 
-      await sellPlayerSocket(sellingData);
+      }
     });
 
-    socket.on("SKIP_PLAYER",async(sellingData)=>{
+    socket.on("SKIP_PLAYER", async (sellingData) => {
       const auctionRoomID = sellingData.auctionRoomID;
       const currentBidInfoKey = `currentBidInfo-${auctionRoomID}`;
 
@@ -87,9 +92,9 @@ const buyerActionsSocket = (io, socket) => {
         currentBidInfoKey,
         JSON.stringify(updatedCurrentBidInfo)
       );
-      console.log('skipped player', updatedCurrentBidInfo)
-      io.to(auctionRoomID).emit("CURRENT_BID_INFO", updatedCurrentBidInfo); 
-    })
+      console.log("skipped player", updatedCurrentBidInfo);
+      io.to(auctionRoomID).emit("CURRENT_BID_INFO", updatedCurrentBidInfo);
+    });
   };
 };
 export default buyerActionsSocket;

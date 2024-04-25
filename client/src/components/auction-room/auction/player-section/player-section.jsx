@@ -4,8 +4,11 @@ import ImageSection from "./image-section";
 import Stats from "./stats-section";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function PlayerSection(isFullScreen) {
+  const searchParamms= useSearchParams();
+  const roomID = searchParamms.get('roomID');
   const currentOrder = useSelector(
     (state) => state.currentBid.currentPlayerOrder
   );
@@ -17,7 +20,7 @@ export default function PlayerSection(isFullScreen) {
     const fetchPlayer = async () => {
       if (currentOrder) {
         // Check if currentOrder is defined
-        const playerInfo = await getPlayerByOrder(currentOrder);
+        const playerInfo = await getPlayerByOrder(currentOrder,roomID);
         console.log("playerInfo: ", playerInfo);
         setPlayer(playerInfo); // Update player state
       }
