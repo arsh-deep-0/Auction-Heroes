@@ -77,7 +77,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/RCBlogo.webp"
             alt=""
             onClick={() => {
@@ -85,7 +85,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2  gray-border"
             src="/images/team-logos/SRHlogo.webp"
             alt=""
             onClick={() => {
@@ -93,7 +93,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/KKRlogo.webp"
             alt=""
             onClick={() => {
@@ -101,7 +101,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/PBKSlogo.webp"
             alt=""
             onClick={() => {
@@ -109,7 +109,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/RRlogo.webp"
             alt=""
             onClick={() => {
@@ -117,7 +117,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/GTlogo.webp"
             alt=""
             onClick={() => {
@@ -125,7 +125,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/DClogo.webp"
             alt=""
             onClick={() => {
@@ -133,7 +133,7 @@ export default function Players() {
             }}
           />
           <img
-            className="w-12 aspect-square bg-white rounded-full p-2"
+            className="w-12 aspect-square bg-white rounded-full p-2 gray-border"
             src="/images/team-logos/LSGlogo.webp"
             alt=""
             onClick={() => {

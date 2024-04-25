@@ -63,11 +63,18 @@ const buyerActionsSocket = (io, socket) => {
       if (buyingTeam) {
         buyingTeam.currentPurse =
           Number(buyingTeam.currentPurse) - Number(sellingData.sellingAmount);
-        buyingTeam.playersBoughtCount =
-          Number(buyingTeam.playersBoughtCount) + 1;
+          
+          if(sellingData.sellingAmount>0){
+            buyingTeam.playersBoughtCount =
+            Number(buyingTeam.playersBoughtCount) + 1;
+          }else if(sellingData.sellingAmount<0){
+            buyingTeam.playersBoughtCount =
+            Number(buyingTeam.playersBoughtCount) - 1;
+          }
+       
 
         await redisClient.set(buyersInfoKey, JSON.stringify(updatedBuyersInfo));
-        1;
+        io.to(auctionRoomID).emit("BUYERS_INFO", updatedBuyersInfo)
         console.log("player selling data:", sellingData);
 
         await sellPlayerSocket(sellingData);

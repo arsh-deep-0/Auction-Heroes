@@ -36,7 +36,7 @@ export default function ImageSection() {
 
   return (
     <div className="relative gray-border w-full flex justify-center  rounded-md h-full overflow-hidden bg-white">
-      {player.isSold && <img  className="absolute " src="/images/player-images/sold1.png" alt="" />}
+      {player?.isSold && <img  className="absolute " src="/images/player-images/sold1.png" alt="" />}
       <img
         className="absolute  max-w-[90%] max-h-full bottom-0  object-cover z-10"
        src={player?.playerImgSrc}

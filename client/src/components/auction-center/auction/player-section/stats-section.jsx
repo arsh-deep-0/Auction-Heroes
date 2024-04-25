@@ -44,6 +44,7 @@ export default function Stats() {
           <span className="stats-text text-center">{player?.wkPoints}</span>
         </div>
       </div>
+      <div className="mt-4 text-black">{player.order}</div>
     </>
   );
 }

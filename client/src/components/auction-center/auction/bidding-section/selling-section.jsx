@@ -98,7 +98,7 @@ export default function SellingSection() {
       <div className="flex flex-col justify-between  items-center bg-blue rounded-md w-full p-4 text-white  ">
         <div>Select Team</div>
 
-        <div className="flex gap-2 px-0  justify-between  overflow-auto items-center p-2">
+        <div className="flex gap-2 px-0  justify-between  overflow-auto items-center p-2   border-white border-2 border-solid rounded-md">
           <img
             className={` ${
               selected == 1 ? "border-red-500 border-2 border-solid" : ""
@@ -202,6 +202,7 @@ export default function SellingSection() {
             type="number"
             value={amount}
             onChange={handleAmountChange}
+            
           />
         </div>
         <div className="flex gap-4 min-w-52">
