@@ -181,6 +181,54 @@ export default function SellingSection() {
               handleClick(1, "LSG");
             }}
           />
+          <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/KTlogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "KT");
+            }}
+          />
+          <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/DDlogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "DD");
+            }}
+          />
+          <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/GLlogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "GL");
+            }}
+          />
+          <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/RPSlogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "RPS");
+            }}
+          />
+          <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/PWlogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "PW");
+            }}
+          />
+           <img
+            className="w-12 aspect-square bg-white rounded-full p-2"
+            src="/images/team-logos/DeClogo.webp"
+            alt=""
+            onClick={() => {
+              handleClick(1, "DeC");
+            }}
+          />
         </div>
       </div>
       <div className="flex flex-col justify-between  items-center bg-blue rounded-md w-full p-4 text-white ">

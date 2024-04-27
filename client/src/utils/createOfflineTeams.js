@@ -9,11 +9,17 @@ async function createOfflineTeams(roomID) {
     "RCB",
     "SRH",
     "PBKS",
-    "RR",
+     "RR",
     "KKR",
     "GT",
     "DC",
     "LSG",
+    "KT",
+    "DD",
+    "GL",
+    "RPS",
+    "PW",
+    "DeC"
   ];
 
   let order = 1;

@@ -41,16 +41,16 @@ export default function Auction() {
         <div
           className={`${
             isFullScreen ? "h-[60%]" : "h-[70%]"
-          }   w-1/2  rounded-md lg:w-[30%]`}
+          }   w-1/2  rounded-md lg:w-[20%]`}
         >
           <PlayerSection isFullScreen={isFullScreen} />
         </div>
-        <div className="h-full  w-1/2 flex-grow  rounded-md lg:w-[100]%]">
+        <div className="h-full  w-1/2 flex-grow  rounded-md lg:w-[130%]]">
           <BuyersSection />
         </div>
       </div>
 
-      <div className="h-full w-1/4  rounded-xl  flex justify-center gap-2">
+      <div className="h-full w-1/5  rounded-xl  flex justify-center gap-2">
         <Biddingsection />
       </div>
     </div>
