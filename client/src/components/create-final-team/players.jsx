@@ -57,11 +57,11 @@ export default function Players() {
   return (
     <div className="flex flex-col rounded-md p-4 justify-center items-center text-black bg-white gray-border">
       {/* Render allPlayers here */}
-      <div className="flex gap-2 px-0  justify-between  overflow-auto items-center p-4">
+      <div className="flex gap-2 px-0  justify-between  overflow-scroll items-center p-4">
           <img
             className={` ${
               selected == 1 ? "border-red-500 border-2 border-solid" : ""
-            } w-12 aspect-square bg-white rounded-full p-2 gray-border pointer-events-auto`}
+            } border-2 border-solid border-red-500 w-12 aspect-square bg-white rounded-full p-2 gray-border pointer-events-auto`}
             src="/images/team-logos/MIlogo.webp"
             alt=""
             onClick={() => {
