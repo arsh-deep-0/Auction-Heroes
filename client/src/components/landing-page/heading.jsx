@@ -62,7 +62,7 @@ function Heading() {
             Create online rooms, invite and play{" "}
           </span>
           <span className="text-reveal text-blue pr-2 target">
-             IPL Auction in real Time{" "}
+             IPL Auction in Real-Time{" "}
           </span>
           {/* <span className='text-reveal target'>Businesses</span> */}
         </p>

@@ -13,7 +13,7 @@ function Buttons({ name1, name2 }) {
     const userID = cookies.get("userID");
     console.log("userID: " + userID);
     if (userID!=undefined) {
-      router.push("/join-room");
+      router.push("/create-room");
     } else {
       cookies.set("intendedDestination", "/create-room");
       navigateToSignUp();

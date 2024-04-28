@@ -39,6 +39,10 @@ body {
   height: 100%;
 }
 
+.white-wire{
+  background: url('/images/components/white-wire.svg');
+  background-position: center;
+}
 
 .aoboshi {
   font-family: 'Aoboshi One', serif;

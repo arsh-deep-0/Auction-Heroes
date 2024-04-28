@@ -27,7 +27,7 @@ export default function UI() {
   }, []);
 
   return (
-    <div className="flex w-full overflow-hidden justify-center">
+    <div className="flex w-full overflow-hidden justify-center lg:w-[50%]">
       <img className="left w-[50%]" src="/images/components/game.svg" alt="" />
       <img className="right w-[62%]" src="/images/components/waiting-room.svg" alt="" />
     </div>
