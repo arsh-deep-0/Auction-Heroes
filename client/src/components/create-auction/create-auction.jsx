@@ -85,9 +85,11 @@ export default function CreateAuction() {
   };
 
   return (
-    <div className="flex flex-col gap-2 p-4 w-72 text-black poppins-regular">
+    <div className="flex flex-col gap-4 p-4 bg-light-blue  text-black poppins-regular items-center h-full w-full justify-center rounded-lg ">
+      <span className="poppins-semibold text-blue">Create Auction Room</span>
+      <div className="bg-white">
       <form
-        className="flex flex-col gap-2 "
+        className="flex flex-col gap-2 bg-white p-8 rounded-lg pink-shadow"
         onSubmit={handleSubmit(submit, onError)}
         noValidate
       >
@@ -213,9 +215,11 @@ export default function CreateAuction() {
           disabled={isSubmitting}
           className="gray-border bg-blue text-white disabled:bg-gray-500"
         >
-          Sign Up
+          Create Room
         </button>
       </form>
+      </div>
+      
     </div>
   );
 }

@@ -1,10 +1,18 @@
 import { useRouter } from "next/navigation";
 import React from "react";
+import Cookies from "universal-cookie";
 
 export const StartGame = () => {
+  const cookies = new Cookies(null, { path: "/" });
+  const username = cookies.get('username');
   const router = useRouter();
 
   const navigateToCreateRoom = () => {
+    if(username){
+      
+    }else{
+      
+    }
     router.push("/create-room");
   };
   const navigateToJoinRoom = () => {

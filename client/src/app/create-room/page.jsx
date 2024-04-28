@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div><CreateAuction/></div>
+    <div className='h-full'><CreateAuction/></div>
   )
 }

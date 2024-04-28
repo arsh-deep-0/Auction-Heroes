@@ -30,82 +30,6 @@ export default function Home() {
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      gsap.from(".ani", {
-        y: 30,
-        opacity: 0,
-        duration: 0.5,
-        ease: "sine.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani",
-          start: "top 80%",
-          toggleActions: "play none none none ",
-        },
-      });
-
-      gsap.from(".ani-p", {
-        y: 30,
-        opacity: 0,
-        duration: 0.5,
-        ease: "sine.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani-p",
-          start: "top 70%",
-          toggleActions: "play none none none ",
-        },
-      });
-
-      gsap.from(".ani-t", {
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        ease: "back.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani-t",
-          start: "top 70%",
-          toggleActions: "play none none none ",
-        },
-      });
-      gsap.from(".ani-t1", {
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        ease: "back.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani-t1",
-          start: "top 70%",
-          toggleActions: "play none none none ",
-        },
-      });
-      gsap.from(".ani-t2", {
-        y: 25,
-        opacity: 0,
-        duration: 0.8,
-        ease: "back.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani-t2",
-          start: "top 70%",
-          toggleActions: "play none none none ",
-        },
-      });
-
-      gsap.from(".ani-g", {
-        y: 30,
-        opacity: 0,
-        duration: 0.5,
-        ease: "back.out",
-        stagger: 0.35,
-        scrollTrigger: {
-          trigger: ".ani-g",
-          start: "top 70%",
-          toggleActions: "play none none none ",
-        },
-      });
-
       gsap.from(".start", {
         y: 30,
         opacity: 0,
@@ -126,8 +50,8 @@ export default function Home() {
         <Heading />
         <Subheading />
         <Buttons name1={"Create Room"} name2={"Join Room"} />
-        <UI/>
-        <Contact/>
+        <UI />
+        <Contact />
       </main>
     </div>
   );

@@ -10,7 +10,7 @@ function Navbar() {
             <span className="text-blue ">Auction</span>Heroes
           </h1>
         </div>
-        <img className="h-4" src="menu.svg" alt="" />
+        {/* <img className="h-4" src="menu.svg" alt="" /> */}
       </div>
     </>
   );

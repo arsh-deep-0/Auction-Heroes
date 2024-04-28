@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Contact() {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 p-4">
       <span className="poppins-regular text-black">
         Liked my work? Find more...
       </span>

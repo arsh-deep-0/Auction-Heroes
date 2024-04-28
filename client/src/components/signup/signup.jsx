@@ -4,13 +4,11 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Cookies from 'universal-cookie';
-
-
+import Cookies from "universal-cookie";
 
 export const SignUp = () => {
-  const cookies = new Cookies(null, { path: '/' });
-  
+  const cookies = new Cookies(null, { path: "/" });
+
   const router = useRouter();
   const form = useForm({
     defaultValues: {
@@ -20,8 +18,6 @@ export const SignUp = () => {
   const { register, control, handleSubmit, formState } = form;
   const { errors, isSubmitting } = formState;
 
-
-
   const submit = async (data) => {
     const form = new FormData();
     form.append("userName", data.userName);
@@ -30,98 +26,101 @@ export const SignUp = () => {
     form.append("password", data.password);
     // form.append("profileImage", data.profileImage[0]);
     // data = { ...data, profileImage: data.profileImage[0] };
-  
+
     try {
-      const response = await axios.post(
-        "/api/users/register",
-        form,
-        {
-          withCredentials: true, 
-          headers: {
-            "Content-Type": "application/json", 
-          },
-        }
-      );
+      const response = await axios.post("/api/users/register", form, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       console.log("form submitted", data);
       console.log(response.data);
       if (response.status === 201) {
-        cookies.set('userID', response.data.data._id);
-        cookies.set('fullName', response.data.data.fullName);
-        cookies.set('accessTokenID', response.data.data.accessToken);
-        router.push("/");
+        cookies.set("userID", response.data.data._id);
+        cookies.set("fullName", response.data.data.fullName);
+        cookies.set("accessTokenID", response.data.data.accessToken);
+        const intendedDestination = cookies.get("intendedDestination");
+        router.push(intendedDestination);
       }
     } catch (err) {
-      console.error(err);
+      console.error("errr",err);
+      if(err.response.status==409){
+        alert('User with this email or username already exists!')
+      }
     }
   };
-  
+
   return (
-    <div className="flex flex-col gap-2 p-4 w-72 text-black poppins-regular">
-      <form
-        className="flex flex-col gap-2 "
-        onSubmit={handleSubmit(submit)}
-        noValidate
-      >
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          name="fullName"
-          id="name"
-          {...register("fullName", {
-            required: { value: true, message: "fullName is required" },
-          })}
-          className="gray-border  rounded-sm"
-        />
-        <p className="error">{errors.fullName?.message}</p>
+    <div className="flex flex-col gap-2 p-4  text-black poppins-regular w-full h-full justify-center items-center bg-light-blue">
+      <span className="poppins-semibold text-blue">Sign Up</span>
 
-        <label htmlFor="username">UserName</label>
-        <input
-          type="text"
-          name="userName"
-          id="username"
-          {...register("userName", {
-            required: { value: true, message: "username is required" },
-          })}
-          className="gray-border rounded-sm"
-        />
-        <p className="error">{errors.userName?.message}</p>
+      <div className="bg-white p-4 rounded-lg pink-shadow">
+        <form
+          className="flex flex-col gap-2 "
+          onSubmit={handleSubmit(submit)}
+          noValidate
+        >
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="fullName"
+            id="name"
+            {...register("fullName", {
+              required: { value: true, message: "fullName is required" },
+            })}
+            className="gray-border  rounded-sm"
+          />
+          <p className="error">{errors.fullName?.message}</p>
 
-        <label htmlFor="email">E-mail</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          {...register("email", {
-            required: { value: true, message: "email is required" },
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
-              message: "invalid email format",
-            },
-            validate: {
-              notAdmin: (fieldValue) => {
-                return (
-                  fieldValue !== "arsh@gmail.com" ||
-                  "This email is reserved for admin use"
-                );
+          <label htmlFor="username">UserName</label>
+          <input
+            type="text"
+            name="userName"
+            id="username"
+            {...register("userName", {
+              required: { value: true, message: "username is required" },
+            })}
+            className="gray-border rounded-sm"
+          />
+          <p className="error">{errors.userName?.message}</p>
+
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            {...register("email", {
+              required: { value: true, message: "email is required" },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i,
+                message: "invalid email format",
               },
-            },
-          })}
-          className="gray-border rounded-sm"
-        />
-        <p className="error">{errors.email?.message}</p>
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          {...register("password", {
-            required: { value: true, message: "password is required" },
-          })}
-          className="gray-border  rounded-sm"
-        />
-        <p className="error">{errors.password?.message}</p>
+              validate: {
+                notAdmin: (fieldValue) => {
+                  return (
+                    fieldValue !== "arsh@gmail.com" ||
+                    "This email is reserved for admin use"
+                  );
+                },
+              },
+            })}
+            className="gray-border rounded-sm"
+          />
+          <p className="error">{errors.email?.message}</p>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            {...register("password", {
+              required: { value: true, message: "password is required" },
+            })}
+            className="gray-border  rounded-sm"
+          />
+          <p className="error">{errors.password?.message}</p>
 
-        {/* <label htmlFor="profileImage">File</label>
+          {/* <label htmlFor="profileImage">File</label>
         <input
           type="file"
           id="profileImage"
@@ -132,13 +131,14 @@ export const SignUp = () => {
           className="flex gap-2"
         />
         <p className="error">{errors.profileImage?.message}</p> */}
-        <button
-          disabled={isSubmitting}
-          className="gray-border bg-blue text-white"
-        >
-          Sign Up
-        </button>
-      </form>
+          <button
+            disabled={isSubmitting}
+            className="gray-border bg-blue text-white"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
