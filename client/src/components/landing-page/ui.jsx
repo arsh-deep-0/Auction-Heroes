@@ -10,7 +10,7 @@ export default function UI() {
     },{
         x: 20,
         duration: 1,
-        ease: "sine.in",
+        ease: "sine.inOut",
       });
 
     gsap.fromTo(
@@ -21,7 +21,7 @@ export default function UI() {
       {
         x: -20,
         duration: 1,
-        ease: "sine.in",
+        ease: "sine.inOut",
       }
     );
   }, []);
