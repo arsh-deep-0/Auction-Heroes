@@ -80,6 +80,8 @@ export default function CountdownTimer() {
         currentPlayerOrder: currentBid.currentPlayerOrder,
         buyerName: currentBid.currentBidderName,
         buyerLogo: currentBid.currentBidderLogo,
+        playersSold:currentBid.playersSold,
+        playersUnsold:currentBid.playersUnsold
       },
     };
   };
@@ -94,30 +96,30 @@ export default function CountdownTimer() {
         currentPlayerOrder: currentBid.currentPlayerOrder,
         buyerName: currentBid.currentBidderName,
         buyerLogo: currentBid.currentBidderLogo,
+        playersSold:currentBid.playersSold,
+        playersUnsold:currentBid.playersUnsold
       },
     };
   };
 
   return (
     <>
-      <div className="bg-white aspect-[3/2] rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center">
-        <div className="w-[45%] relative flex items-center justify-center">
-          <div className="absolute flex justify-center items-center flex-col text-white">
-            <span
-              className="poppins-light"
-              style={{ fontSize: "clamp(1.2rem,4vw,2rem)" }}
-            >
-              {countdown}
-            </span>
-          </div>
-          <CircularProgressBarDiv
-            percentage={(countdown * 100) / 15}
-            circleColor={countdown > 5 || countdown == null ? "#7d54f2" : "red"}
-            progressBarColor={"black"}
-          />
-        </div>
+      <div className="bg-white aspect-[3/2] sm:aspect-[4] lg:aspect-square rounded-lg pink-shadow mx-1  pt-1 pb-[2px] box-border flex flex-col justify-between items-center lg:p-2 lg:justify-center">
+      <div className="w-[45%] sm:w-[20%] lg:w-[50%] relative flex items-center justify-center">
+  <div className="absolute flex justify-center items-center flex-col text-white bottom-0 right-0 w-full h-full ">
+    <span className="poppins-light text-lg bottom-4 right-4">
+      {countdown}
+    </span>
+  </div>
+  <CircularProgressBarDiv
+    percentage={(countdown * 100) / 15}
+    circleColor={countdown > 5 || countdown == null ? "#7d54f2" : "red"}
+    progressBarColor={"black"}
+  />
+</div>
 
-        <span className="poppins-light bar-text text-black ">Timer</span>
+
+        <span className="poppins-light bar-text text-black sm:hidden">Timer</span>
       </div>
     </>
   );

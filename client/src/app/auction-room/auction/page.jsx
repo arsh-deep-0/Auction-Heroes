@@ -18,10 +18,10 @@ export default function Auction() {
 
   return (
     <div
-      className="h-[85%]  my-4 flex flex-col justify-between items-center text-white"
+      className="h-[85%]  my-4 flex flex-col justify-between items-center text-white lg:flex-row lg:gap-12 lg:px-12 sm:px-12"
       onClick={enterFullScreen}
     >
-      <div className=" h-[46%] w-full flex justify-center gap-4">
+      <div className=" h-[46%] w-full flex justify-center gap-4 lg:h-full lg:gap-12">
         <div className="h-full  w-1/2  rounded-md">
           <PlayerSection />
         </div>
@@ -30,7 +30,7 @@ export default function Auction() {
         </div>
       </div>
       {/* divider */}
-      <div className="flex gap-[0.65rem]">
+      <div className="lg:hidden flex gap-[0.65rem]">
         <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
         <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
         <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
@@ -39,7 +39,7 @@ export default function Auction() {
         <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
         <div className="w-[0.35rem] h-[0.35rem] bg-blue rounded-full"></div>
       </div>
-      <div className="min-h-[40%] max-h-[50%] bg-blue-purple border-white border-solid border-2 rounded-xl w-full flex justify-center gap-2">
+      <div className="min-h-[40%] bg-blue-purple  rounded-xl w-full flex justify-center gap-2 lg:h-[90%] lg:flex-col  p-4 mt-[4%] lg:w-[50%]">
         <BiddingSection />
       </div>
     </div>

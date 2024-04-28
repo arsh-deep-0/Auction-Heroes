@@ -17,8 +17,8 @@ export default function CurrentBidder() {
 
   console.log("buyer:", currentBidder);
   return (
-    <div className="bg-white rounded-lg aspect-[3/2] pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-between box-border ">
-      <div className=" w-[45%] h-[50%]">
+    <div className="bg-white rounded-lg aspect-[3/2] sm:aspect-[4] lg:aspect-square pink-shadow  mx-1 p-[2px] flex flex-col items-center justify-between box-border lg:p-2 lg:justify-center">
+      <div className=" w-[45%] h-[50%] sm:max-h-[50%] sm:max-w-[20%] lg:max-w-[50%] lg:max-h-[75%]">
         {currentBidderLogo&&<BuyerLogo teamLogo={currentBidderLogo} order={4} orderVisibility={"hidden"} />}
       </div>
 

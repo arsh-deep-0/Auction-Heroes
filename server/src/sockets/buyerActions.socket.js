@@ -38,6 +38,8 @@ const buyerActionsSocket = (io, socket) => {
         currentBidderName: null,
         currentBidderLogo: null,
         currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1),
+        playersSold:sellingData.playersSold+1,
+        playersUnsold:sellingData.playersUnsold,
       };
       await redisClient.set(
         currentBidInfoKey,
@@ -94,6 +96,8 @@ const buyerActionsSocket = (io, socket) => {
         currentBidderName: null,
         currentBidderLogo: null,
         currentPlayerOrder: Number(sellingData.currentPlayerOrder + 1),
+        playersSold:sellingData.playersSold,
+        playersUnsold:sellingData.playersUnsold+1
       };
       await redisClient.set(
         currentBidInfoKey,

@@ -36,14 +36,14 @@ export default function PlayerSection(isFullScreen) {
   
   return (
     <>
-      <div className={`${isFullScreen ? "gap-8" : "gap-0"} flex flex-col items-center  w-full h-full justify-center `}>
+      <div className={`${isFullScreen ? "gap-2" : "gap-0"} flex flex-col items-center  w-full h-full justify-center `}>
 
         <div className={`h-[10%] w-full `}>
           <Heading title="Player Stats" fontSize="heading" />
         </div>
 
-        <div className="flex flex-col h-[90%] justify-between gap-4 w-full">
-          <div className="h-[80%] w-full ">
+        <div className="flex flex-col h-[100%] justify-between gap-4 w-full">
+          <div className="h-[90%] w-full ">
             <ImageSection player={player} />
           </div>
           <div className="h-[10%] w-full">

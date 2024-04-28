@@ -27,6 +27,8 @@ const currentStateSocket = (io, socket) => {
           currentBidderName: null,
           currentBidderLogo: null,
           currentPlayerOrder: Number(auction.currentPlayerOrder),
+          playersSold:0,
+          playersUnsold:0
         };
         console.log('c bid Info ELSE', roomData)
         await redisClient.set(currentBidInfoKey,JSON.stringify(roomData))

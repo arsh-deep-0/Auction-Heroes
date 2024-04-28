@@ -1,43 +1,134 @@
-'use client'
+"use client";
+import SplashScreen from "@/components/landing-page/splashscreen";
 import { StartGame } from "@/components/landing-page/start-game";
-import { socket } from './socket';
-import { useState,useEffect } from "react";
-
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Heading from "@/components/landing-page/heading";
+import Subheading from "@/components/landing-page/subheading";
+import Buttons from "@/components/landing-page/buttons";
+import Navbar from "@/components/landing-page/navabr";
+import UI from "@/components/landing-page/ui";
+import Contact from "@/components/landing-page/contact";
 
 export default function Home() {
-
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
-  function connectSocket() {
-    socket.connect();
-  }
-
+  const [isMobile, setIsMobile] = useState(false);
+  gsap.registerPlugin(ScrollTrigger);
+  const appt = useRef(null);
   useEffect(() => {
-    function onConnect() {
-      setIsConnected(true);
-      console.log('connected')
-    }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust the breakpoint as needed
+    };
 
-    function onDisconnect() {
-      setIsConnected(false);
-    }
-
-   
-
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    
+    handleResize(); // Call it initially
+    window.addEventListener("resize", handleResize); // Listen for window resize events
 
     return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
+      window.removeEventListener("resize", handleResize); // Clean up the listener on unmount
     };
   }, []);
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.from(".ani", {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        ease: "sine.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani",
+          start: "top 80%",
+          toggleActions: "play none none none ",
+        },
+      });
+
+      gsap.from(".ani-p", {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        ease: "sine.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani-p",
+          start: "top 70%",
+          toggleActions: "play none none none ",
+        },
+      });
+
+      gsap.from(".ani-t", {
+        y: 25,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani-t",
+          start: "top 70%",
+          toggleActions: "play none none none ",
+        },
+      });
+      gsap.from(".ani-t1", {
+        y: 25,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani-t1",
+          start: "top 70%",
+          toggleActions: "play none none none ",
+        },
+      });
+      gsap.from(".ani-t2", {
+        y: 25,
+        opacity: 0,
+        duration: 0.8,
+        ease: "back.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani-t2",
+          start: "top 70%",
+          toggleActions: "play none none none ",
+        },
+      });
+
+      gsap.from(".ani-g", {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        ease: "back.out",
+        stagger: 0.35,
+        scrollTrigger: {
+          trigger: ".ani-g",
+          start: "top 70%",
+          toggleActions: "play none none none ",
+        },
+      });
+
+      gsap.from(".start", {
+        y: 30,
+        opacity: 0,
+        duration: 0.75,
+        ease: "sineout",
+        stagger: 0.1,
+        delay: 0,
+      });
+    }, appt);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between text-black">
-      <StartGame/>
-      <span>{isConnected}</span>
-      <button onClick={connectSocket}>Connect</button>
-    </main>
+    <div ref={appt}>
+      <main className="flex min-h-screen flex-col items-center gap-4 text-black p-2 bg-light-blue">
+        <Navbar />
+        <Heading />
+        <Subheading />
+        <Buttons name1={"Create Room"} name2={"Join Room"} />
+        <UI/>
+        <Contact/>
+      </main>
+    </div>
   );
 }

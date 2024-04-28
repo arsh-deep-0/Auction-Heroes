@@ -12,6 +12,7 @@ export default function PlaceBid() {
   const searchParams = useSearchParams();
   const roomID = searchParams.get("roomID");
   const cookies = new Cookies(null, { path: "/" });
+  const currentBid= useSelector((state) => state.currentBid);
   const currentBidValue = useSelector((state) => state.currentBid.amount);
   const currentBidderLogo = useSelector(
     (state) => state.currentBid.currentBidderLogo
@@ -95,6 +96,8 @@ export default function PlaceBid() {
         currentBidderName: fullName,
         currentBidderLogo: teamLogo,
         basePrice: player.basePrice,
+        playersSold:currentBid.playersSold,
+        playersUnsold:currentBid.playersUnsold
       },
     };
   };

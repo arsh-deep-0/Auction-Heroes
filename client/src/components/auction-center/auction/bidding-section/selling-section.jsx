@@ -43,7 +43,7 @@ export default function SellingSection() {
     };
   };
 
-  const unsoldPlayer = ()=>{
+  const UnsoldPlayer = ()=>{
     return {
       type: eventTypes.SELL_PLAYER,
       payload: {
@@ -51,8 +51,8 @@ export default function SellingSection() {
         sellingAmount: 0,
         buyerID: "random",
         currentPlayerOrder: currentBid.currentPlayerOrder,
-        buyerName: 'unsold',
-        buyerLogo: 'unsold',
+        buyerName: 'Unsold',
+        buyerLogo: 'Unsold',
       },
     };
   }
@@ -70,7 +70,7 @@ export default function SellingSection() {
   };
 
   const handleUnsoldPlayer = () => {
-    dispatch(unsoldPlayer());
+    dispatch(UnsoldPlayer());
     setSelected(null);
   };
 

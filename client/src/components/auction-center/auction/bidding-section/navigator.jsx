@@ -24,7 +24,7 @@ export default function Navigator() {
     // const fullName = cookies.get("fullName");
    
     const nextPlayer = () => {
-        const newPlayerOrder = (currentBid.currentPlayerOrder % 70) ;
+        const newPlayerOrder = (currentBid.currentPlayerOrder % 113) ;
         return {
           type: eventTypes.SKIP_PLAYER,
           payload: {
@@ -43,7 +43,7 @@ export default function Navigator() {
        
         if(currentBid.currentPlayerOrder==1){
             console.log('cpoo',currentBid.currentPlayerOrder)
-             currentPlayerOrder = 71;
+             currentPlayerOrder = 114;
         } 
         console.log("cporder",currentPlayerOrder)
         

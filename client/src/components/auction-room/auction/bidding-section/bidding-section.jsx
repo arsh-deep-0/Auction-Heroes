@@ -16,7 +16,7 @@ export default function BiddingSection() {
   const roomID = searchParams.get("roomID");
   return (
     <>
-      <div className="w-full h-full  flex flex-col box-border p-4 py-4 justify-between">
+      <div className="w-full h-full  flex flex-col box-borderlg:p-4 py-4 justify-between lg:gap-4 lg:bg-blue-purple">
         <div className="w-full max-h-[10%]  grid grid-cols-2">
           <div>
             <Heading
@@ -36,7 +36,7 @@ export default function BiddingSection() {
           </div>
         </div>
 
-        <div className="w-full max-h[50%] flex-col flex gap-2">
+        <div className="w-full max-h[50%] sm:max-h-[30%] flex-col flex gap-2 lg:max-h-full lg:bg-blue-purple">
           <div className="w-full  max-h-[20%] grid grid-cols-3 gap-1">
             <div>
               <Heading
@@ -71,12 +71,12 @@ export default function BiddingSection() {
           </div>
         </div>
 
-        <div className="w-full  max-h-[30%] grid grid-cols-3 gap-1">
-          <div className="col-span-2 h-full bg-white text-black flex flex-col justify-between  rounded-md text-center mx-1">
-            <ProgressBar soldPlayers={17} unsoldPlayers={4} totalPlayers={31} />
+        <div className="w-full  max-h-[30%] grid grid-cols-3 gap-1 lg:flex lg:flex-col lg:gap-4 lg:justify-center lg:items-center">
+          <div className="col-span-2 h-full bg-white text-black flex flex-col justify-between  rounded-md text-center mx-1 lg:w-full lg:p-2">
+            <ProgressBar soldPlayers={17} UnsoldPlayers={4} totalPlayers={31} />
           </div>
 
-          <div className="flex flex-col justify-center mx-1 gap-2">
+          <div className="flex flex-col justify-center mx-1 gap-2 max-w-[10rem]">
             <PlaceBid />
           </div>
         </div>
